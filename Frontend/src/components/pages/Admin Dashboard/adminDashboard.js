@@ -7,7 +7,7 @@ class AdminDashboard extends Component {
         return (
             <>
              <h1>Admin Dashboard</h1>
-           
+           {/* this is a comment */}
             </>
         );
 
