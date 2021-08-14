@@ -24,11 +24,10 @@ class RegistationHome extends Component {
             <div className="sec-card">
               <div className="card-box">
                 <div className="card-content">
-                  <h3>Student Sign Up</h3>
+                  <h3>Applicant Sign Up</h3>
                   <p>
-                    Student User Profile allows you to edit student profiles,
-                    search for jobs, issue contracts, payout statuses, update
-                    data, and provide customer support.
+                    Applicant User Profile allows you to edit user profiles,
+                    search for jobs, apply them, view their statuses and much more.
                   </p>
                   <a href="/studentRegister">Register as Student</a>
                 </div>

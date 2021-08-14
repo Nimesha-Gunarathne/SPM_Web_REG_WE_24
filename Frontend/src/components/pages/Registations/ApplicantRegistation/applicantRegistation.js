@@ -44,7 +44,7 @@ class RegistationStudent extends Component {
   onSubmit(event) {
     event.preventDefault();
 
-    let StudentDetails = {
+    let ApplicantDetails = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       Field: this.state.Field,
@@ -55,7 +55,7 @@ class RegistationStudent extends Component {
       mobileNumber: this.state.mobileNumber,
     };
 
-    console.log("Student Details : ", StudentDetails);
+    console.log("Applicant Details : ", ApplicantDetails);
 
     // axios
     //   .post(`/signupStudent/newstudent`, StudentDetails)
