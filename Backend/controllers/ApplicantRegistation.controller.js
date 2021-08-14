@@ -1,0 +1,198 @@
+const registationStudent = require("../models/ApplicantRegistation.model");
+// const bcrypt = require("bcrypt");
+const messages = require("../messages/messages");
+const jwt = require("jsonwebtoken");
+const sendMail = require("./Mails/sendMail");
+
+const { google } = require("googleapis");
+const { OAuth2 } = google.auth;
+const fetch = require("node-fetch");
+
+// const client = new OAuth2(process.env.MAILING_SERVICE_CLIENT_ID);
+
+const { CLIENT_URL } = process.env;
+
+const STUDENTControllers = {
+    registerApplicant: async function (req, res) {
+      console.log("1");
+      try {
+        const {
+          firstName,
+          lastName,
+          gender,
+          email,
+          password,
+          mobileNumber,
+          userRoleStatus,
+          accountStatus,
+        } = req.body;
+  
+        if (
+          !firstName ||
+          !lastName ||
+          !gender ||
+          !email ||
+          !password ||
+          !mobileNumber
+        ) {
+          console.log("2");
+          return res.status(200).json({
+            code: messages.BadCode,
+            success: messages.NotSuccess,
+            status: messages.BadStatus,
+            message: messages.ContentEmpty,
+          });
+        }
+        console.log("validemail");
+        if (!validateEmail(email)) {
+          return res.status(200).json({
+            code: messages.BadCode,
+            success: messages.NotSuccess,
+            status: messages.BadStatus,
+            message: messages.ValidEmail,
+          });
+        }
+        console.log("email");
+        const studentMail = await registationStudent.findOne({ email });
+        console.log("email2");
+        if (studentMail) {
+          return res.status(200).json({
+            code: messages.BadCode,
+            success: messages.NotSuccess,
+            status: messages.BadStatus,
+            message: messages.AlreadyExistEmail,
+          });
+        }
+  
+        const studentMobile = await registationStudent.findOne({ mobileNumber });
+        if (studentMobile) {
+          return res.status(200).json({
+            code: messages.BadCode,
+            success: messages.NotSuccess,
+            status: messages.BadStatus,
+            message: "Mobile Number Alrady exits",
+          });
+        }
+        console.log("3");
+  
+        const newStudent = {
+          firstName,
+          lastName,
+          gender,
+          email,
+          password,
+          mobileNumber,
+          userRoleStatus,
+          accountStatus,
+        };
+  
+        const activation_token = createActivationToken(newStudent);
+  
+        const url = `${CLIENT_URL}/student/activate/${activation_token}`;
+        // const url = `${CLIENT_URL}/login`;
+        console.log(url);
+  
+        sendMail(email, url, "Verify your email address", firstName);
+  
+        return res.status(200).json({
+          code: messages.SuccessCode,
+          success: messages.Success,
+          status: messages.SuccessStatus,
+          data: newStudent,
+          token: activation_token,
+          message: messages.ActiveAccount,
+        });
+      } catch (err) {
+        return res.status(500).json({
+          code: messages.InternalCode,
+          success: messages.NotSuccess,
+          status: messages.InternalStatus,
+          message: err.message,
+        });
+      }
+    },
+  
+    activateEmail: async (req, res) => {
+      try {
+        const { activation_token } = req.body;
+        const newStudents = jwt.verify(
+          activation_token,
+          process.env.ACTIVATION_TOKEN_SECRET
+        );  
+  
+        const {
+          firstName,
+          lastName,
+          gender,
+          email,
+          password,
+          mobileNumber,
+          userRoleStatus,
+          accountStatus,
+        } = newStudents;
+  
+        const check = await registationStudent.findOne({ email });
+        if (check) {
+          return res.status(200).json({
+            code: messages.BadCode,
+            success: messages.NotSuccess,
+            status: messages.BadStatus,
+            message: messages.AlreadyExistEmail,
+          });
+        }
+  
+        const newStudent = new registationStudent({
+          firstName,
+          lastName,
+          gender,
+          email,
+          password,
+          mobileNumber,
+          userRoleStatus:"Applicant",
+          accountStatus:"approved",
+        });
+  
+        await newStudent.save();
+        // const url = `${CLIENT_URL}/student/activate/${activation_token}`;
+        // const url = `${CLIENT_URL}/login`;
+        // sendMail("sltechmart99@gmail.com", url, "Aprove the Employer", "Clerk");
+  
+        return res.status(200).json({
+          code: messages.SuccessCode,
+          success: messages.Success,
+          status: messages.SuccessStatus,
+          data: newStudent,
+          token: activation_token,
+          message:
+            "Account has been activated successfully.",
+        });
+      } catch (err) {
+        return res.status(500).json({
+          code: messages.InternalCode,
+          success: messages.NotSuccess,
+          status: messages.InternalStatus,
+          message: err.message,
+        });
+      }
+    },
+}
+
+function validateEmail(email) {
+  const re =
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
+const createActivationToken = (payload) => {
+  return jwt.sign(payload, process.env.ACTIVATION_TOKEN_SECRET, {
+    expiresIn: "10m",
+  });
+};
+
+const createAccessToken = (payload) => {
+  return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: "7d",
+  });
+};
+
+module.exports = STUDENTControllers;

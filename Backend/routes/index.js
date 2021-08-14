@@ -1,4 +1,7 @@
-// const routes = require("express").Router();
+const routes = require("express").Router();
+const ApplicantRoute = require("./Registations/Applicant");
 
 
-// module.exports = routes;
+routes.use("/applicant", ApplicantRoute);
+
+module.exports = routes;

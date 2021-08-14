@@ -1,0 +1,149 @@
+/* body{
+	background: linear-gradient(130deg
+,#13BF7A 25%,#1300A8 100%)!important;
+} */
+.RHbody{
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)!important;
+height: 800px;
+width: 1600px;
+
+}
+.TopRow{
+	width: 100%;
+}
+.Logoimg{
+	height: 170px;
+	width: 370px;
+	margin-left: 400px;
+	align-items: center;
+}
+.Loginbtn{
+	margin-left: 1100px;
+	margin-top: 50px;
+	padding: 10px;
+}
+
+/*card Section*/
+section{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 80vh;
+}
+.section-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-width: 1200px;
+	flex-wrap: wrap;
+	padding: 40px 0;
+}
+.section-container .sec-card{
+	position: relative;
+	width: 450px;
+	height: 440px;
+	color: #fff;
+	box-shadow: inset 5px 5px 5px rgb(0 0 0 / 5%), inset -5px -5px 5px rgb(255 255 255 / 50%), 5px 5px 5px rgb(0 0 0 / 5%), -5px -5px 5px rgb(255 255 255 / 50%);
+	border-radius: 15px;
+	margin: 30px;
+}
+.section-container .sec-card .card-box{
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	right: 20px;
+	bottom: 20px;
+	/*background: linear-gradient( 130deg
+ ,#13BF7A 25%,#1300A8 100%)!important;*/
+	/*box-shadow: 0 10px 20px rgba(0,0,0,0.1);*/
+	border-radius: 15px;
+	box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.section-container .sec-card:hover .card-box{
+	transform: translateY(-50px);
+	 box-shadow: 0 10px 40px rgb(0 0 0 / 20%);
+	 background: linear-gradient( 130deg
+ ,#13BF7A 25%,#1300A8 100%)!important;
+	-webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -ms-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+    /*font-family: ‘Roboto’,Helvetica,Arial,Lucida,sans-serif!important;*/
+
+}
+.section-container .sec-card .card-box .card-content{
+	padding: 20px;
+	text-align: center;
+	font-family: 'Roboto',Helvetica,Arial,Lucida,sans-serif!important;
+
+}
+.section-container .sec-card .card-box .card-content h3{
+	font-size: 1.8em;
+	/* color: #fff; */
+	color: rgb(0, 0, 0);
+
+	z-index: 1;
+	transition: 0.5s;
+	font-family: 'Roboto',Helvetica,Arial,Lucida,sans-serif!important;
+
+}
+.section-container .sec-card .card-box .card-content p{
+	font-size: 1em;
+	font-weight: 300;
+	/* color: #fff; */
+	color: rgb(0, 0, 0);
+
+	z-index: 1;
+	transition: 0.5s;
+		font-family: 'Roboto',Helvetica,Arial,Lucida,sans-serif!important;
+
+}
+.section-container .sec-card:hover .card-box .card-content p,
+.section-container .sec-card:hover .card-box .card-content h3{
+	color: #fff;
+}
+.section-container .sec-card .card-box .card-content a{
+	position: relative;
+    display: inline-block;
+    padding: 15px 20px;
+    background: #1D2C48;
+    margin-top: 15px;
+    font-family: 'Roboto',Helvetica,Arial,Lucida,sans-serif!important;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 400;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    letter-spacing: 5px;
+    background-image: linear-gradient( 90deg
+ ,#F92C8B 0%,#B02CD6 100%);
+    border-width: 0px!important;
+    border-color: rgba(0,0,0,0);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700!important;
+    text-transform: uppercase!important;
+}
+.section-container .sec-card:hover .card-box .card-content a{
+	
+	background: #fff;
+	color: #1d2c48;
+}
+
+/*Login Button*/
+.btn-login{
+	background: linear-gradient( 130deg
+ ,#13BF7A 25%,#1300A8 100%);
+	border-radius: 5px;
+	color: white;
+	align-items: right;
+	justify-content: right;
+}
+.btn-login:hover{  
+	background: linear-gradient( 90deg
+ ,#F92C8B 0%,#B02CD6 100%);
+	color: white;
+}

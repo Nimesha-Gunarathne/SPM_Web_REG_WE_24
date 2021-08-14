@@ -1,0 +1,92 @@
+
+
+.logmain{
+    /* background:linear-gradient(130deg
+    ,#13BF7A 25%,#1300A8 100%)!important;; */
+
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)!important;
+    height: 760px;
+    width: 1580px;
+}
+
+    .logForm{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        /* right: 50%;
+        bottom: 50%; */
+        transform: translate(-50%,-50%);
+        /* background: linear-gradient(rgba(0,0,0,0,3),rgba(0,0,0,0,3)); */
+        /* transform: translate(-50%,-50%); */
+        /* background: #fff;     */
+        background: #C9CCD3;
+        background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%)!important;
+        width: 300;
+        padding: 50px 30px;
+        border-radius: 10px;
+        box-shadow: 7px 7px 40px black;
+        
+    }
+    .imglogForm{
+        text-align: center;
+        padding: 20px; 
+    }
+    .con input{
+        width: 100%;
+        display: block;
+        padding: 3px;
+        color: black;
+        border: none;
+        outline: none;
+        margin: lem 0;
+        border-radius: 10px;
+    }
+    .con input[type="submit"]{
+        background-image: linear-gradient( 90deg
+        ,#F92C8B 0%,#B02CD6 100%);
+        color:white;
+        text-transform: uppercase;
+        font-size: 5mm;
+        opacity: .8;
+        transition:o;
+        box-shadow: 7px 7px 40px black;
+        
+    }
+    .con input[type="submit"]:hover{
+        opacity: .8;
+    }
+    .con .lable-data{
+        /* color:white; */
+        color:black;
+        text-emphasis: none;
+        font-family: 'Courier New', Courier, monospace;
+        padding-top: 15pt;
+    }
+    .con .add-data{
+        background-color:gainsboro;
+        padding-left: 10px;
+        text-decoration: double;
+        margin-bottom: 5px;
+        
+    }
+
+    .con-checkbox .lable-data{
+        
+        color:white;
+        font-size:3.5mm;
+        font-family: 'Courier New', Courier, monospace;           
+    }
+ 
+    .linkp {
+        text-align: center;
+    }
+    .linkp a{
+        text-decoration: none;
+        color:rgb(0, 0, 0);
+        opacity: .6;
+        
+        
+    }
+    .linkp a:hover{
+        opacity: .1;
+    }
