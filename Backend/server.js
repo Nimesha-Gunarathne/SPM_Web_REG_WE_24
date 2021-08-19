@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8001;
 const URI = process.env.MONGO_URL;
 mongoose.connect(
   URI,

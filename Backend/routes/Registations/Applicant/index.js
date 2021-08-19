@@ -5,7 +5,7 @@ const ApplicantRoute = require('../../../controllers/ApplicantRegistation.contro
 
     router.post('/newApplicant',ApplicantRoute.registerApplicant);
     router.post("/activate-email", ApplicantRoute.activateEmail);
-    // router.post("/student-login", StudentRoutes.StudentLogin);
+    router.post("/applicant-login", ApplicantRoute.StudentLogin);
     // router.put("/changeProfileStatus/:id", StudentRoutes.updateProfile_Status);
   
 
