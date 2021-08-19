@@ -19,7 +19,7 @@ const STUDENTControllers = {
         const {
           firstName,
           lastName,
-          gender,
+          Field,
           email,
           password,
           mobileNumber,
@@ -30,7 +30,7 @@ const STUDENTControllers = {
         if (
           !firstName ||
           !lastName ||
-          !gender ||
+          !Field ||
           !email ||
           !password ||
           !mobileNumber
@@ -78,7 +78,7 @@ const STUDENTControllers = {
         const newStudent = {
           firstName,
           lastName,
-          gender,
+          Field,
           email,
           password,
           mobileNumber,
@@ -88,7 +88,7 @@ const STUDENTControllers = {
   
         const activation_token = createActivationToken(newStudent);
   
-        const url = `${CLIENT_URL}/student/activate/${activation_token}`;
+        const url = `${CLIENT_URL}/applicant/activate/${activation_token}`;
         // const url = `${CLIENT_URL}/login`;
         console.log(url);
   
@@ -123,7 +123,7 @@ const STUDENTControllers = {
         const {
           firstName,
           lastName,
-          gender,
+          Field,
           email,
           password,
           mobileNumber,
@@ -144,7 +144,7 @@ const STUDENTControllers = {
         const newStudent = new registationStudent({
           firstName,
           lastName,
-          gender,
+          Field,
           email,
           password,
           mobileNumber,
@@ -166,6 +166,67 @@ const STUDENTControllers = {
           message:
             "Account has been activated successfully.",
         });
+      } catch (err) {
+        return res.status(500).json({
+          code: messages.InternalCode,
+          success: messages.NotSuccess,
+          status: messages.InternalStatus,
+          message: err.message,
+        });
+      }
+    },
+
+    StudentLogin: async (req, res) => {
+      try {
+        const { email, password } = req.body;
+  
+        if (!email || !password) {
+          return res.status(200).json({
+            code: messages.BadCode,
+            success: messages.NotSuccess,
+            status: messages.BadStatus,
+            message: messages.ContentEmpty,
+          });
+        }
+  
+        const students = await registationStudent.findOne({ email });
+        if (!students) {
+          return res.status(400).json({
+            code: messages.BadCode,
+            success: messages.NotSuccess,
+            status: messages.BadStatus,
+            message: messages.EmailDoesNotExist,
+          });
+        } else {
+          // const isMatchUserPassword = await bcrypt.compare(
+          // password,
+          // students.password
+          // );
+          if (password != students.password) {
+            return res.status(200).json({
+              code: messages.BadCode,
+              success: messages.NotSuccess,
+              status: messages.BadStatus,
+              message: messages.PasswordDoesNotMatch + email,
+            });
+          } else {
+            const access_token = createAccessToken({ id: students._id });
+            res.cookie("access_token", access_token, {
+              httpOnly: true,
+              path: "/users/refresh_token",
+              maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+            });
+  
+            return res.status(200).json({
+              code: messages.SuccessCode,
+              success: messages.Success,
+              status: messages.SuccessStatus,
+              data: students,
+              token: access_token,
+              message: "Login successfully.",
+            });
+          }
+        }
       } catch (err) {
         return res.status(500).json({
           code: messages.InternalCode,
