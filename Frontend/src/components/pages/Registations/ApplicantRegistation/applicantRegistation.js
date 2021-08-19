@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import Select from "react-select";
-// import { APIURL } from "../../../../API/environment";
+import { APIURL } from "../../../API/environment";
 
 
 const initialState = {
@@ -53,26 +53,28 @@ class RegistationStudent extends Component {
       email: this.state.email,
       password: this.state.password,
       mobileNumber: this.state.mobileNumber,
+      userRoleStatus:"Applicant",
+      accountStatus:"approved"
     };
 
     console.log("Applicant Details : ", ApplicantDetails);
 
-    // axios
-    //   .post(`/signupStudent/newstudent`, StudentDetails)
-    //   .then((res) => {
-    //     console.log("res", res);
-    //     if (res.data.code === 200) {
-    //       console.log("res.data.code", res.data.code);
-
-    //       toast.success(res.data.message);
-    //       window.setTimeout(function () {
-    //         window.location.href = "/login";
-    //       }, 5000);
-    //       //   window.location.href = "/login";
-    //     } else {
-    //       toast.error(res.data.message);
-    //     }
-    //   });
+    axios
+      .post(`${APIURL}/applicantReg/newApplicant`, ApplicantDetails)
+      .then((res) => {
+        console.log("res", res);
+        if (res.data.code === 200) {
+          console.log("res.data.code", res.data.code);
+          alert("Pleasr Verify Your Email !")
+          toast.success(res.data.message);
+          window.setTimeout(function () {
+            window.location.href = "/login";
+          }, 100);
+          //   window.location.href = "/login";
+        } else {
+          toast.error(res.data.message);
+        }
+      });
   }
 
   render() {

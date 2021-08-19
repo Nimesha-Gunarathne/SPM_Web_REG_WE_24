@@ -3,12 +3,13 @@ import "./login.css";
 import LogoImg from "../../Images/logo.png";
 import axios from "axios";
 import { toast } from "react-toastify";
-// import { APIURL } from "../../../API/environment";
+import { APIURL } from "../../API/environment";
 
 const initialState = {
   email: "",
   password: "",
 };
+
 
 class Login extends Component {
   constructor(props) {
@@ -31,14 +32,14 @@ class Login extends Component {
     };
     
 
-    if(login.email == "applicant@gmail.com" && login.password=="1234"){
+    // if(login.email == "applicant@gmail.com" && login.password=="1234"){
 
-      this.props.history.push("/applicantHome");
-            toast.success(
-                "applicant@gmail.com is logged as Applicant" 
-            );
+    //   this.props.history.push("/applicantHome");
+    //         toast.success(
+    //             "applicant@gmail.com is logged as Applicant" 
+    //         );
 
-    }
+    // }
     
     if(login.email == "admin@gmail.com" && login.password=="1234"){
 
@@ -49,14 +50,83 @@ class Login extends Component {
 
     }
     
-    if(login.email == "employer@gmail.com" && login.password=="1234"){
+    // if(login.email == "employer@gmail.com" && login.password=="1234"){
 
-      this.props.history.push("/employerDashboard");
+    //   this.props.history.push("/employerDashboard");
+    //         toast.success(
+    //             "employer@gmail.com is logged as Applicant" 
+    //         );
+
+    // }
+
+
+    axios.post(`${APIURL}/employer/login-employer`, login).then((res) => {
+      console.log("res", res);
+      if (res.data.code === 200) {
+        console.log("data are ", res.data.data);
+        const { userRoleStatus } = res.data.data;
+
+        if (userRoleStatus === "Employer") {
+          let i = JSON.stringify(res.data.token);
+          let result = i.slice(1, -1);
+
+          let User = JSON.stringify(res.data.data._id);
+          let EId = User.slice(1, -1);
+
+          localStorage.setItem("LocalEmployerID", EId);
+
+          let UserName = JSON.stringify(res.data.data.employer_name);
+          let EName = UserName.slice(1, -1);
+
+          localStorage.setItem("LocalEmployerName", EName);
+
+
+          localStorage.setItem("employer", JSON.stringify(res.data.data));
+          localStorage.setItem("token", result);
+          console.log("tok", result);
+          this.props.history.push("/employerCreateJob");
+          toast.success(
+            res.data.data.employer_name +
+              " is logged as " +
+              res.data.data.Profile_Status
+          );
+        }
+      } else {
+        // toast.error(res.data.message);
+      }
+    });
+    console.log("email", login);
+    axios
+      .post(`${APIURL}/applicantReg/applicant-login`, login)
+      .then((res) => {
+        console.log("res", res);
+        if (res.data.code === 200) {
+          console.log("data are ", res.data.data);
+          const { userRoleStatus } = res.data.data;
+
+          if (userRoleStatus == "Applicant") {
+            let i = JSON.stringify(res.data.token);
+            let result = i.slice(1, -1);
+
+            let User = JSON.stringify(res.data.data._id);
+            let UId = User.slice(1, -1);
+
+            localStorage.setItem("User", JSON.stringify(res.data.data));
+            localStorage.setItem("token", result);
+
+            localStorage.setItem("LocalUserID", UId);
+            console.log("tok", result);
+            this.props.history.push("/applicantHome");
             toast.success(
-                "employer@gmail.com is logged as Applicant" 
+              res.data.data.lastName +
+                " is logged as " +
+                res.data.data.Profile_Status
             );
-
-    }
+          }
+        } else {
+          // toast.error(res.data.message);
+        }
+      });
 
     
   }
