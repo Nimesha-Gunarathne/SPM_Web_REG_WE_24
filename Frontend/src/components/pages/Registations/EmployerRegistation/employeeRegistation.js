@@ -3,19 +3,17 @@ import './EmpRegistation.css'
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-// import { APIURL } from "../../../../API/environment";
+import { APIURL } from "../../../API/environment";
 
 const initialState = {
   employer_name: "",
-  OIB: "",
-  number_of_subjects: "",
-  reg_no_of_citizen_owners: "",
-  headquarters_streat_no: "",
-  postalCode_place: "",
-  IBAN: "",
   email: "",
-  mobile_number: "",
-  contact_person: "",
+  description: "",
+  weblink: "",
+  location: "",
+  mobileNumber: "",
+  userRoleStatus: "Employer",
+  accountStatus: "Not Approved"
 };
 
 class RegistationEmployer extends Component {
@@ -35,31 +33,31 @@ class RegistationEmployer extends Component {
 
     let EmployerDetails = {
       employer_name: this.state.employer_name,
-      OIB: this.state.OIB,
-      number_of_subjects: this.state.number_of_subjects,
-      reg_no_of_citizen_owners: this.state.reg_no_of_citizen_owners,
-      headquarters_streat_no: this.state.headquarters_streat_no,
-      postalCode_place: this.state.postalCode_place,
-      IBAN: this.state.IBAN,
-      email: this.state.email,
-      mobile_number: this.state.mobile_number,
-      contact_person: this.state.contact_person,
+      email:  this.state.email,
+      description : this.state.description ,
+      weblink : this.state.weblink ,
+      location : this.state.location ,
+      mobileNumber : this.state.mobileNumber ,
+      userRoleStatus : this.state.userRoleStatus ,
+      accountStatus : this.state.accountStatus 
     };
 
     console.log("Employer Details : ", EmployerDetails);
 
     axios
       // .post(`${APIURL}/employer/register-employer/`, EmployerDetails)
-      .post(`/employer/register-employer/`, EmployerDetails)
+      .post(`${APIURL}/Employer/register-employer/`, EmployerDetails)
 
       .then((res) => {
         console.log("res", res);
         if (res.data.code === 200) {
+          alert(res.data.message)
           toast.success(res.data.message);
           window.setTimeout(function () {
             window.location.href = "/login";
-          }, 2000);
+          }, 200);
         } else {
+          alert(res.data.message)
           toast.error(res.data.message);
         }
       });
@@ -186,8 +184,8 @@ class RegistationEmployer extends Component {
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
                       placeholder="Description"
-                      name="email"
-                      value={this.state.email}
+                      name="description"
+                      value={this.state.description}
                       onChange={this.onChange}
                     />
 
@@ -200,8 +198,8 @@ class RegistationEmployer extends Component {
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
                       placeholder="Web site"
-                      name="email"
-                      value={this.state.email}
+                      name="weblink"
+                      value={this.state.weblink}
                       onChange={this.onChange}
                     />
 
@@ -213,20 +211,20 @@ class RegistationEmployer extends Component {
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
                       placeholder="Location"
-                      name="email"
-                      value={this.state.email}
+                      name="location"
+                      value={this.state.location}
                       onChange={this.onChange}
                     />
 
                   </div>
                   <div className="form-group">
                     <input
-                      type="text"
+                      type="Number"
                       className="form-control"
                       id="exampleInputPassword1"
                       placeholder="Mobile number"
-                      name="mobile_number"
-                      value={this.state.mobile_number}
+                      name="mobileNumber"
+                      value={this.state.mobileNumber}
                       onChange={this.onChange}
                     />
                   </div>

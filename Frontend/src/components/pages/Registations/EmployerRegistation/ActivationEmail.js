@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-// import { APIURL } from "../../../config/environment";
+import { APIURL } from "../../../API/environment";
 
 function ActivationEmail() {
   const { activation_token } = useParams();
@@ -11,12 +11,13 @@ function ActivationEmail() {
     if (activation_token) {
       try {
         axios
-          .post(`http://localhost:8000/employer/activate-email`, {
+          .post(`${APIURL}/employer/activate-email`, {
             activation_token,
           })
           .then((res) => {
             console.log(res);
             // this.props.history.push("/employeeRegister");
+            alert("Your Email Verified")
             toast.success(res.data.message);
             window.setTimeout(function () {
               window.location.href = "/login";
