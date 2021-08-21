@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
+import Navbar from '../navibar';
 
 const UserID = localStorage.getItem("LocalUserID");
 
@@ -17,6 +18,7 @@ class StudentJobList extends Component {
 
         this.state = {
             Jobs: [],
+            ApprovedTopList: [],
             AppliedJobs: [],
             ApproveStatus: "Approved",
             SProfile_status: "Student"
@@ -55,7 +57,7 @@ class StudentJobList extends Component {
         localStorage.setItem("ViewedJobemployerName", employerName)
         localStorage.setItem("ViewedJobjob_category", job_category)
         localStorage.setItem("ViewedJobjob_description", job_description)
-        localStorage.setItem("ViewedJobjob_title",job_title)
+        localStorage.setItem("ViewedJobjob_title", job_title)
         localStorage.setItem("ViewedJobjob_type", job_type)
 
 
@@ -97,91 +99,24 @@ class StudentJobList extends Component {
         axios.get(`${APIURL}/vacancy/getAllJobs`)
 
             .then(response => {
-                // console.log("Data are ", response.data.data[0].employerID);
-                // console.log("Data length ", response.data.data.length);
-                //   console.log("1 data ",response.data.data[0]._id);
                 this.setState({ Jobs: response.data.data });
-                //   console.log("Jobs ",this.state.Jobs[0]._id);
                 console.log("response ", response.data.data);
-
-
             })
 
-        ///////////////////////////////
 
-        // axios.get(`${APIURL}/student/getAppliedJob/${UserID}`)
+        axios.get(`${APIURL}/TopList/getApproedAllTopList`)
 
-        // .then(responsee=> {
-
-        //   console.log("2 data response", responsee.data.data[0].JobID);
-        //   // this.setState({ AppliedJobs: responsee.data.data });
-        // })
-
-        // console.log("Jobs 5",this.state.Jobs);
-        // if(this.state.Jobs == this.state.AppliedJobs){
-        //   console.log("Mached")
-        // }
-
+            .then(Approveresponse => {
+                this.setState({ ApprovedTopList: Approveresponse.data.data });
+                console.log("ApprovedTopList ", Approveresponse.data.data);
+            })
     }
 
     render() {
         return (
             <div>
-                <div className="left-sidenav">
-                    {/* LOGO */}
-                    <div className="brand">
-                        <a href="crm-index.html" className="logo">
-                            <span>
-                                <img src="assets/images/logo1.png" alt="logo-large" className="logo-sm" />
-                            </span>
-                            <span>
-                                {/* <img src="assets/images/logo.png" alt="logo-large" class="logo-lg logo-light">
-                        <img src="assets/images/logo-dark.png" alt="logo-large" class="logo-lg logo-dark"> */}
-                            </span>
-                        </a>
-                    </div>
-                    {/*end logo*/}
-                    <div className="menu-content h-100" data-simplebar>
-                        <ul className="metismenu left-sidenav-menu">
-                            <li>
-                                <a href="/StudentDashboard"><i data-feather="layers" className="align-self-center menu-icon" /><span>Dashboard</span></a>
-                            </li>
-                            <li>
-                                <a href="#"><i data-feather="layers" className="align-self-center menu-icon" /><span>Job Market</span></a>
-                            </li>
-                            <li>
-                                <a href="/ApplicantAppliedJobList"><i data-feather="layers" className="align-self-center menu-icon" /><span>Apply Job</span></a>
-                            </li>
-
-                            <li>
-
-                            </li>
-                            <li>
-                                <a href="javascript: void(0);"><i data-feather="grid" className="align-self-center menu-icon" /><span>Contract</span><span className="menu-arrow"><i className="mdi mdi-chevron-right" /></span></a>
-                                <ul className="nav-second-level" aria-expanded="false">
-                                    <li className="nav-item"><a className="nav-link" href="/Contract"><i className="ti-control-record" />My Contract</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="/student_contract_list"><i className="ti-control-record" />Contract List</a></li>
-                                    {/* <li class="nav-item"><a class="nav-link" href="employee-list.html"><i
-                                        class="ti-control-record"></i>Employee
-                                    List</a></li> */}
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="Student-create-project.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Create projects</span></a>
-                            </li>
-                            <li>
-                                <a href="Student-scholarships.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Scholarships</span></a>
-                            </li>
-                            <li>
-                                <a href="#"><i data-feather="layers" className="align-self-center menu-icon" /><span>Job History</span></a>
-                            </li>
-                            <li>
-                                <a href="Student-profile.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>My profile</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                {/* end left-sidenav*/}
+                <Navbar/>
+                
                 <div className="page-wrapper">
                     {/* Top Bar Start */}
 
@@ -262,12 +197,66 @@ class StudentJobList extends Component {
 
 
 
-                            <div className="row">
+                            <h1 className="page-title">Top Vacancies</h1>
+
+                            <div className="row justify-content-center" style={{marginTop:"40px"}}>
+                                {this.state.ApprovedTopList.length > 0 && this.state.ApprovedTopList.map((item, index) => (
+                                    <div className="col-md-6 col-lg-3">
+                                        <div className="card report-card">
+                                            <div className="card-body">
+                                                <div className="row d-flex justify-content-center">
+                                                    <div className="col">
+                                                        <p className="text-dark mb-1 font-weight-semibold"style={{fontSize:"20px",marginTop:"-20px"}}>
+                                                            {item.job_title}
+                                                        </p>
+                                                        <h3 className="my-2"></h3>
+                                                        <p className="mb-0 text-truncate text-muted">
+                                                            <span className="text-success">
+                                                               
+                                                               Closing Date
+                                                            </span>
+                                                       
+                                                        </p>
+                                                        {item.closing_date}
+                                                    </div>
+                                                    <div className="col-auto align-self-center">
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {/*end card-body*/}
+                                        </div>
+                                        {/*end card*/}
+                                    </div>
+                                ))}
+                            </div>
+                            {/* <hr className="hr-dashed" style={{height:"20px"}}/> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+                            <div className="row" style={{marginTop:"40px"}}>
 
                                 {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
 
                                     <div className="col-lg-4" key={index} >
-                                        <div className="card" style={{ height: "400px" }}>
+                                        <div className="card" style={{ height: "400px",width:"350px" }}>
                                             <div className="card-body">
                                                 <div className="media mb-3">
                                                     <img src="assets/images/widgets/project2.jpg" alt="" className="thumb-md rounded-circle" />

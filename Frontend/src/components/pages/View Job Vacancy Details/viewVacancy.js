@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../API/environment";
+import Navbar from '../navibar';
 
 const _id = localStorage.getItem("ViewedJobID")
 const closing_date =localStorage.getItem("ViewedJobclosing_date")
@@ -47,54 +48,7 @@ class ViewVacancy extends Component {
             <>
 
                 <div>
-                    <div className="left-sidenav">
-                        {/* LOGO */}
-                        <div className="brand">
-                            <a href="crm-index.html" className="logo">
-                                <span>
-                                    <img src="assets/images/logo1.png" alt="logo-large" className="logo-sm" />
-                                </span>
-                                <span>
-
-                                </span>
-                            </a>
-                        </div>
-                        {/*end logo*/}
-                        <div className="menu-content h-100" data-simplebar>
-                            <ul className="metismenu left-sidenav-menu">
-                                <li>
-                                    <a href="employer.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Home</span></a>
-                                </li>
-                                <li>
-                                    <a href="emp-applicant_profile.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Profile</span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript: void(0);"><i data-feather="grid" className="align-self-center menu-icon" /><span>Jobs</span><span className="menu-arrow"><i className="mdi mdi-chevron-right" /></span></a>
-                                    <ul className="nav-second-level" aria-expanded="false">
-                                        <li className="nav-item"><a className="nav-link" href="emp-create-job.html"><i className="ti-control-record" />Create a Job</a></li>
-                                        <li className="nav-item"><a className="nav-link" href="emp-job-list.html"><i className="ti-control-record" />List jobs</a></li>
-
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="emp-job-request.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Job requests</span></a>
-                                </li>
-                                <li>
-                                    <a href="emp-apprvedJobs-part-2.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Approved job</span></a>
-                                </li>
-                                <li>
-                                    <a href="emp-create-job.html"><i data-feather="edit" className="align-self-center menu-icon" /><span>Contract</span></a>
-                                </li>
-                                <li>
-                                    <a href="emp-invoice.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Invoice</span></a>
-                                </li>
-                                <li>
-                                    <a href="emp-history.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Employee History</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    {/* end left-sidenav*/}
+                    <Navbar/>
                     <div className="page-wrapper">
                         {/* Top Bar Start */}
 

@@ -60,6 +60,8 @@ function App() {
           <Route path="/AdminEditEvent" component={AdminEditEvent} />
           <Route path="/adminDashboard" component={adminDashboard} />
           <Route path="/EmployerRegistationRequestList" component={EmployerRegistationRequestList} />
+          <Route path="/employerTopVacancyReqList" component={employerTopVacancyReqList} />
+
 
 
   
@@ -80,7 +82,6 @@ function App() {
           <Route path="/employerCreateJob" component={employerCreateJob} />
           <Route path="/EmployerCreatedJobList" component={EmployerCreatedJobList} />
           <Route path="/employerEditJob" component={employerEditJob} />
-          <Route path="/employerTopVacancyReqList" component={employerTopVacancyReqList} />
           <Route path="/SetPassword" component={EmployerSetPassword} />
           <Route path="/employer/activate/:activation_token" component={EmpActiveEmail} exact/>
 
