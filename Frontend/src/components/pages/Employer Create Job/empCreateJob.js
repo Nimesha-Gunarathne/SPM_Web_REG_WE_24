@@ -82,11 +82,6 @@ class EmployerCreateJob extends Component {
 
                     window.location.reload();
 
-                    // toast.success(res.data.message);
-                    // window.setTimeout(function () {
-                    //     window.location.href = "/login";
-                    // }, 5000);
-                    //   window.location.href = "/login";
                 } else {
                     toast.error(res.data.message);
                     alert(res.data.message);

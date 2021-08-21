@@ -14,25 +14,30 @@ class Admin_Employer_Request_List extends Component {
   async componentDidMount() {
     await axios.get(`${APIURL}/TopList/getAllTopList`).then((response) => {
       this.setState({ TopList: response.data.data });
-      console.log("TopList =>", this.state.employer);
+      console.log("TopList =>", this.state.TopList);
     });
   }
 
   onChangeActiveStatus(e, id) {
     let updateDetailsStatus = {
-      isActive: 1,
+      IsApprove: 1,
     };
 
     console.log(id);
+    console.log(updateDetailsStatus);
+
     axios
-      .put(`${APIURL}/employer/approve-employer/${id}`, updateDetailsStatus)
+      .put(`${APIURL}/TopList/approveTopListReq/${id}`, updateDetailsStatus)
       .then((res) => {
         console.log(res.data);
         console.log(updateDetailsStatus);
         if (res.data.code === 200) {
           toast.success(res.data.message);
+          alert(res.data.message)
         } else {
           toast.error(res.data.message);
+          alert(res.data.message)
+
         }
         window.location.reload();
       });

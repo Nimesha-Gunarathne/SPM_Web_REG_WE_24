@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import { APIURL } from "../../API/environment";
 import { toast } from "react-toastify";
+import Navbar from '../navibar';
 
 const UserID = localStorage.getItem("LocalUserID");
 // const UserID = "60f9393bf9010e001577b6ea";
@@ -86,62 +87,8 @@ class StudentJobList extends Component {
   render() {
     return (
       <div>
-        {/* Left Sidenav */}
-        <div className="left-sidenav">
-          {/* LOGO */}
-          <div className="brand">
-            <a href="crm-index.html" className="logo">
-              <span>
-                <img src="assets/images/logo1.png" alt="logo-large" className="logo-sm" />
-              </span>
-              <span>
-                {/* <img src="assets/images/logo.png" alt="logo-large" class="logo-lg logo-light">
-                        <img src="assets/images/logo-dark.png" alt="logo-large" class="logo-lg logo-dark"> */}
-              </span>
-            </a>
-          </div>
-          {/*end logo*/}
-          <div className="menu-content h-100" data-simplebar>
-            <ul className="metismenu left-sidenav-menu">
-              <li>
-                <a href="/StudentDashboard"><i data-feather="layers" className="align-self-center menu-icon" /><span>Dashboard</span></a>
-              </li>
-              <li>
-                <a href="/StudentJobMarket"><i data-feather="layers" className="align-self-center menu-icon" /><span>Job Market</span></a>
-              </li>
-              <li>
-                <a href="/StudentJobList"><i data-feather="layers" className="align-self-center menu-icon" /><span>Apply Job</span></a>
-              </li>
-
-              <li>
-
-              </li>
-              <li>
-                <a href="javascript: void(0);"><i data-feather="grid" className="align-self-center menu-icon" /><span>Contract</span><span className="menu-arrow"><i className="mdi mdi-chevron-right" /></span></a>
-                <ul className="nav-second-level" aria-expanded="false">
-                  <li className="nav-item"><a className="nav-link" href="/Contract"><i className="ti-control-record" />My Contract</a></li>
-                  <li className="nav-item"><a className="nav-link" href="/student_contract_list"><i className="ti-control-record" />Contract List</a></li>
-                  {/* <li class="nav-item"><a class="nav-link" href="employee-list.html"><i
-                                        class="ti-control-record"></i>Employee
-                                    List</a></li> */}
-                </ul>
-              </li>
-              <li>
-                <a href="Student-create-project.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Create projects</span></a>
-              </li>
-              <li>
-                <a href="Student-scholarships.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Scholarships</span></a>
-              </li>
-              <li>
-                <a href="#"><i data-feather="layers" className="align-self-center menu-icon" /><span>Job History</span></a>
-              </li>
-              <li>
-                <a href="Student-profile.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>My profile</span></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        {/* end left-sidenav*/}
+       <Navbar/>
+        
         <div className="page-wrapper">
           {/* Top Bar Start */}
           <div className="topbar">
@@ -262,32 +209,10 @@ class StudentJobList extends Component {
                     </a>
                   </div>
                 </li>
-                <li className="dropdown">
-                  <a className="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <span className="ml-1 nav-user-name hidden-sm">Nick</span>
-                    <img src="assets/images/users/user-5.jpg" alt="profile-user" className="rounded-circle" />
-                  </a>
-                  <div className="dropdown-menu dropdown-menu-right">
-                    <a className="dropdown-item" href="#"><i data-feather="user" className="align-self-center icon-xs icon-dual mr-1" /> Profile</a>
-                    <a className="dropdown-item" href="#"><i data-feather="settings" className="align-self-center icon-xs icon-dual mr-1" /> Settings</a>
-                    <div className="dropdown-divider mb-0" />
-                    <a className="dropdown-item" href="#"><i data-feather="power" className="align-self-center icon-xs icon-dual mr-1" /> Logout</a>
-                  </div>
-                </li>
+                
               </ul>
               {/*end topbar-nav*/}
-              <ul className="list-unstyled topbar-nav mb-0">
-                <li>
-                  <button className="nav-link button-menu-mobile">
-                    <i data-feather="menu" className="align-self-center topbar-icon" />
-                  </button>
-                </li>
-                <li className="creat-btn">
-                  <div className="nav-link">
-                    <a className=" btn btn-sm btn-soft-primary" href="#" role="button"><i className="fas fa-plus mr-2" />New Task</a>
-                  </div>
-                </li>
-              </ul>
+              
             </nav>
             {/* end navbar*/}
           </div>

@@ -4,13 +4,16 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Select from "react-select";
+import Navbar from '../navibar';
+
 
 const initialState = {
     Applicant_Name: "",
     Email: "",
     Contact_Number: "",
     Description: "",
-    CV_Link: "",
+    CV_Link: null
+
 
 };
 
@@ -23,7 +26,14 @@ class ApplyForJobForm extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.onJobCategoryiesOptionSelected = this.onJobCategoryiesOptionSelected.bind(this);
         this.onJobTypeOptionSelected = this.onJobTypeOptionSelected.bind(this);
+        this.CategoryImagehandleChange = this.CategoryImagehandleChange.bind(this);
 
+
+    }
+    CategoryImagehandleChange(event) {
+        this.setState({
+            CV_Link: URL.createObjectURL(event.target.files[0])
+        })
     }
 
 
@@ -50,17 +60,17 @@ class ApplyForJobForm extends Component {
             CV_Link: this.state.CV_Link,
 
             JobId: localStorage.getItem("ViewedJobID"),
-            Jobclosing_date:localStorage.getItem("ViewedJobclosing_date"),
-            JobcreatedAt:localStorage.getItem("ViewedJobcreatedAt"),
-            JobemployerID:localStorage.getItem("ViewedJobemployerID"),
-            JobemployerName:localStorage.getItem("ViewedJobemployerName"),
-            job_category:localStorage.getItem("ViewedJobjob_category"),
-            job_description:localStorage.getItem("ViewedJobjob_description"),
-            job_title:localStorage.getItem("ViewedJobjob_title"),
-            job_type:localStorage.getItem("ViewedJobjob_type"),
+            Jobclosing_date: localStorage.getItem("ViewedJobclosing_date"),
+            JobcreatedAt: localStorage.getItem("ViewedJobcreatedAt"),
+            JobemployerID: localStorage.getItem("ViewedJobemployerID"),
+            JobemployerName: localStorage.getItem("ViewedJobemployerName"),
+            job_category: localStorage.getItem("ViewedJobjob_category"),
+            job_description: localStorage.getItem("ViewedJobjob_description"),
+            job_title: localStorage.getItem("ViewedJobjob_title"),
+            job_type: localStorage.getItem("ViewedJobjob_type"),
 
-            UserID:localStorage.getItem("LocalUserID"),
-            IsApprove:0
+            UserID: localStorage.getItem("LocalUserID"),
+            IsApprove: 0
         };
 
         console.log("Job Details : ", JobDetails);
@@ -89,57 +99,7 @@ class ApplyForJobForm extends Component {
         return (
             <>
                 <div>
-                    <div className="left-sidenav">
-                        {/* LOGO */}
-                        <div className="brand">
-                            <a href="crm-index.html" className="logo">
-                                <span>
-                                    <img src="assets/images/logo1.png" alt="logo-large" className="logo-sm" />
-                                </span>
-                                <span>
-                                    {/* <img src="assets/images/logo.png" alt="logo-large" class="logo-lg logo-light">
-                    <img src="assets/images/logo-dark.png" alt="logo-large" class="logo-lg logo-dark"> */}
-                                </span>
-                            </a>
-                        </div>
-                        {/*end logo*/}
-                        <div className="menu-content h-100" data-simplebar>
-                            <ul className="metismenu left-sidenav-menu">
-                                <li>
-                                    <a href="employer.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Home</span></a>
-                                </li>
-                                <li>
-                                    <a href="emp-applicant_profile.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Profile</span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript: void(0);"><i data-feather="grid" className="align-self-center menu-icon" /><span>Jobs</span><span className="menu-arrow"><i className="mdi mdi-chevron-right" /></span></a>
-                                    <ul className="nav-second-level" aria-expanded="false">
-                                        <li className="nav-item"><a className="nav-link" href="emp-create-job.html"><i className="ti-control-record" />Create a Job</a></li>
-                                        <li className="nav-item"><a className="nav-link" href="emp-job-list.html"><i className="ti-control-record" />List jobs</a></li>
-                                        {/* <li class="nav-item"><a class="nav-link" href="employee-list.html"><i
-                                    class="ti-control-record"></i>Employee
-                                List</a></li> */}
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="emp-job-request.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Job requests</span></a>
-                                </li>
-                                <li>
-                                    <a href="emp-apprvedJobs-part-2.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Approved job</span></a>
-                                </li>
-                                <li>
-                                    <a href="emp-Contract.html"><i data-feather="edit" className="align-self-center menu-icon" /><span>Contract</span></a>
-                                </li>
-                                <li>
-                                    <a href="emp-invoice.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Invoice</span></a>
-                                </li>
-                                <li>
-                                    <a href="emp-history.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Employee History</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    {/* end left-sidenav*/}
+            <Navbar/>
                     <div className="page-wrapper">
                         {/* Top Bar Start */}
                         <div className="topbar">
@@ -236,16 +196,19 @@ class ApplyForJobForm extends Component {
                                                                     name="CV_Link"
                                                                     value={this.state.CV_Link}
                                                                     onChange={this.onChange}
-
+                                                                    readOnly
                                                                 />
                                                             </div>
 
                                                             <div className="col-sm-4">
-                                                                <button className="btn btn-outline-success waves-effect waves-light float-right"
-                                                                >Upload</button>
+                                                                <input type="file" className="btn btn-outline-success waves-effect waves-light float-right"
+                                                                    onChange={this.CategoryImagehandleChange}
+                                                                />
 
 
                                                             </div>
+                                                            {/* <input type="file" onChange={this.CategoryImagehandleChange}
+                                                                style={{ marginLeft: "50px", marginTop: "10px" }} /> */}
                                                         </div>
 
 
