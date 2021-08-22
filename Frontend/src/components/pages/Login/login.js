@@ -84,7 +84,7 @@ class Login extends Component {
           localStorage.setItem("employer", JSON.stringify(res.data.data));
           localStorage.setItem("token", result);
           console.log("tok", result);
-          this.props.history.push("/employerCreateJob");
+          this.props.history.push("/employerDashboard");
           toast.success(
             res.data.data.employer_name +
               " is logged as " +
