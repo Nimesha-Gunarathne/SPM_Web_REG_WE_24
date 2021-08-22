@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
+import Navbar from '../Adminnavibar';
+
 
 const UserID = localStorage.getItem("LocalUserID");
 
@@ -101,61 +103,7 @@ class AdminEventView extends Component {
     render() {
         return (
             <div>
-                <div className="left-sidenav">
-                    {/* LOGO */}
-                    <div className="brand">
-                        <a href="crm-index.html" className="logo">
-                            <span>
-                                <img src="assets/images/logo1.png" alt="logo-large" className="logo-sm" />
-                            </span>
-                            <span>
-                                {/* <img src="assets/images/logo.png" alt="logo-large" class="logo-lg logo-light">
-                        <img src="assets/images/logo-dark.png" alt="logo-large" class="logo-lg logo-dark"> */}
-                            </span>
-                        </a>
-                    </div>
-                    {/*end logo*/}
-                    <div className="menu-content h-100" data-simplebar>
-                        <ul className="metismenu left-sidenav-menu">
-                            <li>
-                                <a href="/StudentDashboard"><i data-feather="layers" className="align-self-center menu-icon" /><span>Dashboard</span></a>
-                            </li>
-                            <li>
-                                <a href="/StudentJobMarket"><i data-feather="layers" className="align-self-center menu-icon" /><span>Job Market</span></a>
-                            </li>
-                            <li>
-                                <a href="/StudentJobList"><i data-feather="layers" className="align-self-center menu-icon" /><span>Apply Job</span></a>
-                            </li>
-
-                            <li>
-
-                            </li>
-                            <li>
-                                <a href="javascript: void(0);"><i data-feather="grid" className="align-self-center menu-icon" /><span>Contract</span><span className="menu-arrow"><i className="mdi mdi-chevron-right" /></span></a>
-                                <ul className="nav-second-level" aria-expanded="false">
-                                    <li className="nav-item"><a className="nav-link" href="/Contract"><i className="ti-control-record" />My Contract</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="/student_contract_list"><i className="ti-control-record" />Contract List</a></li>
-                                    {/* <li class="nav-item"><a class="nav-link" href="employee-list.html"><i
-                                        class="ti-control-record"></i>Employee
-                                    List</a></li> */}
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="Student-create-project.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Create projects</span></a>
-                            </li>
-                            <li>
-                                <a href="Student-scholarships.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Scholarships</span></a>
-                            </li>
-                            <li>
-                                <a href="#"><i data-feather="layers" className="align-self-center menu-icon" /><span>Job History</span></a>
-                            </li>
-                            <li>
-                                <a href="Student-profile.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>My profile</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                {/* end left-sidenav*/}
+                <Navbar/>
                 <div className="page-wrapper">
                     {/* Top Bar Start */}
 

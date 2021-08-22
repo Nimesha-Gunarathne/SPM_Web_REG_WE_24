@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
-import Navbar from '../navibar';
+import Navbar from '../Applicantnavibar';
 
 const UserID = localStorage.getItem("LocalUserID");
 

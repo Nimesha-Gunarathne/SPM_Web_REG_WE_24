@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Select from "react-select";
+import Navbar from '../Adminnavibar';
 
 const initialState = {
     eventTitle: "",
@@ -13,7 +14,7 @@ const initialState = {
     closingDate: "",
     eventType: "",
     startingDate: "",
-    CreatedBy:"ADMIN"
+    CreatedBy: "ADMIN"
 };
 
 const EventTypes = [
@@ -45,20 +46,20 @@ class AdminCreateEvent extends Component {
 
     onEventTypesOptionSelected(e) {
         this.state.eventType = e.label;
-      }
+    }
 
     onSubmit(event) {
         event.preventDefault();
 
         let EventDetails = {
-            eventTitle:this.state.eventTitle,
-            companyName:this.state.companyName,
-            shortDescription:this.state.shortDescription,
+            eventTitle: this.state.eventTitle,
+            companyName: this.state.companyName,
+            shortDescription: this.state.shortDescription,
             location: this.state.location,
             closingDate: this.state.closingDate,
             eventType: this.state.eventType,
-            startingDate:this.state.startingDate,
-            CreatedBy:this.state.CreatedBy,
+            startingDate: this.state.startingDate,
+            CreatedBy: this.state.CreatedBy,
         };
 
         console.log("Event Details : ", EventDetails);
@@ -91,57 +92,7 @@ class AdminCreateEvent extends Component {
         return (
             <>
                 <div>
-                    <div className="left-sidenav">
-                        {/* LOGO */}
-                        <div className="brand">
-                            <a href="crm-index.html" className="logo">
-                                <span>
-                                    <img src="assets/images/logo1.png" alt="logo-large" className="logo-sm" />
-                                </span>
-                                <span>
-                                    {/* <img src="assets/images/logo.png" alt="logo-large" class="logo-lg logo-light">
-                    <img src="assets/images/logo-dark.png" alt="logo-large" class="logo-lg logo-dark"> */}
-                                </span>
-                            </a>
-                        </div>
-                        {/*end logo*/}
-                        <div className="menu-content h-100" data-simplebar>
-                            <ul className="metismenu left-sidenav-menu">
-                                <li>
-                                    <a href="employer.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Home</span></a>
-                                </li>
-                                <li>
-                                    <a href="emp-applicant_profile.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Profile</span></a>
-                                </li>
-                                <li>
-                                    <a href="javascript: void(0);"><i data-feather="grid" className="align-self-center menu-icon" /><span>Jobs</span><span className="menu-arrow"><i className="mdi mdi-chevron-right" /></span></a>
-                                    <ul className="nav-second-level" aria-expanded="false">
-                                        <li className="nav-item"><a className="nav-link" href="emp-create-job.html"><i className="ti-control-record" />Create a Job</a></li>
-                                        <li className="nav-item"><a className="nav-link" href="emp-job-list.html"><i className="ti-control-record" />List jobs</a></li>
-                                        {/* <li class="nav-item"><a class="nav-link" href="employee-list.html"><i
-                                    class="ti-control-record"></i>Employee
-                                List</a></li> */}
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="emp-job-request.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Job requests</span></a>
-                                </li>
-                                <li>
-                                    <a href="emp-apprvedJobs-part-2.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Approved job</span></a>
-                                </li>
-                                <li>
-                                    <a href="emp-Contract.html"><i data-feather="edit" className="align-self-center menu-icon" /><span>Contract</span></a>
-                                </li>
-                                <li>
-                                    <a href="emp-invoice.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Invoice</span></a>
-                                </li>
-                                <li>
-                                    <a href="emp-history.html"><i data-feather="layers" className="align-self-center menu-icon" /><span>Employee History</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    {/* end left-sidenav*/}
+                    <Navbar/>
                     <div className="page-wrapper">
                         {/* Top Bar Start */}
                         <div className="topbar">
@@ -236,7 +187,7 @@ class AdminCreateEvent extends Component {
                                                         <div className="form-group row" style={{ marginTop: "40px" }}>
                                                             <label htmlFor="example-tel-input" className="col-sm-2 col-form-label text-right">Event Type</label>
                                                             <div className="col-sm-4">
-                                                               
+
 
                                                                 <Select
                                                                     placeholder="Select Job Category"
@@ -244,7 +195,7 @@ class AdminCreateEvent extends Component {
                                                                     onChange={this.onEventTypesOptionSelected}
                                                                 />
                                                             </div>
-                                                            
+
                                                         </div>
 
                                                         <div className="form-group row" style={{ marginTop: "40px" }}>

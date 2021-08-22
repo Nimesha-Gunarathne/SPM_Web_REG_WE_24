@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../API/environment";
-import Navbar from '../navibar';
+import Navbar from '../Applicantnavibar';
 
 const _id = localStorage.getItem("ViewedJobID")
 const closing_date =localStorage.getItem("ViewedJobclosing_date")
