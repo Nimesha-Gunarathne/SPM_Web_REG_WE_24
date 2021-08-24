@@ -93,6 +93,8 @@ class Login extends Component {
         }
       } else {
         // toast.error(res.data.message);
+        // alert(res.data.message)
+
       }
     });
     console.log("email", login);
@@ -117,14 +119,18 @@ class Login extends Component {
             localStorage.setItem("LocalUserID", UId);
             console.log("tok", result);
             this.props.history.push("/applicantHome");
+        // alert(res.data.message)
+
             toast.success(
               res.data.data.lastName +
                 " is logged as " +
                 res.data.data.Profile_Status
+
             );
           }
         } else {
           // toast.error(res.data.message);
+          alert(res.data.message)
         }
       });
 
