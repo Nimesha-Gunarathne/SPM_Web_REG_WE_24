@@ -14,6 +14,7 @@ class StudentJobList extends Component {
     constructor(props) {
         super(props);
         this.applyJob = this.applyJob.bind(this);
+        this.search = this.search.bind(this);
 
 
         this.state = {
@@ -21,7 +22,8 @@ class StudentJobList extends Component {
             ApprovedTopList: [],
             AppliedJobs: [],
             ApproveStatus: "Approved",
-            SProfile_status: "Student"
+            SProfile_status: "Student",
+            searchVal:"",
 
         }
     }
@@ -112,6 +114,13 @@ class StudentJobList extends Component {
             })
     }
 
+    search(e,key){
+     
+            this.setState({ [e.target.name]: e.target.value });
+            console.log("this.state.searchVal is ", this.state.searchVal);
+  
+    }
+
     render() {
         return (
             <div>
@@ -172,7 +181,11 @@ class StudentJobList extends Component {
                                         <ul className="list-inline">
                                             <li className="list-inline-item">
                                                 <div className="input-group">
-                                                    <input type="text" id="example-input1-group2" name="example-input1-group2" className="form-control form-control-sm" placeholder="Search" />
+                                                    <input
+                                                      name="searchVal"
+                                                      value={this.state.searchVal}
+                                                      onChange={this.search}
+                                                    type="text" id="example-input1-group2"className="form-control form-control-sm" placeholder="Search" />
                                                     <span className="input-group-append">
                                                         <button type="button" className="btn btn-primary btn-sm"><i className="fas fa-search" /></button>
                                                     </span>
