@@ -73,6 +73,8 @@ class RegistationStudent extends Component {
           //   window.location.href = "/login";
         } else {
           toast.error(res.data.message);
+          alert(res.data.message)
+
         }
       });
   }

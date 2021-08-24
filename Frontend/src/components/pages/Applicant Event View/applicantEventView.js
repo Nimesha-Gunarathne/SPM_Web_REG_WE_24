@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
-import Navbar from '../Adminnavibar';
+import Navbar from '../Applicantnavibar';
+import Daybar from '../DayBar';
+
 
 
 const UserID = localStorage.getItem("LocalUserID");
@@ -53,6 +55,7 @@ class ApplicantEventView extends Component {
                     <div className="page-content">
                         <div className="container-fluid">
                             {/* Page-Title */}
+                     
                             <div className="row">
                                 <div className="col-sm-12">
                                     <div className="page-title-box">
@@ -66,7 +69,7 @@ class ApplicantEventView extends Component {
                                                 </ol>
                                             </div>
                                             {/*end col*/}
-
+                                            <Daybar/>
                                             {/*end col*/}
                                         </div>
                                         {/*end row*/}
