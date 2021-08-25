@@ -4,6 +4,8 @@ import axios from "axios";
 import { APIURL } from "../../API/environment";
 import { toast } from "react-toastify";
 import Navbar from '../Employernavibar';
+import Daybar from '../DayBar';
+
 
 const EmployerID = localStorage.getItem("LocalEmployerID");
 // const UserID = "60f9393bf9010e001577b6ea";
@@ -88,154 +90,12 @@ class EmployerCreatedJobList extends Component {
     return (
       <div>
         {/* Left Sidenav */}
-        <Navbar/>
+        <Navbar />
         <div className="page-wrapper">
           {/* Top Bar Start */}
           <div className="topbar">
             {/* Navbar */}
-            <nav className="navbar-custom">
-              <ul className="list-unstyled topbar-nav float-right mb-0">
-                <li className="dropdown hide-phone">
-                  <a className="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <i data-feather="search" className="topbar-icon" />
-                  </a>
-                  <div className="dropdown-menu dropdown-menu-right dropdown-lg p-0">
-                    {/* Top Search Bar */}
-                    <div className="app-search-topbar">
-                      <form action="#" method="get">
-                        <input type="search" name="search" className="from-control top-search mb-0" placeholder="Type text..." />
-                        <button type="submit"><i className="ti-search" /></button>
-                      </form>
-                    </div>
-                  </div>
-                </li>
-                <li className="dropdown notification-list">
-                  <a className="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <i data-feather="bell" className="align-self-center topbar-icon" />
-                    <span className="badge badge-danger badge-pill noti-icon-badge">2</span>
-                  </a>
-                  <div className="dropdown-menu dropdown-menu-right dropdown-lg pt-0">
-                    <h6 className="dropdown-item-text font-15 m-0 py-3 border-bottom d-flex justify-content-between align-items-center">
-                      Notifications <span className="badge badge-primary badge-pill">2</span>
-                    </h6>
-                    <div className="notification-menu" data-simplebar>
-                      {/* item*/}
-                      <a href="#" className="dropdown-item py-3">
-                        <small className="float-right text-muted pl-2">2 min ago</small>
-                        <div className="media">
-                          <div className="avatar-md bg-soft-primary">
-                            <i data-feather="shopping-cart" className="align-self-center icon-xs" />
-                          </div>
-                          <div className="media-body align-self-center ml-2 text-truncate">
-                            <h6 className="my-0 font-weight-normal text-dark">Your order is placed</h6>
-                            <small className="text-muted mb-0">Dummy text of the printing and
-                              industry.</small>
-                          </div>
-                          {/*end media-body*/}
-                        </div>
-                        {/*end media*/}
-                      </a>
-                      {/*end-item*/}
-                      {/* item*/}
-                      <a href="#" className="dropdown-item py-3">
-                        <small className="float-right text-muted pl-2">10 min ago</small>
-                        <div className="media">
-                          <div className="avatar-md bg-soft-primary">
-                            <img src="assets/images/users/user-4.jpg" alt="" className="thumb-sm rounded-circle" />
-                          </div>
-                          <div className="media-body align-self-center ml-2 text-truncate">
-                            <h6 className="my-0 font-weight-normal text-dark">Meeting with designers</h6>
-                            <small className="text-muted mb-0">It is a long established fact that a
-                              reader.</small>
-                          </div>
-                          {/*end media-body*/}
-                        </div>
-                        {/*end media*/}
-                      </a>
-                      {/*end-item*/}
-                      {/* item*/}
-                      <a href="#" className="dropdown-item py-3">
-                        <small className="float-right text-muted pl-2">40 min ago</small>
-                        <div className="media">
-                          <div className="avatar-md bg-soft-primary">
-                            <i data-feather="users" className="align-self-center icon-xs" />
-                          </div>
-                          <div className="media-body align-self-center ml-2 text-truncate">
-                            <h6 className="my-0 font-weight-normal text-dark">UX 3 Task complete.</h6>
-                            <small className="text-muted mb-0">Dummy text of the printing.</small>
-                          </div>
-                          {/*end media-body*/}
-                        </div>
-                        {/*end media*/}
-                      </a>
-                      {/*end-item*/}
-                      {/* item*/}
-                      <a href="#" className="dropdown-item py-3">
-                        <small className="float-right text-muted pl-2">1 hr ago</small>
-                        <div className="media">
-                          <div className="avatar-md bg-soft-primary">
-                            <img src="assets/images/users/user-5.jpg" alt="" className="thumb-sm rounded-circle" />
-                          </div>
-                          <div className="media-body align-self-center ml-2 text-truncate">
-                            <h6 className="my-0 font-weight-normal text-dark">Your order is placed</h6>
-                            <small className="text-muted mb-0">It is a long established fact that a
-                              reader.</small>
-                          </div>
-                          {/*end media-body*/}
-                        </div>
-                        {/*end media*/}
-                      </a>
-                      {/*end-item*/}
-                      {/* item*/}
-                      <a href="#" className="dropdown-item py-3">
-                        <small className="float-right text-muted pl-2">2 hrs ago</small>
-                        <div className="media">
-                          <div className="avatar-md bg-soft-primary">
-                            <i data-feather="check-circle" className="align-self-center icon-xs" />
-                          </div>
-                          <div className="media-body align-self-center ml-2 text-truncate">
-                            <h6 className="my-0 font-weight-normal text-dark">Payment Successfull</h6>
-                            <small className="text-muted mb-0">Dummy text of the printing.</small>
-                          </div>
-                          {/*end media-body*/}
-                        </div>
-                        {/*end media*/}
-                      </a>
-                      {/*end-item*/}
-                    </div>
-                    {/* All*/}
-                    <a href="javascript:void(0);" className="dropdown-item text-center text-primary">
-                      View all <i className="fi-arrow-right" />
-                    </a>
-                  </div>
-                </li>
-                <li className="dropdown">
-                  <a className="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <span className="ml-1 nav-user-name hidden-sm">Nick</span>
-                    <img src="assets/images/users/user-5.jpg" alt="profile-user" className="rounded-circle" />
-                  </a>
-                  <div className="dropdown-menu dropdown-menu-right">
-                    <a className="dropdown-item" href="#"><i data-feather="user" className="align-self-center icon-xs icon-dual mr-1" /> Profile</a>
-                    <a className="dropdown-item" href="#"><i data-feather="settings" className="align-self-center icon-xs icon-dual mr-1" /> Settings</a>
-                    <div className="dropdown-divider mb-0" />
-                    <a className="dropdown-item" href="#"><i data-feather="power" className="align-self-center icon-xs icon-dual mr-1" /> Logout</a>
-                  </div>
-                </li>
-              </ul>
-              {/*end topbar-nav*/}
-              <ul className="list-unstyled topbar-nav mb-0">
-                <li>
-                  <button className="nav-link button-menu-mobile">
-                    <i data-feather="menu" className="align-self-center topbar-icon" />
-                  </button>
-                </li>
-                <li className="creat-btn">
-                  <div className="nav-link">
-                    <a className=" btn btn-sm btn-soft-primary" href="#" role="button"><i className="fas fa-plus mr-2" />New Task</a>
-                  </div>
-                </li>
-              </ul>
-            </nav>
+            
             {/* end navbar*/}
           </div>
           {/* Top Bar End */}
@@ -256,16 +116,7 @@ class EmployerCreatedJobList extends Component {
                         </ol>
                       </div>
                       {/*end col*/}
-                      <div className="col-auto align-self-center">
-                        <a href="#" className="btn btn-sm btn-outline-primary" id="Dash_Date">
-                          <span className="day-name" id="Day_Name">Today:</span>&nbsp;
-                          <span className id="Select_date">Jan 11</span>
-                          <i data-feather="calendar" className="align-self-center icon-xs ml-1" />
-                        </a>
-                        <a href="#" className="btn btn-sm btn-outline-primary">
-                          <i data-feather="download" className="align-self-center icon-xs" />
-                        </a>
-                      </div>
+                      <Daybar />
                       {/*end col*/}
                     </div>
                     {/*end row*/}
@@ -276,7 +127,7 @@ class EmployerCreatedJobList extends Component {
               </div>
               {/*end row*/}
               {/* end page title end breadcrumb */}
-              <div className="row" style={{width:"1200px"}}>
+              <div className="row" style={{ width: "1200px" }}>
                 <div className="col-12">
                   <div className="card">
                     <div className="card-header">
@@ -316,8 +167,8 @@ class EmployerCreatedJobList extends Component {
                                   <div className="button-items">
 
 
-                                        <button type="button" className="btn btn-warning waves-effect waves-light"
-                                        onClick={e => this.navigateWithID(e, item._id)}>Edit</button>
+                                    <button type="button" className="btn btn-warning waves-effect waves-light"
+                                      onClick={e => this.navigateWithID(e, item._id)}>Edit</button>
 
 
                                     {item.IsApprove == 2 && (

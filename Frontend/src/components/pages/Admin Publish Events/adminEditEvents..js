@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Select from "react-select";
 import Navbar from '../Adminnavibar';
-
+import Daybar from '../DayBar';
 
 const initialState = {
     eventTitle: "",
@@ -155,6 +155,7 @@ class AdminCreateEvent extends Component {
                                         </div>
                                         {/*end page-title-box*/}
                                     </div>
+                               
                                     {/*end col*/}
                                 </div>
                                 {/*end row*/}

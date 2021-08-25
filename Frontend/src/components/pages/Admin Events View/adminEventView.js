@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Navbar from '../Adminnavibar';
-
+import Daybar from '../DayBar';
 
 const UserID = localStorage.getItem("LocalUserID");
 
@@ -125,7 +125,7 @@ class AdminEventView extends Component {
                                                 </ol>
                                             </div>
                                             {/*end col*/}
-                                            
+                                            <Daybar/>
                                             {/*end col*/}
                                         </div>
                                         {/*end row*/}

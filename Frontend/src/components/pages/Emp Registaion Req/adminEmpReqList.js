@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../API/environment";
 import Navbar from '../Adminnavibar';
+import Daybar from '../DayBar';
 
 
 class Admin_Employer_Request_List extends Component {
@@ -72,31 +73,7 @@ class Admin_Employer_Request_List extends Component {
                         </ol>
                       </div>
                       {/*end col*/}
-                      <div className="col-auto align-self-center">
-                        <a
-                          href="#"
-                          className="btn btn-sm btn-outline-primary"
-                          id="Dash_Date"
-                        >
-                          <span className="day-name" id="Day_Name">
-                            Today:
-                          </span>
-                          &nbsp;
-                          <span className id="Select_date">
-                            Jan 11
-                          </span>
-                          <i
-                            data-feather="calendar"
-                            className="align-self-center icon-xs ml-1"
-                          />
-                        </a>
-                        <a href="#" className="btn btn-sm btn-outline-primary">
-                          <i
-                            data-feather="download"
-                            className="align-self-center icon-xs"
-                          />
-                        </a>
-                      </div>
+                      <Daybar/>
                       {/*end col*/}
                     </div>
                     {/*end row*/}
