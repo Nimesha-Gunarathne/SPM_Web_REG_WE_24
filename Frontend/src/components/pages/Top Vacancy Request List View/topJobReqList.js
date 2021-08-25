@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../API/environment";
 import Navbar from '../Adminnavibar';
+import Daybar from '../DayBar';
 
 
 class Admin_Employer_Request_List extends Component {
@@ -76,7 +77,7 @@ class Admin_Employer_Request_List extends Component {
                         </ol>
                       </div>
                       {/*end col*/}
-                      
+                      <Daybar/>
                       {/*end col*/}
                     </div>
                     {/*end row*/}
