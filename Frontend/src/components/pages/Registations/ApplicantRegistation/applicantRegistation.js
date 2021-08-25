@@ -65,7 +65,7 @@ class RegistationStudent extends Component {
         console.log("res", res);
         if (res.data.code === 200) {
           console.log("res.data.code", res.data.code);
-          alert("Pleasr Verify Your Email !")
+          alert("Please Verify Your Email !")
           toast.success(res.data.message);
           window.setTimeout(function () {
             window.location.href = "/login";
