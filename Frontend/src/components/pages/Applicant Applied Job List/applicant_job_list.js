@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import { APIURL } from "../../API/environment";
 import { toast } from "react-toastify";
-import Navbar from '../Employernavibar';
+import Navbar from '../Applicantnavibar';
 import Daybar from '../DayBar';
 
-
-const EmployerID = localStorage.getItem("LocalEmployerID");
+const UserID = localStorage.getItem("LocalUserID");
 // const UserID = "60f9393bf9010e001577b6ea";
 
-class EmployerCreatedJobList extends Component {
+class StudentJobList extends Component {
 
   constructor(props) {
     super(props);
@@ -24,10 +23,10 @@ class EmployerCreatedJobList extends Component {
   }
 
   navigateWithID(e, jobsId) {
-    window.localStorage.removeItem("employerEditJobID");
-    localStorage.setItem("employerEditJobID", jobsId)
+    window.localStorage.removeItem("JobID");
+    localStorage.setItem("JobID", jobsId)
 
-    window.location.href = "/employerEditJob";
+    window.location.href = "/EditAppliedVacancy";
   }
 
   applyJob(e, CID, CName, DDate, JTitle, JID, JDec, SDate) {
@@ -77,7 +76,7 @@ class EmployerCreatedJobList extends Component {
 
   componentDidMount() {
 
-    axios.get(`${APIURL}/vacancy/get-jobs-by-employer-id/${EmployerID}`)
+    axios.get(`${APIURL}/Applicant/getAppliedJob/${UserID}`)
 
       .then(response => {
 
@@ -89,21 +88,14 @@ class EmployerCreatedJobList extends Component {
   render() {
     return (
       <div>
-        {/* Left Sidenav */}
-        <Navbar />
+       <Navbar/>
+        
         <div className="page-wrapper">
-          {/* Top Bar Start */}
-          <div className="topbar">
-            {/* Navbar */}
-            
-            {/* end navbar*/}
-          </div>
-          {/* Top Bar End */}
           {/* Page Content*/}
           <div className="page-content">
             <div className="container-fluid">
               {/* Page-Title */}
-              <div className="row">
+              <div className="row" style={{width:"1200px"}}>
                 <div className="col-sm-12">
                   <div className="page-title-box">
                     <div className="row">
@@ -116,7 +108,7 @@ class EmployerCreatedJobList extends Component {
                         </ol>
                       </div>
                       {/*end col*/}
-                      <Daybar />
+                     <Daybar/>
                       {/*end col*/}
                     </div>
                     {/*end row*/}
@@ -127,7 +119,7 @@ class EmployerCreatedJobList extends Component {
               </div>
               {/*end row*/}
               {/* end page title end breadcrumb */}
-              <div className="row" style={{ width: "1200px" }}>
+              <div className="row">
                 <div className="col-12">
                   <div className="card">
                     <div className="card-header">
@@ -142,6 +134,7 @@ class EmployerCreatedJobList extends Component {
                           <thead>
                             <tr>
                               <th>Job</th>
+                              <th>Company</th>
                               <th>Description</th>
                               <th>Deadline</th>
                               <th className="text-center">Status</th>
@@ -161,15 +154,39 @@ class EmployerCreatedJobList extends Component {
 
                               <tr>
                                 <td>{item.job_title}</td>
+                                <td>{item.JobemployerName}</td>
                                 <td>{item.job_description}</td>
-                                <td>{item.closing_date}</td>
+                                <td>{item.Jobclosing_date}</td>
                                 <td className="text-center">
                                   <div className="button-items">
 
 
-                                    <button type="button" className="btn btn-warning waves-effect waves-light"
-                                      onClick={e => this.navigateWithID(e, item._id)}>Edit</button>
+                                    {/* {item.IsApprove == 1 && (
 
+                                      <a href="/Contract">
+                                        <button type="button"
+                                          className="btn btn-success waves-effect waves-light"
+                                          onClick={e => this.applyJob(e, item.employerID, item.employerName, item.Deadline_date, item.JobTitle, item._id, item.jobDescription,item.Start_date)}
+                                        >
+                                          Create Contract
+                                        </button>
+                                      </a>
+                                    )}
+
+                                      {item.IsApprove == 2 && (
+                                        <button type="button" className="btn btn-danger waves-effect waves-light">Delete</button>
+                                    )} */}
+
+                                    {item.IsApprove == 0 && (
+                                      <>
+
+                                        <button type="button" className="btn btn-warning waves-effect waves-light"
+                                        onClick={e => this.navigateWithID(e, item._id)}>Edit</button>
+                                        <button type="button" className="btn btn-danger waves-effect waves-light">Roll Back</button>
+                                        <span className=" badge badge-soft-warning">Pending</span>
+
+                                      </>
+                                    )}
 
                                     {item.IsApprove == 2 && (
                                       <>
@@ -231,4 +248,4 @@ class EmployerCreatedJobList extends Component {
     );
   }
 }
-export default EmployerCreatedJobList;
+export default StudentJobList;

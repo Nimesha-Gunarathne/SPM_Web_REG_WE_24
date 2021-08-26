@@ -4,40 +4,20 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Select from "react-select";
-import Navbar from '../Employernavibar';
-import Daybar from '../DayBar';
-
-
-
-const EID =localStorage.getItem("LocalEmployerID")
-const EName =localStorage.getItem("LocalEmployerName")
+import Navbar from '../Applicantnavibar';
 
 
 const initialState = {
-    job_title: "",
-    job_description: "",
-    job_category: "",
-    job_type: "",
-    closing_date: "",
-    employerID: EID,
-    employerName: EName
+    Applicant_Name: "",
+    Email: "",
+    Contact_Number: "",
+    Description: "",
+    CV_Link: null
+
+
 };
 
-const JobCategoryies = [
-    { value: "Full Time", label: "Full Time" },
-    { value: "Part Time", label: "Part Time" },
-];
-
-const JobType= [
-    { value: "Architecture and Engineering Occupations", label: "Architecture and Engineering Occupations" },
-    { value: "Arts, Design, Entertainment, Sports, and Media Occupations", label: "Arts, Design, Entertainment, Sports, and Media Occupations" },
-    { value: "Building and Grounds Cleaning and Maintenance Occupations", label: "Building and Grounds Cleaning and Maintenance Occupations" },
-];
-
-
-
-
-class EmployerCreateJob extends Component {
+class ApplyForJobForm extends Component {
 
     constructor(props) {
         super(props);
@@ -46,7 +26,14 @@ class EmployerCreateJob extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.onJobCategoryiesOptionSelected = this.onJobCategoryiesOptionSelected.bind(this);
         this.onJobTypeOptionSelected = this.onJobTypeOptionSelected.bind(this);
+        this.CategoryImagehandleChange = this.CategoryImagehandleChange.bind(this);
 
+
+    }
+    CategoryImagehandleChange(event) {
+        this.setState({
+            CV_Link: URL.createObjectURL(event.target.files[0])
+        })
     }
 
 
@@ -56,40 +43,53 @@ class EmployerCreateJob extends Component {
 
     onJobCategoryiesOptionSelected(e) {
         this.state.job_category = e.label;
-      }
-      onJobTypeOptionSelected(e) {
+    }
+    onJobTypeOptionSelected(e) {
         this.state.job_type = e.label;
-      }
+    }
 
     onSubmit(event) {
         event.preventDefault();
 
         let JobDetails = {
-            job_title: this.state.job_title,
-            job_description: this.state.job_description,
-            job_category: this.state.job_category,
-            job_type: this.state.job_type,
-            closing_date: this.state.closing_date,
-            employerID: this.state.employerID,
-            employerName: this.state.employerName
+
+            Applicant_Name: this.state.Applicant_Name,
+            Email: this.state.Email,
+            Contact_Number: this.state.Contact_Number,
+            Description: this.state.Description,
+            CV_Link: this.state.CV_Link,
+
+            JobId: localStorage.getItem("ViewedJobID"),
+            Jobclosing_date: localStorage.getItem("ViewedJobclosing_date"),
+            JobcreatedAt: localStorage.getItem("ViewedJobcreatedAt"),
+            JobemployerID: localStorage.getItem("ViewedJobemployerID"),
+            JobemployerName: localStorage.getItem("ViewedJobemployerName"),
+            job_category: localStorage.getItem("ViewedJobjob_category"),
+            job_description: localStorage.getItem("ViewedJobjob_description"),
+            job_title: localStorage.getItem("ViewedJobjob_title"),
+            job_type: localStorage.getItem("ViewedJobjob_type"),
+
+            UserID: localStorage.getItem("LocalUserID"),
+            IsApprove: 0
         };
 
         console.log("Job Details : ", JobDetails);
 
         axios
-            .post(`${APIURL}/vacancy/create-jobs`, JobDetails)
+            .post(`${APIURL}/Applicant/JobApply`, JobDetails)
             .then((res) => {
                 console.log("res", res);
-                if (res.data.code === 200) {
+                if (res.status === 200) {
                     console.log("res.data.code", res.data.code);
-                    alert("Job is added");
+                    alert("Job is Applied");
 
-                    window.location.reload();
-
+                    // toast.success(res.data.message);
+                    window.setTimeout(function () {
+                        window.location.href = "/applicantHome";
+                    }, 400);
+                    //   window.location.href = "/login";
                 } else {
                     toast.error(res.data.message);
-                    alert(res.data.message);
-
                 }
             });
 
@@ -99,7 +99,7 @@ class EmployerCreateJob extends Component {
         return (
             <>
                 <div>
-                   <Navbar/>
+            <Navbar/>
                     <div className="page-wrapper">
                         {/* Top Bar Start */}
                         <div className="topbar">
@@ -116,11 +116,11 @@ class EmployerCreateJob extends Component {
                                         <div className="page-title-box">
                                             <div className="row">
                                                 <div className="col">
-                                                    <h4 className="page-title">Add New Vacancy</h4>
+                                                    <h4 className="page-title"> Apply for vacancies</h4>
                                                     <ol className="breadcrumb">
                                                         <li className="breadcrumb-item"><a href="javascript:void(0);">Job Bank</a></li>
                                                         <li className="breadcrumb-item"><a href="javascript:void(0);">Jobs</a></li>
-                                                        <li className="breadcrumb-item active">New Jobs</li>
+                                                        <li className="breadcrumb-item active">Apply</li>
                                                     </ol>
                                                 </div>
 
@@ -137,7 +137,8 @@ class EmployerCreateJob extends Component {
                                     <div className="col-lg-12">
                                         <div className="card">
                                             <div className="card-header">
-                                                <h4 className="card-title">New Job</h4>
+                                                <h4 className="card-title">{localStorage.getItem("ViewedJobjob_title")}</h4>
+
                                                 {/* <p class="text-muted mb-0">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each
                                         textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.
                                     </p> */}
@@ -147,75 +148,76 @@ class EmployerCreateJob extends Component {
                                                 <div className="row">
                                                     <div className="col-lg-12">
                                                         <div className="form-group row">
-                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Job Title</label>
+                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Applicant Name</label>
                                                             <div className="col-sm-10">
-                                                                <input className="form-control" type="text" placeholder="Job Title is..." id="example-text-input"
-                                                                    name="job_title"
-                                                                    value={this.state.job_title}
+                                                                <input className="form-control" type="text" placeholder="Your Name is..." id="example-text-input"
+                                                                    name="Applicant_Name"
+                                                                    value={this.state.Applicant_Name}
                                                                     onChange={this.onChange}
                                                                     required />
                                                             </div>
                                                         </div>
-                                                        <div className="form-group row" style={{ marginTop: "40px" }}>
-                                                            <label htmlFor="example-email-input" className="col-sm-2 col-form-label text-right">Job Description</label>
+                                                        <div className="form-group row">
+                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Email</label>
                                                             <div className="col-sm-10">
-                                                                <textarea id="textarea" className="form-control" maxLength={225} rows={3} placeholder="This textarea has a limit of 225 chars."
-                                                                    name="job_description"
-                                                                    value={this.state.job_description}
+                                                                <input className="form-control" type="email" placeholder="example@gmail.com" id="example-text-input"
+                                                                    name="Email"
+                                                                    value={this.state.Email}
+                                                                    onChange={this.onChange}
+                                                                    required />
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="form-group row">
+                                                            <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Contact Number</label>
+                                                            <div className="col-sm-10">
+                                                                <input className="form-control" type="text" placeholder="07x xxxx xxx" id="example-text-input"
+                                                                    name="Contact_Number"
+                                                                    value={this.state.Contact_Number}
+                                                                    onChange={this.onChange}
+                                                                    required />
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="form-group row" style={{ marginTop: "40px" }}>
+                                                            <label htmlFor="example-email-input" className="col-sm-2 col-form-label text-right">Short Description</label>
+                                                            <div className="col-sm-10">
+                                                                <textarea id="textarea" className="form-control" maxLength={225} rows={3} placeholder=""
+                                                                    name="Description"
+                                                                    value={this.state.Description}
                                                                     onChange={this.onChange} />
 
                                                             </div>
                                                         </div>
                                                         <div className="form-group row" style={{ marginTop: "40px" }}>
-                                                            <label htmlFor="example-tel-input" className="col-sm-2 col-form-label text-right">Job Category</label>
+                                                            <label htmlFor="example-tel-input" className="col-sm-2 col-form-label text-right">Upload CV</label>
                                                             <div className="col-sm-4">
-                                                                {/* <input className="form-control" type="text" placeholder="Job Category is..." id="example-tel-input"
-                                                                    name="job_category"
-                                                                    value={this.state.job_category}
+                                                                <input className="form-control" type="text" placeholder="Select Your CV" id="example-tel-input"
+                                                                    name="CV_Link"
+                                                                    value={this.state.CV_Link}
                                                                     onChange={this.onChange}
-                                                                    required /> */}
-
-                                                                <Select
-                                                                    placeholder="Select Job Category"
-                                                                    options={JobCategoryies}
-                                                                    onChange={this.onJobCategoryiesOptionSelected}
+                                                                    readOnly
                                                                 />
                                                             </div>
-                                                            <label htmlFor="example-tel-input" className="col-sm-2 col-form-label text-right">Job Type</label>
-                                                            <div className="col-sm-4">
-                                                                {/* <input className="form-control" type="text" placeholder="Job Type is..."
-                                                                    name="job_type"
-                                                                    value={this.state.job_type}
-                                                                    onChange={this.onChange}
-                                                                    required /> */}
 
-                                                                <Select
-                                                                    placeholder="Select Job Type"
-                                                                    options={JobType}
-                                                                    onChange={this.onJobTypeOptionSelected}
+                                                            <div className="col-sm-4">
+                                                                <input type="file" className="btn btn-outline-success waves-effect waves-light float-right"
+                                                                    onChange={this.CategoryImagehandleChange}
                                                                 />
 
+
                                                             </div>
+                                                            {/* <input type="file" onChange={this.CategoryImagehandleChange}
+                                                                style={{ marginLeft: "50px", marginTop: "10px" }} /> */}
                                                         </div>
 
-                                                        <div className="form-group row" style={{ marginTop: "40px" }}>
-                                                            <label htmlFor="example-number-input" className="col-sm-2 col-form-label text-right">Closing Date</label>
-                                                            <div className="col-sm-4">
-                                                                <input className="form-control" type="datetime-local" defaultValue="2011-08-19T13:45:00" id="example-datetime-local-input"
-                                                                    name="closing_date"
-                                                                    value={this.state.closing_date}
-                                                                    onChange={this.onChange}
-                                                                    required />
-                                                            </div>
 
-                                                        </div>
                                                         <div className="form-group row">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div className="button-items">
-                                                    <button className="btn btn-outline-success waves-effect waves-light float-right" onClick={this.onSubmit}>Create</button>
-                                                    <a href="emp-job-list.html" type="button" className="btn btn-outline-warning waves-effect float-left">Cancel</a>
+                                                    <button className="btn btn-outline-success waves-effect waves-light float-right" onClick={this.onSubmit}>Submit Application</button>
                                                 </div>
                                             </div>
                                             {/*end card-body*/}
@@ -237,4 +239,4 @@ class EmployerCreateJob extends Component {
         );
     }
 }
-export default EmployerCreateJob;
+export default ApplyForJobForm;

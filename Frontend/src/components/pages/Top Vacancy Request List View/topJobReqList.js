@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../API/environment";
+import Navbar from '../Adminnavibar';
+import Daybar from '../DayBar';
+
 
 class Admin_Employer_Request_List extends Component {
   constructor(props) {
@@ -14,25 +17,30 @@ class Admin_Employer_Request_List extends Component {
   async componentDidMount() {
     await axios.get(`${APIURL}/TopList/getAllTopList`).then((response) => {
       this.setState({ TopList: response.data.data });
-      console.log("TopList =>", this.state.employer);
+      console.log("TopList =>", this.state.TopList);
     });
   }
 
   onChangeActiveStatus(e, id) {
     let updateDetailsStatus = {
-      isActive: 1,
+      IsApprove: 1,
     };
 
     console.log(id);
+    console.log(updateDetailsStatus);
+
     axios
-      .put(`${APIURL}/employer/approve-employer/${id}`, updateDetailsStatus)
+      .put(`${APIURL}/TopList/approveTopListReq/${id}`, updateDetailsStatus)
       .then((res) => {
         console.log(res.data);
         console.log(updateDetailsStatus);
         if (res.data.code === 200) {
           toast.success(res.data.message);
+          alert(res.data.message)
         } else {
           toast.error(res.data.message);
+          alert(res.data.message)
+
         }
         window.location.reload();
       });
@@ -43,186 +51,7 @@ class Admin_Employer_Request_List extends Component {
       <div>
         <h1></h1>
         {/* Left Sidenav */}
-        <div className="left-sidenav">
-          {/* LOGO */}
-          <div className="brand">
-            <a href="crm-index.html" className="logo">
-              <span>
-                <img
-                  src="assets/images/logo1.png"
-                  alt="logo-large"
-                  className="logo-sm"
-                />
-              </span>
-              <span>
-                {/* <img src="assets/images/logo.png" alt="logo-large" class="logo-lg logo-light">
-                            <img src="assets/images/logo-dark.png" alt="logo-large" class="logo-lg logo-dark"> */}
-              </span>
-            </a>
-          </div>
-          {/*end logo*/}
-          <div className="menu-content h-100" data-simplebar>
-            <ul className="metismenu left-sidenav-menu">
-              <li>
-                <a href="clerk-dashbord.html">
-                  <i
-                    data-feather="layers"
-                    className="align-self-center menu-icon"
-                  />
-                  <span>Dashboard</span>
-                </a>
-              </li>
-              <li>
-                {/* <a href="clerk-authentication.html"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Authentication</span></a> */}
-              </li>
-              <li>
-                <a href="javascript: void(0);">
-                  <i
-                    data-feather="grid"
-                    className="align-self-center menu-icon"
-                  />
-                  <span>Authentication</span>
-                  <span className="menu-arrow">
-                    <i className="mdi mdi-chevron-right" />
-                  </span>
-                </a>
-                <ul className="nav-second-level" aria-expanded="false">
-                  <li className="nav-item">
-                    <a
-                      className="nav-link"
-                      href="clerk-authentication-employerlist.html"
-                    >
-                      <i className="ti-control-record" />
-                      All Employers
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="a">
-                      <i className="ti-control-record" />
-                      All jobs
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="l">
-                      <i className="ti-control-record" />
-                      Employer jobs
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="javascript: void(0);">
-                  <i
-                    data-feather="grid"
-                    className="align-self-center menu-icon"
-                  />
-                  <span>Employer</span>
-                  <span className="menu-arrow">
-                    <i className="mdi mdi-chevron-right" />
-                  </span>
-                </a>
-                <ul className="nav-second-level" aria-expanded="false">
-                  <li className="nav-item">
-                    <a
-                      className="nav-link"
-                      href="clerk-employer-employer-list.html"
-                    >
-                      <i className="ti-control-record" />
-                      All Employers
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      className="nav-link"
-                      href="clerk-employer-employer-job-list.html"
-                    >
-                      <i className="ti-control-record" />
-                      All jobs
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="*">
-                      <i className="ti-control-record" />
-                      Employer jobs
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="javascript: void(0);">
-                  <i
-                    data-feather="grid"
-                    className="align-self-center menu-icon"
-                  />
-                  <span>Student</span>
-                  <span className="menu-arrow">
-                    <i className="mdi mdi-chevron-right" />
-                  </span>
-                </a>
-                <ul className="nav-second-level" aria-expanded="false">
-                  <li className="nav-item">
-                    <a
-                      className="nav-link"
-                      href="clerk-student-student-list.html"
-                    >
-                      <i className="ti-control-record" />
-                      All Student
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a
-                      className="nav-link"
-                      href="clerk-student-student-current-jobList.html"
-                    >
-                      <i className="ti-control-record" />
-                      Current Job List
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="clerk-student-settings.html">
-                      <i className="ti-control-record" />
-                      Student Settings
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                {/* <a href="emp-job-request.html"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Job requests</span></a> */}
-              </li>
-              <li>
-                {/* <a href="emp-apprvedJobs-part-2.html"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Approved job</span></a> */}
-              </li>
-              <li>
-                <a href="clerk-contract.html">
-                  <i
-                    data-feather="edit"
-                    className="align-self-center menu-icon"
-                  />
-                  <span>Contract</span>
-                </a>
-              </li>
-              <li>
-                <a href="clerk-invoice.html">
-                  <i
-                    data-feather="layers"
-                    className="align-self-center menu-icon"
-                  />
-                  <span>Invoice</span>
-                </a>
-              </li>
-              <li>
-                <a href="*">
-                  <i
-                    data-feather="layers"
-                    className="align-self-center menu-icon"
-                  />
-                  <span>Profile</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        {/* end left-sidenav*/}
+        <Navbar/>
         <div className="page-wrapper" style={{ width: "1200px" }}>
           {/* Top Bar Start */}
 
@@ -248,7 +77,7 @@ class Admin_Employer_Request_List extends Component {
                         </ol>
                       </div>
                       {/*end col*/}
-                      
+                      <Daybar/>
                       {/*end col*/}
                     </div>
                     {/*end row*/}
