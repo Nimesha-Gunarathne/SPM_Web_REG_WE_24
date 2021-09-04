@@ -16,7 +16,7 @@ const initialState = {
     closing_date: "",
     employerID: "",
     employerName: EMPName,
-    IsApprove:0
+    IsApprove: 0
 };
 
 const JobCategoryies = [
@@ -26,8 +26,8 @@ const JobCategoryies = [
 
 const JobType = [
     { value: "Architecture and Engineering Occupations", label: "Architecture and Engineering Occupations" },
-    { value: "Arts, Design, Entertainment, Sports, and Media Occupations", label: "Arts, Design, Entertainment, Sports, and Media Occupations" },
-    { value: "Building and Grounds Cleaning and Maintenance Occupations", label: "Building and Grounds Cleaning and Maintenance Occupations" },
+    { value: "Human Resources Managing", label: "Human Resources Managing" },
+    { value: "Information Technology/Software Engineering", label: "Information Technology/Software Engineering" },
 ];
 
 const JOBId = localStorage.getItem("employerEditJobID");
@@ -101,9 +101,9 @@ class EmployerCreateJob extends Component {
             job_category: this.state.job_category,
             job_type: this.state.job_type,
             closing_date: this.state.closing_date,
-            employerID:this.state.employerID,
-            employerName:EMPName,
-            IsApprove:0
+            employerID: this.state.employerID,
+            employerName: EMPName,
+            IsApprove: 0
 
         };
 
@@ -134,35 +134,49 @@ class EmployerCreateJob extends Component {
     onUpdate(event) {
         event.preventDefault();
 
-        let JobDetails = {
-            job_title: this.state.job_title,
-            job_description: this.state.job_description,
-            job_category: this.state.job_category,
-            job_type: this.state.job_type,
-            closing_date: this.state.closing_date
-        };
+        var todayDate = new Date();
+        var dd = String(todayDate.getDate()).padStart(2, '0');
+        var mm = String(todayDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = todayDate.getFullYear();
 
-        console.log("Job Details : ", JobDetails);
+        todayDate = yyyy + '/' + mm + '/' + dd;
 
-        axios
-            .put(`${APIURL}/vacancy/UpdateCreatedJobDetails/${JOBId}`, JobDetails)
-            .then((res) => {
-                console.log("res", res);
-                if (res.data.code === 200) {
-                    console.log("res.data.code", res.data.code);
-                    alert("Job is Updated!");
-                    window.location.reload();
-                    // toast.success(res.data.message);
-                    // window.setTimeout(function () {
-                    //     window.location.href = "/login";
-                    // }, 5000);
-                    //   window.location.href = "/login";
-                } else {
-                    toast.error(res.data.message);
-                    alert(res.data.message);
+        var date2Updated = this.state.closing_date.substr(0,10).replace(/-/g,'/');
 
-                }
-            });
+        if (todayDate < date2Updated) {
+            let JobDetails = {
+                job_title: this.state.job_title,
+                job_description: this.state.job_description,
+                job_category: this.state.job_category,
+                job_type: this.state.job_type,
+                closing_date: this.state.closing_date
+            };
+
+            console.log("Job Details : ", JobDetails);
+
+            axios
+                .put(`${APIURL}/vacancy/UpdateCreatedJobDetails/${JOBId}`, JobDetails)
+                .then((res) => {
+                    console.log("res", res);
+                    if (res.data.code === 200) {
+                        console.log("res.data.code", res.data.code);
+                        alert("Job is Updated!");
+                        window.location.reload();
+                        // toast.success(res.data.message);
+                        // window.setTimeout(function () {
+                        //     window.location.href = "/login";
+                        // }, 5000);
+                        //   window.location.href = "/login";
+                    } else {
+                        toast.error(res.data.message);
+                        alert(res.data.message);
+
+                    }
+                });
+        }
+        else {
+            alert("Please enter a future date as the closing date.")
+        }
 
     }
 
@@ -170,7 +184,7 @@ class EmployerCreateJob extends Component {
         return (
             <>
                 <div>
-                    <Navbar/>
+                    <Navbar />
                     <div className="page-wrapper">
                         {/* Top Bar Start */}
                         <div className="topbar">
@@ -277,7 +291,7 @@ class EmployerCreateJob extends Component {
                                                                     value={this.state.closing_date}
                                                                     onChange={this.onChange}
                                                                     required />
-                                                                    <span style={{marginLeft:"200px"}}>{this.state.closing_date}</span>
+                                                                <span style={{ marginLeft: "200px" }}>{this.state.closing_date}</span>
                                                             </div>
 
                                                         </div>
