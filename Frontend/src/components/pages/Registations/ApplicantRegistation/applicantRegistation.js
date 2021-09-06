@@ -65,7 +65,7 @@ class RegistationStudent extends Component {
         console.log("res", res);
         if (res.data.code === 200) {
           console.log("res.data.code", res.data.code);
-          alert("Please Verify Your Email !")
+          alert("Pleasr Verify Your Email !")
           toast.success(res.data.message);
           window.setTimeout(function () {
             window.location.href = "/login";
@@ -73,8 +73,6 @@ class RegistationStudent extends Component {
           //   window.location.href = "/login";
         } else {
           toast.error(res.data.message);
-          alert(res.data.message)
-
         }
       });
   }

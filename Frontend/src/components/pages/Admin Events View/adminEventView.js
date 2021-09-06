@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Navbar from '../Adminnavibar';
-import Daybar from '../DayBar';
+
 
 const UserID = localStorage.getItem("LocalUserID");
 
@@ -14,8 +14,8 @@ class AdminEventView extends Component {
 
     constructor(props) {
         super(props);
-        this.applyJob = this.applyJob.bind(this); 
-        this.navigateWithID = this.navigateWithID.bind(this); 
+        this.applyJob = this.applyJob.bind(this);
+        this.navigateWithID = this.navigateWithID.bind(this);
 
 
         this.state = {
@@ -32,7 +32,7 @@ class AdminEventView extends Component {
         localStorage.setItem("EventID", eventId)
 
         window.location.href = "/AdminEditEvent";
-      }
+    }
 
     applyJob(e,
         _id,
@@ -48,7 +48,7 @@ class AdminEventView extends Component {
 
         e.preventDefault();
 
-        
+
 
 
         // window.location = "/ApplicantViewVacancy"
@@ -89,9 +89,9 @@ class AdminEventView extends Component {
         axios.get(`${APIURL}/Events/getAllEvents`)
 
             .then(response => {
-   
+
                 this.setState({ Jobs: response.data.data });
-              
+
                 console.log("response ", response.data.data);
 
 
@@ -103,7 +103,7 @@ class AdminEventView extends Component {
     render() {
         return (
             <div>
-                <Navbar/>
+                <Navbar />
                 <div className="page-wrapper">
                     {/* Top Bar Start */}
 
@@ -125,7 +125,7 @@ class AdminEventView extends Component {
                                                 </ol>
                                             </div>
                                             {/*end col*/}
-                                            <Daybar/>
+
                                             {/*end col*/}
                                         </div>
                                         {/*end row*/}
@@ -137,15 +137,15 @@ class AdminEventView extends Component {
                             {/*end row*/}
                             {/* end page title end breadcrumb */}
                             <div className="row">
-                                
+
                                 {/*end col*/}
                                 <div className="col-lg-6 text-right">
                                     <div className="text-right">
                                         <ul className="list-inline">
-                                          
-                                            
+
+
                                             <li className="list-inline-item">
-                                                <button type="button" className="btn btn-success btn-sm" style={{marginLeft:"1050px"}}>Genarate Report</button>
+                                                <button type="button" className="btn btn-success btn-sm" style={{ marginLeft: "1050px" }}>Genarate Report</button>
                                             </li>
                                         </ul>
                                     </div>
@@ -165,20 +165,26 @@ class AdminEventView extends Component {
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
                                 <div className="row">
                                     <div className="col-lg-4" key={index} >
-                                        <div className="card" style={{ height: "250px", width: "1200px"}}>
+                                        <div className="card" style={{ height: "250px", width: "1200px" }}>
                                             <div className="card-body">
                                                 <div className="media mb-3">
+
+                                            
+                                                       
+
                                                     <img src="assets/images/widgets/project2.jpg" alt="" className="thumb-md rounded-circle" />
                                                     <div className="media-body align-self-center text-truncate ml-3">
                                                         <h4 className="m-0 font-weight-semibold text-dark font-16">{item.eventTitle}</h4>
-                                                       
-                                                        <button type="button" className="btn btn-warning" 
-                                                        style={{marginLeft:"1000px",marginTop:"-30px"}}
-                                                        onClick={e => this.navigateWithID(e, item._id)}>Edit</button>
+                                                        <h5>Company Name : {item.companyName}</h5>
+                                                        <h6 style={{marginLeft:"800px", marginTop:"-20px"}}>Location: {item.location}</h6>
+                                                     
+                                                        <button type="button" className="btn btn-warning"
+                                                            style={{ marginLeft: "1000px", marginTop: "-30px" }}
+                                                            onClick={e => this.navigateWithID(e, item._id)}>Edit</button>
                                                     </div>
                                                     {/*end media-body*/}
                                                 </div>
-                                                <hr className="hr-dashed" style={{marginTop:"-5px"}}/>
+                                                <hr className="hr-dashed" style={{ marginTop: "-5px" }} />
 
                                                 <div className="row" >
                                                     <div className="col">
@@ -198,10 +204,10 @@ class AdminEventView extends Component {
                                                     </p>
 
                                                 </div>
-                                                
+
                                                 {/*end task-box*/}
                                                 <br />
-                                                <div className="button-items" style={{width:"500px",marginLeft:"280px" ,marginTop:"-50px"}}>
+                                                {/* <div className="button-items" style={{ width: "500px", marginLeft: "280px", marginTop: "-50px" }}>
                                                     <button type="button" className="btn btn-primary waves-effect waves-light btn-block"
                                                         onClick={e => this.applyJob
                                                             (
@@ -217,7 +223,7 @@ class AdminEventView extends Component {
                                                                 item.job_type
                                                             )}><i className="mdi mdi-check-all mr-2" />View</button>
 
-                                                </div>
+                                                </div> */}
                                             </div>
                                             {/*end card-body*/}
                                         </div>

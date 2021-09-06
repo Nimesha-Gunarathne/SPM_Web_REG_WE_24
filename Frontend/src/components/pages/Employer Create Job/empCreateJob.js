@@ -5,9 +5,6 @@ import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Select from "react-select";
 import Navbar from '../Employernavibar';
-import Daybar from '../DayBar';
-
-
 
 const EID =localStorage.getItem("LocalEmployerID")
 const EName =localStorage.getItem("LocalEmployerName")

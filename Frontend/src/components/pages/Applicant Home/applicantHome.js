@@ -4,8 +4,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Navbar from '../Applicantnavibar';
-import Daybar from '../DayBar';
-
 
 const UserID = localStorage.getItem("LocalUserID");
 
@@ -16,10 +14,6 @@ class StudentJobList extends Component {
     constructor(props) {
         super(props);
         this.applyJob = this.applyJob.bind(this);
-        this.search = this.search.bind(this);
-
-        var today = new Date(),
-            date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
 
         this.state = {
@@ -27,9 +21,7 @@ class StudentJobList extends Component {
             ApprovedTopList: [],
             AppliedJobs: [],
             ApproveStatus: "Approved",
-            SProfile_status: "Student",
-            searchVal: "",
-            currentDate: date
+            SProfile_status: "Student"
 
         }
     }
@@ -71,6 +63,32 @@ class StudentJobList extends Component {
 
         window.location = "/ApplicantViewVacancy"
 
+        // let JobData = {
+
+
+
+        // }
+
+        // console.log("JobData ", JobData)
+
+        // axios.post(`${APIURL}/student/JobApply`, JobData)
+        //     .then(response => {
+
+        //         toast.success("Your job applies!");
+        //         localStorage.setItem("employerName", JobData.employerName)
+        //         //   window.setTimeout(function() {
+        //         //     window.location.href = "/Contract";
+        //         // }, 1500);
+
+        //         // alert('Your Job is Applied!');
+        //         // this.setState({
+        //         //     ButtonWord:"Applied"
+        //         // })
+        //     })
+        //     .catch(error => {
+        //         console.log(error.message)
+        //         alert(error.message);
+        //     })
 
     }
 
@@ -94,18 +112,11 @@ class StudentJobList extends Component {
             })
     }
 
-    search(e, key) {
-
-        this.setState({ [e.target.name]: e.target.value });
-        console.log("this.state.searchVal is ", this.state.searchVal);
-
-    }
-
     render() {
         return (
             <div>
-                <Navbar />
-
+                <Navbar/>
+                
                 <div className="page-wrapper">
                     {/* Top Bar Start */}
 
@@ -127,7 +138,16 @@ class StudentJobList extends Component {
                                                 </ol>
                                             </div>
                                             {/*end col*/}
-                                            <Daybar />
+                                            <div className="col-auto align-self-center">
+                                                <a href="#" className="btn btn-sm btn-outline-primary" id="Dash_Date">
+                                                    <span className="day-name" id="Day_Name">Today:</span>&nbsp;
+                                                    <span className id="Select_date">Jan 11</span>
+                                                    <i data-feather="calendar" className="align-self-center icon-xs ml-1" />
+                                                </a>
+                                                <a href="#" className="btn btn-sm btn-outline-primary">
+                                                    <i data-feather="download" className="align-self-center icon-xs" />
+                                                </a>
+                                            </div>
                                             {/*end col*/}
                                         </div>
                                         {/*end row*/}
@@ -152,16 +172,7 @@ class StudentJobList extends Component {
                                         <ul className="list-inline">
                                             <li className="list-inline-item">
                                                 <div className="input-group">
-
-
-                                                    <input
-                                                        name="searchVal"
-                                                        value={this.state.searchVal}
-                                                        onChange={this.search}
-                                                        type="text" id="example-input1-group2" className="form-control form-control-sm" placeholder="Search" />
-
-
-
+                                                    <input type="text" id="example-input1-group2" name="example-input1-group2" className="form-control form-control-sm" placeholder="Search" />
                                                     <span className="input-group-append">
                                                         <button type="button" className="btn btn-primary btn-sm"><i className="fas fa-search" /></button>
                                                     </span>
@@ -188,39 +199,35 @@ class StudentJobList extends Component {
 
                             <h1 className="page-title">Top Vacancies</h1>
 
-                            <div className="row justify-content-center" style={{ marginTop: "40px" }}>
+                            <div className="row justify-content-center" style={{marginTop:"40px"}}>
                                 {this.state.ApprovedTopList.length > 0 && this.state.ApprovedTopList.map((item, index) => (
                                     <div className="col-md-6 col-lg-3">
                                         <div className="card report-card">
                                             <div className="card-body">
                                                 <div className="row d-flex justify-content-center">
                                                     <div className="col">
-                                                        <p className="text-dark mb-1 font-weight-semibold" style={{ fontSize: "20px", marginTop: "-20px" }}>
+                                                        <p className="text-dark mb-1 font-weight-semibold"style={{fontSize:"20px",marginTop:"-20px"}}>
                                                             {item.job_title}
                                                         </p>
                                                         <h3 className="my-2"></h3>
                                                         <p className="mb-0 text-truncate text-muted">
                                                             <span className="text-success">
-
-                                                                Closing Date
+                                                               
+                                                               Closing Date
                                                             </span>
-
+                                                       
                                                         </p>
                                                         {item.closing_date}
                                                     </div>
                                                     <div className="col-auto align-self-center">
+                                                    
                                                     </div>
-
                                                 </div>
-
                                             </div>
                                             {/*end card-body*/}
-                                            <button type="button" className="btn btn-primary waves-effect waves-light btn-block"><i className="mdi mdi-check-all mr-2" />View</button>
-
                                         </div>
                                         {/*end card*/}
                                     </div>
-
                                 ))}
                             </div>
                             {/* <hr className="hr-dashed" style={{height:"20px"}}/> */}
@@ -241,15 +248,15 @@ class StudentJobList extends Component {
 
 
 
+  
 
 
-
-                            <div className="row" style={{ marginTop: "40px" }}>
+                            <div className="row" style={{marginTop:"40px"}}>
 
                                 {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
 
                                     <div className="col-lg-4" key={index} >
-                                        <div className="card" style={{ height: "400px", width: "350px" }}>
+                                        <div className="card" style={{ height: "400px",width:"350px" }}>
                                             <div className="card-body">
                                                 <div className="media mb-3">
                                                     <img src="assets/images/widgets/project2.jpg" alt="" className="thumb-md rounded-circle" />

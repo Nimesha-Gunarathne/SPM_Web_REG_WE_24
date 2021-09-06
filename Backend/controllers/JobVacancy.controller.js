@@ -164,29 +164,6 @@ const JobsController = {
       }
     },
 
-    getJobDetailsByJobName: async (req, res) => {
-      try {
-        if (req.params && req.params.id) {
-          const jobs = await Jobs.find({job_title: req.params.id });
-  
-          return res.status(200).json({
-            code: messages.SuccessCode,
-            success: messages.Success,
-            status: messages.SuccessStatus,
-            data: jobs,
-            message: "The Job detail recieved",
-          });
-        }
-      } catch (err) {
-        return res.status(500).json({
-          code: messages.InternalCode,
-          success: messages.NotSuccess,
-          status: messages.InternalStatus,
-          message: err.message,
-        });
-      }
-    },
-
 
 }
 

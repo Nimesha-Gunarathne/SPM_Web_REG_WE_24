@@ -44,7 +44,7 @@ class NavBar extends Component {
                             </li>
 
                             <li>
-                                <a href="/ApplicanEventView" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-calendar-week" style={{ color: "white" }} /><span>Events</span></a>
+                                <a href="#" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-calendar-week" style={{ color: "white" }} /><span>Events</span></a>
                             </li>
 
                             <li>
