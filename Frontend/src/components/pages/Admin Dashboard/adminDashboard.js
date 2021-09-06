@@ -112,9 +112,7 @@ class AdminDashboard extends Component {
                           </div> */}
                     </div>
                   </div>
-                  {/* <div className="col-sm-12 mb-3">
-                    
-                  </div> */}
+                  
                 </div>
               </div>
             </div>{/* container */}
