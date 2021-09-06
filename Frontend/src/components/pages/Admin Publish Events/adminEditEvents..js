@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Select from "react-select";
 import Navbar from '../Adminnavibar';
-import Daybar from '../DayBar';
+
 
 const initialState = {
     eventTitle: "",
@@ -24,6 +24,8 @@ const EventTypes = [
     { value: "Conferences", label: "Conferences" },
     { value: "A seminar ", label: "A seminar " },
     { value: "Networking sessions", label: "Networking sessions" },
+    { value: "Open Days", label: "Open Days" },
+    { value: "Career week", label: "Career week" },
 
 ];
 
@@ -41,7 +43,7 @@ class AdminCreateEvent extends Component {
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onEventTypesOptionSelected = this.onEventTypesOptionSelected.bind(this);
-
+        this.onDelete = this.onDelete.bind(this);
     }
 
     componentDidMount() {
@@ -68,6 +70,33 @@ class AdminCreateEvent extends Component {
                 
 
             })
+
+
+    }
+
+    onDelete(e){
+        const DEventID = this.state.jobID
+
+        axios.delete(`${APIURL}/Events/deleteEventByid/${DEventID}`)
+        .then((res) => {
+            console.log("res", res);
+            if (res.data.code === 200) {
+                console.log("res.data.code", res.data.code);
+                alert(res.data.message);
+
+                window.location.href = "/AdminEventView";
+
+                // toast.success(res.data.message);
+                // window.setTimeout(function () {
+                //     window.location.href = "/login";
+                // }, 5000);
+                //   window.location.href = "/login";
+            } else {
+                toast.error(res.data.message);
+                alert(res.data.message);
+
+            }
+        });
 
 
     }
@@ -155,7 +184,6 @@ class AdminCreateEvent extends Component {
                                         </div>
                                         {/*end page-title-box*/}
                                     </div>
-                               
                                     {/*end col*/}
                                 </div>
                                 {/*end row*/}
@@ -224,7 +252,7 @@ class AdminCreateEvent extends Component {
                                                                
 
                                                                 <Select
-                                                                    placeholder="Select Job Category"
+                                                                    placeholder="Select Event Type"
                                                                     options={EventTypes}
                                                                     onChange={this.onEventTypesOptionSelected}
                                                                 />
@@ -263,7 +291,7 @@ class AdminCreateEvent extends Component {
                                                 </div>
                                                 <div className="button-items">
                                                     <button className="btn btn-outline-success waves-effect waves-light float-right" onClick={this.onSubmit}>Update</button>
-                                                    <a href="emp-job-list.html" type="button" className="btn btn-outline-danger waves-effect float-left">Delete</a>
+                                                    <button className="btn btn-outline-danger waves-effect float-left" onClick={this.onDelete}>Delete</button>
                                                 </div>
                                             </div>
                                             {/*end card-body*/}

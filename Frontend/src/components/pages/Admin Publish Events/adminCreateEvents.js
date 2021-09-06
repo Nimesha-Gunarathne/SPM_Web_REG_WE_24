@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Select from "react-select";
 import Navbar from '../Adminnavibar';
-import Daybar from '../DayBar';
 
 const initialState = {
     eventTitle: "",
@@ -23,6 +22,8 @@ const EventTypes = [
     { value: "Conferences", label: "Conferences" },
     { value: "A seminar ", label: "A seminar " },
     { value: "Networking sessions", label: "Networking sessions" },
+    { value: "Open Days", label: "Open Days" },
+    { value: "Career week", label: "Career week" },
 
 ];
 
@@ -119,14 +120,12 @@ class AdminCreateEvent extends Component {
                                                 </div>
 
                                             </div>
-                                            {/*end row*/}           
+                                            {/*end row*/}
                                         </div>
-                                        {/*end page-title-box*/}                     
+                                        {/*end page-title-box*/}
                                     </div>
-                                
                                     {/*end col*/}
                                 </div>
-                         
                                 {/*end row*/}
                                 {/* end page title end breadcrumb */}
                                 <div className="row" style={{ marginTop: "60px" }}>
@@ -193,7 +192,7 @@ class AdminCreateEvent extends Component {
 
 
                                                                 <Select
-                                                                    placeholder="Select Job Category"
+                                                                    placeholder="Select Event Type"
                                                                     options={EventTypes}
                                                                     onChange={this.onEventTypesOptionSelected}
                                                                 />
