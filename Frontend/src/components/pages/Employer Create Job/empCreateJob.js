@@ -5,9 +5,12 @@ import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Select from "react-select";
 import Navbar from '../Employernavibar';
+import Daybar from '../DayBar';
 
-const EID = localStorage.getItem("LocalEmployerID")
-const EName = localStorage.getItem("LocalEmployerName")
+
+
+const EID =localStorage.getItem("LocalEmployerID")
+const EName =localStorage.getItem("LocalEmployerName")
 
 
 const initialState = {
@@ -25,10 +28,10 @@ const JobCategoryies = [
     { value: "Part Time", label: "Part Time" },
 ];
 
-const JobType = [
+const JobType= [
     { value: "Architecture and Engineering Occupations", label: "Architecture and Engineering Occupations" },
-    { value: "Human Resources Managing", label: "Human Resources Managing" },
-    { value: "Information Technology/Software Engineering", label: "Information Technology/Software Engineering" },
+    { value: "Arts, Design, Entertainment, Sports, and Media Occupations", label: "Arts, Design, Entertainment, Sports, and Media Occupations" },
+    { value: "Building and Grounds Cleaning and Maintenance Occupations", label: "Building and Grounds Cleaning and Maintenance Occupations" },
 ];
 
 
@@ -53,71 +56,53 @@ class EmployerCreateJob extends Component {
 
     onJobCategoryiesOptionSelected(e) {
         this.state.job_category = e.label;
-    }
-    onJobTypeOptionSelected(e) {
+      }
+      onJobTypeOptionSelected(e) {
         this.state.job_type = e.label;
-    }
-    
+      }
+
     onSubmit(event) {
         event.preventDefault();
-        
-        var todayDate = new Date();
-        var dd = String(todayDate.getDate()).padStart(2, '0');
-        var mm = String(todayDate.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = todayDate.getFullYear();
 
-        todayDate = yyyy + '/' + mm + '/' + dd;
+        let JobDetails = {
+            job_title: this.state.job_title,
+            job_description: this.state.job_description,
+            job_category: this.state.job_category,
+            job_type: this.state.job_type,
+            closing_date: this.state.closing_date,
+            employerID: this.state.employerID,
+            employerName: this.state.employerName,
+            isOpen:0
+        };
 
-        var date2Updated = this.state.closing_date.substr(0,10).replace(/-/g,'/');
-        //alert (date2Updated)
+        console.log("Job Details : ", JobDetails);
 
-        //alert(this.state.closing_date.substr(0,10) + "t" +todayDate)
-        if (this.state.job_type != '' && this.state.job_category != '') {
-            if (todayDate < date2Updated) {
-                let JobDetails = {
-                    job_title: this.state.job_title,
-                    job_description: this.state.job_description,
-                    job_category: this.state.job_category,
-                    job_type: this.state.job_type,
-                    closing_date: this.state.closing_date,
-                    employerID: this.state.employerID,
-                    employerName: this.state.employerName
-                };
+        axios
+            .post(`${APIURL}/vacancy/create-jobs`, JobDetails)
+            .then((res) => {
+                console.log("res", res);
+                if (res.data.code === 200) {
+                    console.log("res.data.code", res.data.code);
+                    toast.success(res.data.message);
 
-                console.log("Job Details : ", JobDetails);
+                    window.setTimeout(function () {
+                        window.location.reload()
+                    }, 1500);
 
-                axios
-                    .post(`${APIURL}/vacancy/create-jobs`, JobDetails)
-                    .then((res) => {
-                        console.log("res", res);
-                        if (res.data.code === 200) {
-                            console.log("res.data.code", res.data.code);
-                            alert("Job is added");
+                } else {
+                    toast.error(res.data.message);
+                    // alert(res.data.message);
 
-                            window.location.reload();
+                }
+            });
 
-                        } else {
-                            toast.error(res.data.message);
-                            alert(res.data.message);
-
-                        }
-                    });
-            }
-            else{
-                alert("Please enter a future date as the closing date.")
-            }
-        }
-        else {
-            alert("Please fill in all fields")
-        }
-
-     }
+    }
 
     render() {
         return (
             <>
                 <div>
-                    <Navbar />
+                   <Navbar/>
                     <div className="page-wrapper">
                         {/* Top Bar Start */}
                         <div className="topbar">
@@ -180,8 +165,7 @@ class EmployerCreateJob extends Component {
                                                                 <textarea id="textarea" className="form-control" maxLength={225} rows={3} placeholder="This textarea has a limit of 225 chars."
                                                                     name="job_description"
                                                                     value={this.state.job_description}
-                                                                    onChange={this.onChange}
-                                                                    required />
+                                                                    onChange={this.onChange} />
 
                                                             </div>
                                                         </div>
@@ -234,7 +218,7 @@ class EmployerCreateJob extends Component {
                                                 </div>
                                                 <div className="button-items">
                                                     <button className="btn btn-outline-success waves-effect waves-light float-right" onClick={this.onSubmit}>Create</button>
-                                                    <a href="#" type="button" className="btn btn-outline-warning waves-effect float-left">Cancel</a>
+                                                    <a href="emp-job-list.html" type="button" className="btn btn-outline-warning waves-effect float-left">Cancel</a>
                                                 </div>
                                             </div>
                                             {/*end card-body*/}

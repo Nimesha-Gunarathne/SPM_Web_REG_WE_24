@@ -470,6 +470,79 @@ const EmployerControllers = {
       });
     }
   },
+
+  getAllEmp: async (req, res) => {
+    await Employer.find()
+      .then((data) => {
+        // console.log("Len: ", data.length)
+        const count = data.length;
+        res.status(200).json({
+          code: 200,
+          success: true,
+          status: "OK",
+          data: data,
+          message: "All Employers are Received " + count,
+        });
+      })
+      .catch((error) => {
+        res.status(500).send({ error: error.message });
+      });
+  },
+
+  DeleteByID: async (req, res) => {
+    try {
+      if (req.params && req.params.id) {
+        console.log("Stage 01");
+        const {
+          isOpen
+
+        } = req.body;
+
+        // await Jobs.findByIdAndDelete(req.params.id, {
+        //   isOpen
+        // });
+
+        const Job = await Employer.findByIdAndDelete(req.params.id);
+
+        return res.status(200).json({
+          code: messages.SuccessCode,
+          success: messages.Success,
+          status: messages.SuccessStatus,
+          data: Job,
+          message: "Employer is deleted!",
+        });
+      }
+    } catch (err) {
+      return res.status(500).json({
+        code: messages.InternalCode,
+        success: messages.NotSuccess,
+        status: messages.InternalStatus,
+        message: err.message,
+      });
+    }
+  },
+  getEmployerDetailsById: async (req, res) => {
+    try {
+      if (req.params && req.params.id) {
+        const Employers = await Employer.findById({ _id: req.params.id });
+
+        return res.status(200).json({
+          code: messages.SuccessCode,
+          success: messages.Success,
+          status: messages.SuccessStatus,
+          data: Employers,
+          message: "The Employer detail recieved",
+        });
+      }
+    } catch (err) {
+      return res.status(500).json({
+        code: messages.InternalCode,
+        success: messages.NotSuccess,
+        status: messages.InternalStatus,
+        message: err.message,
+      });
+    } 
+  },
 };
 
 function validateEmail(email) {

@@ -11,6 +11,10 @@ routes.put("/approve-employer/:id", employerRoutes.AproveEmployer);
 // routes.get("/get-employer", auth_middleware, employerRoutes.getEmployerDetails);
 
 routes.get("/get-all-employer", employerRoutes.getAllEmployerDetails);
+routes.get("/getAllEmp", employerRoutes.getAllEmp);
+routes.delete("/deleteEmp/:id", employerRoutes.DeleteByID);
+routes.get("/getemployerByID/:id",employerRoutes.getEmployerDetailsById);
+
 
 // routes.put("/update-employer",auth_middleware, employerRoutes.UpdateDetailsByEmployer);
 

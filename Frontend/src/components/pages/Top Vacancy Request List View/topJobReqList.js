@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../API/environment";
 import Navbar from '../Adminnavibar';
+import Daybar from '../DayBar';
 
 
 class Admin_Employer_Request_List extends Component {
@@ -12,11 +13,33 @@ class Admin_Employer_Request_List extends Component {
     this.state = {
       TopList: [],
     };
+    this.onRemove = this.onRemove.bind(this);
   }
   async componentDidMount() {
     await axios.get(`${APIURL}/TopList/getAllTopList`).then((response) => {
       this.setState({ TopList: response.data.data });
       console.log("TopList =>", this.state.TopList);
+    });
+  }
+
+  onRemove(e,id){
+    axios
+    .delete(`${APIURL}/TopList/DeleteTopList/${id}`)
+    .then((res) => {
+      console.log("res", res);
+      if (res.data.code === 200) {
+        console.log("res.data.code", res.data.code);
+
+        toast.success("TopList is Deleted!");
+
+
+        window.setTimeout(function () {
+          window.location.reload();
+        }, 1500);
+      } else {
+        toast.error(res.data.message);
+
+      }
     });
   }
 
@@ -35,13 +58,15 @@ class Admin_Employer_Request_List extends Component {
         console.log(updateDetailsStatus);
         if (res.data.code === 200) {
           toast.success(res.data.message);
-          alert(res.data.message)
+          window.setTimeout(function () {
+                    window.location.reload();
+                  }, 1500);
         } else {
           toast.error(res.data.message);
-          alert(res.data.message)
+          // alert(res.data.message)
 
         }
-        window.location.reload();
+     
       });
   }
 
@@ -76,7 +101,7 @@ class Admin_Employer_Request_List extends Component {
                         </ol>
                       </div>
                       {/*end col*/}
-                      
+                      <Daybar/>
                       {/*end col*/}
                     </div>
                     {/*end row*/}
@@ -114,7 +139,7 @@ class Admin_Employer_Request_List extends Component {
                               <th>Vacancy Name</th>
                               <th>Vacancy Details</th>
                               <th>Company Name</th>
-                              <th>Closing Date</th>
+                              <th>Claosing Date</th>
                           
                             </tr>
                           </thead>
@@ -145,7 +170,11 @@ class Admin_Employer_Request_List extends Component {
                                     </button>
                                   </td>
                                   <td>
-                                    <button href className="btn btn-danger">
+                                    <button href className="btn btn-danger"
+                                    onClick={(e) =>
+                                        this.onRemove(e, item._id)
+                                      }
+                                      >
                                       Reject
                                     </button>
                                   </td>
