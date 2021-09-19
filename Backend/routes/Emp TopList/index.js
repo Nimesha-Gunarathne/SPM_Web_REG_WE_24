@@ -1,5 +1,5 @@
 const routes = require("express").Router();
-const TopListRoutes = require("../../controllers/TopList.controller");
+const TopListRoutes = require("../../controllers/EMPTopList.controller");
 
 
 routes.post("/create-TopList", TopListRoutes.createTopList);

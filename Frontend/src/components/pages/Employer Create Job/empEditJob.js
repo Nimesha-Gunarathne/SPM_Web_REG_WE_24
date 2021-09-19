@@ -16,7 +16,8 @@ const initialState = {
     closing_date: "",
     employerID: "",
     employerName: EMPName,
-    IsApprove:0
+    IsApprove: 0,
+    isOpen: ""
 };
 
 const JobCategoryies = [
@@ -46,7 +47,89 @@ class EmployerCreateJob extends Component {
         this.onRequestTopList = this.onRequestTopList.bind(this);
         this.onJobCategoryiesOptionSelected = this.onJobCategoryiesOptionSelected.bind(this);
         this.onJobTypeOptionSelected = this.onJobTypeOptionSelected.bind(this);
+        this.onReOpen = this.onReOpen.bind(this);
+        this.onDelete = this.onDelete.bind(this);
 
+
+
+    }
+
+    onDelete() {
+        axios
+            .delete(`${APIURL}/vacancy/deletejob/${JOBId}`)
+            .then((res) => {
+                console.log("res", res);
+                if (res.data.code === 200) {
+                    console.log("res.data.code", res.data.code);
+
+                    toast.success("Your Vacancy is Deleted!");
+
+
+                    window.setTimeout(function () {
+                        window.location= "/EmployerCreatedJobList"
+                    }, 2500);
+                } else {
+                    toast.error(res.data.message);
+
+                }
+            });
+    }
+
+    onClose(event) {
+        event.preventDefault();
+
+        let reopen = {
+            isOpen: 1
+        };
+
+        console.log("reopen Details : ", reopen);
+
+        axios
+            .put(`${APIURL}/vacancy/reopenroute/${JOBId}`, reopen)
+            .then((res) => {
+                console.log("res", res);
+                if (res.data.code === 200) {
+                    console.log("res.data.code", res.data.code);
+
+                    toast.success("Your Vacancy is Closed!");
+
+
+                    window.setTimeout(function () {
+                        window.location.reload();
+                    }, 2500);
+                } else {
+                    toast.error(res.data.message);
+
+                }
+            });
+    }
+
+    onReOpen(event) {
+        event.preventDefault();
+
+        let reopen = {
+            isOpen: 0
+        };
+
+        console.log("reopen Details : ", reopen);
+
+        axios
+            .put(`${APIURL}/vacancy/reopenroute/${JOBId}`, reopen)
+            .then((res) => {
+                console.log("res", res);
+                if (res.data.code === 200) {
+                    console.log("res.data.code", res.data.code);
+                    toast.success("Reopen Process successfully completed");
+
+
+                    window.setTimeout(function () {
+                        window.location.reload();
+                    }, 2500);
+                } else {
+                    toast.error(res.data.message);
+
+                }
+            });
     }
 
     componentDidMount() {
@@ -70,16 +153,11 @@ class EmployerCreateJob extends Component {
 
                 this.setState({ employerID: this.state.jobs.employerID });
 
-
-                // this.setState({ jobID: this.state.jobs._id});
-
-
+                this.setState({ isOpen: this.state.jobs.isOpen });
+                console.log("this.state.jobs.isOpen", this.state.isOpen)
 
             })
-
-
     }
-
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
@@ -101,9 +179,9 @@ class EmployerCreateJob extends Component {
             job_category: this.state.job_category,
             job_type: this.state.job_type,
             closing_date: this.state.closing_date,
-            employerID:this.state.employerID,
-            employerName:EMPName,
-            IsApprove:0
+            employerID: this.state.employerID,
+            employerName: EMPName,
+            IsApprove: 0
 
         };
 
@@ -115,20 +193,17 @@ class EmployerCreateJob extends Component {
                 console.log("res", res);
                 if (res.data.code === 200) {
                     console.log("res.data.code", res.data.code);
-                    alert("Your TopList Request Added!");
-                    window.location.reload();
-                    // toast.success(res.data.message);
-                    // window.setTimeout(function () {
-                    //     window.location.href = "/login";
-                    // }, 5000);
-                    //   window.location.href = "/login";
+                    toast.success("Your TopList Request Added!");
+                    window.setTimeout(function () {
+                        window.location.reload();
+                    }, 1000);
                 } else {
                     toast.error(res.data.message);
-                    alert(res.data.message);
+
+                    window.location.reload();
 
                 }
             });
-
     }
 
     onUpdate(event) {
@@ -150,16 +225,15 @@ class EmployerCreateJob extends Component {
                 console.log("res", res);
                 if (res.data.code === 200) {
                     console.log("res.data.code", res.data.code);
-                    alert("Job is Updated!");
-                    window.location.reload();
-                    // toast.success(res.data.message);
-                    // window.setTimeout(function () {
-                    //     window.location.href = "/login";
-                    // }, 5000);
-                    //   window.location.href = "/login";
+
+                    toast.success(res.data.message);
+                    window.setTimeout(function () {
+                        window.location.reload()
+                    }, 1000);
+
                 } else {
                     toast.error(res.data.message);
-                    alert(res.data.message);
+
 
                 }
             });
@@ -170,7 +244,7 @@ class EmployerCreateJob extends Component {
         return (
             <>
                 <div>
-                    <Navbar/>
+                    <Navbar />
                     <div className="page-wrapper">
                         {/* Top Bar Start */}
                         <div className="topbar">
@@ -277,7 +351,7 @@ class EmployerCreateJob extends Component {
                                                                     value={this.state.closing_date}
                                                                     onChange={this.onChange}
                                                                     required />
-                                                                    <span style={{marginLeft:"200px"}}>{this.state.closing_date}</span>
+                                                                <span style={{ marginLeft: "200px" }}>{this.state.closing_date}</span>
                                                             </div>
 
                                                         </div>
@@ -286,13 +360,40 @@ class EmployerCreateJob extends Component {
                                                     </div>
                                                 </div>
                                                 <div className="button-items">
-                                                    <button className="btn btn-outline-warning waves-effect waves-light float-left" style={{ marginLeft: "300px" }} >Close/ReOpen Vacancy</button>
-                                                    <button className="btn btn-outline-primary waves-effect waves-light float-left" style={{ marginLeft: "50px" }}
-                                                        onClick={this.onRequestTopList}>Request Top List</button>
 
-                                                    <a href="emp-job-list.html" type="button" className="btn btn-outline-danger waves-effect float-left" style={{ marginLeft: "50px" }}>Delete</a>
-                                                    <a href="emp-job-list.html" type="button" className="btn btn-outline-success waves-effect float-left" style={{ marginLeft: "50px" }}
-                                                        onClick={this.onUpdate}>Update</a>
+
+                                                    {this.state.isOpen == 0 && (
+                                                        <>
+
+                                                            <button className="btn btn-outline-warning waves-effect waves-light float-left" style={{ marginLeft: "300px" }}
+                                                                onClick={this.onClose}>Close</button>
+                                                            <button className="btn btn-outline-primary waves-effect waves-light float-left" style={{ marginLeft: "50px" }}
+                                                                onClick={this.onRequestTopList}>Request Top List</button>
+
+                                                            {/* <a href="emp-job-list.html" type="button" className="btn btn-outline-danger waves-effect float-left" style={{ marginLeft: "50px" }}
+                                                                onClick={this.onDelete}>Delete</a> */}
+
+                                                            <button className="btn btn-outline-danger waves-effect waves-light float-left" style={{ marginLeft: "50px" }}
+                                                                onClick={this.onDelete}>Delete</button>
+
+                                                            <a href="emp-job-list.html" type="button" className="btn btn-outline-success waves-effect float-left" style={{ marginLeft: "50px" }}
+                                                                onClick={this.onUpdate}>Update</a>
+
+                                                        </>
+                                                    )}
+
+                                                    {this.state.isOpen == 1 && (
+                                                        <>
+
+                                                            <button className="btn btn-outline-primary waves-effect waves-light float-left" style={{ marginLeft: "500px" }}
+                                                                onClick={this.onReOpen}>Re Open</button>
+
+                                                        </>
+                                                    )}
+
+
+                                                    {/* <button className="btn btn-outline-warning waves-effect waves-light float-left" style={{ marginLeft: "300px" }} >Close/ReOpen Vacancy</button> */}
+
 
                                                 </div>
                                             </div>

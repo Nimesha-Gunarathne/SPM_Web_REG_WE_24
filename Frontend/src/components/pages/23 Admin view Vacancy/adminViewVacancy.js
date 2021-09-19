@@ -3,40 +3,53 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import { APIURL } from "../../API/environment";
 import { toast } from "react-toastify";
-import Navbar from '../Employernavibar';
+import Navbar from '../Adminnavibar';
 import Daybar from '../DayBar';
 
-
-const EmployerID = localStorage.getItem("LocalEmployerID");
+const UserID = localStorage.getItem("LocalUserID");
 // const UserID = "60f9393bf9010e001577b6ea";
 
-class EmployerCreatedJobList extends Component {
+class AdminViewVacancy extends Component {
 
   constructor(props) {
     super(props);
-
-    this.navigateWithID = this.navigateWithID.bind(this);
-
+    this.onDelete = this.onDelete.bind(this);
     this.state = {
       Jobs: [],
 
     }
   }
 
-  navigateWithID(e, jobsId) {
-    window.localStorage.removeItem("employerEditJobID");
-    localStorage.setItem("employerEditJobID", jobsId)
+  onDelete(e,jobID) {
+    axios
+        .delete(`${APIURL}/vacancy/deletejob/${jobID}`)
+        .then((res) => {
+            console.log("res", res);
+            if (res.data.code === 200) {
+                console.log("res.data.code", res.data.code);
 
-    window.location.href = "/employerEditJob";
-  }
+                toast.success("Vacancy is Deleted!");
+
+
+                window.setTimeout(function () {
+                    window.location.reload();
+                }, 2500);
+            } else {
+                toast.error(res.data.message);
+
+            }
+        });
+}
+
+
 
   componentDidMount() {
 
-    axios.get(`${APIURL}/vacancy/get-jobs-by-employer-id/${EmployerID}`)
+    axios.get(`${APIURL}/vacancy/getAllJobs/`)
 
       .then(response => {
 
-        console.log(" data getAppliedJob", response.data.data);
+        console.log(" All jobs ", response.data.data);
         this.setState({ Jobs: response.data.data });
       })
   }
@@ -44,21 +57,14 @@ class EmployerCreatedJobList extends Component {
   render() {
     return (
       <div>
-        {/* Left Sidenav */}
         <Navbar />
+
         <div className="page-wrapper">
-          {/* Top Bar Start */}
-          <div className="topbar">
-            {/* Navbar */}
-            
-            {/* end navbar*/}
-          </div>
-          {/* Top Bar End */}
           {/* Page Content*/}
           <div className="page-content">
             <div className="container-fluid">
               {/* Page-Title */}
-              <div className="row">
+              <div className="row" style={{ width: "1200px" }}>
                 <div className="col-sm-12">
                   <div className="page-title-box">
                     <div className="row">
@@ -82,7 +88,7 @@ class EmployerCreatedJobList extends Component {
               </div>
               {/*end row*/}
               {/* end page title end breadcrumb */}
-              <div className="row" style={{ width: "1200px" }}>
+              <div className="row">
                 <div className="col-12">
                   <div className="card">
                     <div className="card-header">
@@ -96,11 +102,12 @@ class EmployerCreatedJobList extends Component {
                         <table className="table  table-bordered">
                           <thead>
                             <tr>
-                              <th>Job</th>
-                              <th>Description</th>
-                              <th>Deadline</th>
-                              <th className="text-center">Status</th>
-                              {/* <th></th> */}
+                              <th>Employer Name</th>
+                              <th>Vacancy Name</th>
+                              <th>Vacancy Description</th>
+                              <th>Closing Date</th>
+                              <th>Vacancy Status</th>
+                              <th></th>
                             </tr>
                           </thead>
                           <tbody>
@@ -115,33 +122,34 @@ class EmployerCreatedJobList extends Component {
 
 
                               <tr>
+                                <td>{item.employerName}</td>
                                 <td>{item.job_title}</td>
                                 <td>{item.job_description}</td>
                                 <td>{item.closing_date}</td>
                                 <td className="text-center">
                                   <div className="button-items">
 
-
-                                    <button type="button" className="btn btn-warning waves-effect waves-light"
-                                      onClick={e => this.navigateWithID(e, item._id)}>Edit</button>
-
-
-                                    {item.IsApprove == 2 && (
+                                    {item.isOpen == 0 && (
                                       <>
 
-                                        <span className=" badge badge-soft-danger">Reject</span>
+                                        <span className=" badge badge-soft-primary">OPEN</span>
 
                                       </>
                                     )}
 
-                                    {item.IsApprove == 1 && (
+                                    {item.isOpen == 1 && (
                                       <>
 
-                                        <span className=" badge badge-soft-success">Selected</span>
+                                        <span className=" badge badge-soft-danger">ClOSE</span>
 
                                       </>
                                     )}
+
                                   </div>
+                                </td>
+                                <td>
+                                  <button type="button" className="btn btn-danger waves-effect waves-light" style={{marginLeft:"40px"}}
+                                  onClick={e => this.onDelete(e, item._id)}>Remove</button>
                                 </td>
                               </tr>
 
@@ -186,4 +194,4 @@ class EmployerCreatedJobList extends Component {
     );
   }
 }
-export default EmployerCreatedJobList;
+export default AdminViewVacancy;

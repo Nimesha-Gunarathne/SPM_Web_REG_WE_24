@@ -71,7 +71,8 @@ class EmployerCreateJob extends Component {
             job_type: this.state.job_type,
             closing_date: this.state.closing_date,
             employerID: this.state.employerID,
-            employerName: this.state.employerName
+            employerName: this.state.employerName,
+            isOpen:0
         };
 
         console.log("Job Details : ", JobDetails);
@@ -82,13 +83,15 @@ class EmployerCreateJob extends Component {
                 console.log("res", res);
                 if (res.data.code === 200) {
                     console.log("res.data.code", res.data.code);
-                    alert("Job is added");
+                    toast.success(res.data.message);
 
-                    window.location.reload();
+                    window.setTimeout(function () {
+                        window.location.reload()
+                    }, 1500);
 
                 } else {
                     toast.error(res.data.message);
-                    alert(res.data.message);
+                    // alert(res.data.message);
 
                 }
             });

@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
-import Navbar from '../Applicantnavibar';
+import Navbar from '../Employernavibar';
+import Daybar from '../DayBar';
+
 
 const UserID = localStorage.getItem("LocalUserID");
 
@@ -14,6 +16,10 @@ class StudentJobList extends Component {
     constructor(props) {
         super(props);
         this.applyJob = this.applyJob.bind(this);
+        this.search = this.search.bind(this);
+
+        var today = new Date(),
+            date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
 
         this.state = {
@@ -21,7 +27,9 @@ class StudentJobList extends Component {
             ApprovedTopList: [],
             AppliedJobs: [],
             ApproveStatus: "Approved",
-            SProfile_status: "Student"
+            SProfile_status: "Student",
+            searchVal: "",
+            currentDate: date
 
         }
     }
@@ -63,32 +71,6 @@ class StudentJobList extends Component {
 
         window.location = "/ApplicantViewVacancy"
 
-        // let JobData = {
-
-
-
-        // }
-
-        // console.log("JobData ", JobData)
-
-        // axios.post(`${APIURL}/student/JobApply`, JobData)
-        //     .then(response => {
-
-        //         toast.success("Your job applies!");
-        //         localStorage.setItem("employerName", JobData.employerName)
-        //         //   window.setTimeout(function() {
-        //         //     window.location.href = "/Contract";
-        //         // }, 1500);
-
-        //         // alert('Your Job is Applied!');
-        //         // this.setState({
-        //         //     ButtonWord:"Applied"
-        //         // })
-        //     })
-        //     .catch(error => {
-        //         console.log(error.message)
-        //         alert(error.message);
-        //     })
 
     }
 
@@ -96,27 +78,26 @@ class StudentJobList extends Component {
     componentDidMount() {
 
 
-        axios.get(`${APIURL}/vacancy/getAllJobs`)
+        axios.get(`${APIURL}/EMPTopList/getApproedAllTopList`)
 
             .then(response => {
                 this.setState({ Jobs: response.data.data });
-                console.log("response ", response.data.data);
+                console.log("All getApproedAllTopList response ", response.data.data);
             })
+    }
 
+    search(e, key) {
 
-        axios.get(`${APIURL}/TopList/getApproedAllTopList`)
+        this.setState({ [e.target.name]: e.target.value });
+        console.log("this.state.searchVal is ", this.state.searchVal);
 
-            .then(Approveresponse => {
-                this.setState({ ApprovedTopList: Approveresponse.data.data });
-                console.log("ApprovedTopList ", Approveresponse.data.data);
-            })
     }
 
     render() {
         return (
             <div>
-                <Navbar/>
-                
+                <Navbar />
+
                 <div className="page-wrapper">
                     {/* Top Bar Start */}
 
@@ -138,16 +119,7 @@ class StudentJobList extends Component {
                                                 </ol>
                                             </div>
                                             {/*end col*/}
-                                            <div className="col-auto align-self-center">
-                                                <a href="#" className="btn btn-sm btn-outline-primary" id="Dash_Date">
-                                                    <span className="day-name" id="Day_Name">Today:</span>&nbsp;
-                                                    <span className id="Select_date">Jan 11</span>
-                                                    <i data-feather="calendar" className="align-self-center icon-xs ml-1" />
-                                                </a>
-                                                <a href="#" className="btn btn-sm btn-outline-primary">
-                                                    <i data-feather="download" className="align-self-center icon-xs" />
-                                                </a>
-                                            </div>
+                                            <Daybar />
                                             {/*end col*/}
                                         </div>
                                         {/*end row*/}
@@ -172,7 +144,16 @@ class StudentJobList extends Component {
                                         <ul className="list-inline">
                                             <li className="list-inline-item">
                                                 <div className="input-group">
-                                                    <input type="text" id="example-input1-group2" name="example-input1-group2" className="form-control form-control-sm" placeholder="Search" />
+
+
+                                                    <input
+                                                        name="searchVal"
+                                                        value={this.state.searchVal}
+                                                        onChange={this.search}
+                                                        type="text" id="example-input1-group2" className="form-control form-control-sm" placeholder="Search" />
+
+
+
                                                     <span className="input-group-append">
                                                         <button type="button" className="btn btn-primary btn-sm"><i className="fas fa-search" /></button>
                                                     </span>
@@ -197,73 +178,22 @@ class StudentJobList extends Component {
 
 
 
-                            <h1 className="page-title">Top Vacancies</h1>
-
-                            <div className="row justify-content-center" style={{marginTop:"40px"}}>
-                                {this.state.ApprovedTopList.length > 0 && this.state.ApprovedTopList.map((item, index) => (
-                                    <div className="col-md-6 col-lg-3">
-                                        <div className="card report-card">
-                                            <div className="card-body">
-                                                <div className="row d-flex justify-content-center">
-                                                    <div className="col">
-                                                        <p className="text-dark mb-1 font-weight-semibold"style={{fontSize:"20px",marginTop:"-20px"}}>
-                                                            {item.job_title}
-                                                        </p>
-                                                        <h3 className="my-2"></h3>
-                                                        <p className="mb-0 text-truncate text-muted">
-                                                            <span className="text-success">
-                                                               
-                                                               Closing Date
-                                                            </span>
-                                                       
-                                                        </p>
-                                                        {item.closing_date}
-                                                    </div>
-                                                    <div className="col-auto align-self-center">
-                                                    
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {/*end card-body*/}
-                                        </div>
-                                        {/*end card*/}
-                                    </div>
-                                ))}
-                            </div>
-                            {/* <hr className="hr-dashed" style={{height:"20px"}}/> */}
+                            <h1 className="page-title">Top Companies</h1>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-                            <div className="row" style={{marginTop:"40px"}}>
+                            <div className="row" style={{ marginTop: "40px" }}>
 
                                 {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
 
                                     <div className="col-lg-4" key={index} >
-                                        <div className="card" style={{ height: "400px",width:"350px" }}>
+                                        <div className="card" style={{ height: "400px", width: "350px" }}>
                                             <div className="card-body">
                                                 <div className="media mb-3">
                                                     <img src="assets/images/widgets/project2.jpg" alt="" className="thumb-md rounded-circle" />
                                                     <div className="media-body align-self-center text-truncate ml-3">
                                                         <h4 className="m-0 font-weight-semibold text-dark font-16">{item.job_title}</h4>
                                                         <p className="text-muted  mb-0 font-13"><span className="text-dark">Employer:
-                                                        </span>{item.employerName}</p>
+                                                        </span>{item.EmpName}</p>
                                                     </div>
                                                     {/*end media-body*/}
                                                 </div>
@@ -280,34 +210,59 @@ class StudentJobList extends Component {
 
                                                     {/*end col*/}
                                                 </div>
+                                                
                                                 {/*end row*/}
-                                                <div style={{ marginTop: "-10px", height: "90px" }}>
+                                                <div style={{ marginTop: "-10px", height: "70px" }}>
                                                     <p className="text-muted mt-4 mb-1">
-                                                        {item.job_description}
+                                                        {item.description}
                                                     </p>
 
                                                 </div>
                                                 <div className="d-flex justify-content-between" style={{ marginTop: "60px" }}>
-                                                    <h6 className="font-weight-semibold">Closing Date : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6>
+                                                    <h6 className="font-weight-semibold">Email : <span className="text-muted font-weight-normal"> {item.email}</span></h6>
+                                                    {/* <h6 className="font-weight-semibold">Deadline : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6> */}
+                                                </div>
+                                                <div className="d-flex justify-content-between" style={{ marginTop: "0" }}>
+                                                    <h6 className="font-weight-semibold">Contact : <span className="text-muted font-weight-normal"> {item.mobile}</span></h6>
+                                                    {/* <h6 className="font-weight-semibold">Deadline : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6> */}
+                                                </div>
+                                                <div className="d-flex justify-content-between" style={{ marginTop: "0" }}>
+                                                    <h6 className="font-weight-semibold">Web : <span className="text-muted font-weight-normal"> {item.weblink}</span></h6>
                                                     {/* <h6 className="font-weight-semibold">Deadline : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6> */}
                                                 </div>
                                                 {/*end task-box*/}
                                                 <br />
                                                 <div className="button-items">
-                                                    <button type="button" className="btn btn-primary waves-effect waves-light btn-block"
-                                                        onClick={e => this.applyJob
-                                                            (
-                                                                e,
-                                                                item._id,
-                                                                item.closing_date,
-                                                                item.createdAt,
-                                                                item.employerID,
-                                                                item.employerName,
-                                                                item.job_category,
-                                                                item.job_description,
-                                                                item.job_title,
-                                                                item.job_type
-                                                            )}><i className="mdi mdi-check-all mr-2" />View</button>
+                                                    {item.isOpen == 1 && (
+                                                        <>
+
+                                                            <button className="btn btn-danger waves-effect waves-light btn-block" disabled
+                                                            >Closed</button>
+
+                                                        </>
+                                                    )}
+
+                                                    {item.isOpen == 0 && (
+                                                        <>
+
+                                                            <button type="button" className="btn btn-primary waves-effect waves-light btn-block"
+                                                                onClick={e => this.applyJob
+                                                                    (
+                                                                        e,
+                                                                        item._id,
+                                                                        item.closing_date,
+                                                                        item.createdAt,
+                                                                        item.employerID,
+                                                                        item.employerName,
+                                                                        item.job_category,
+                                                                        item.job_description,
+                                                                        item.job_title,
+                                                                        item.job_type
+                                                                    )}><i className="mdi mdi-check-all mr-2" />View</button>
+
+                                                        </>
+                                                    )}
+
 
                                                 </div>
                                             </div>

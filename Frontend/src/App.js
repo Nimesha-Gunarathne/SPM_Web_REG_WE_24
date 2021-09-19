@@ -27,9 +27,6 @@ import EmployerSetPassword from "./components/pages/Emp Registaion Req/set_passw
 import EmpActiveEmail from "./components/pages/Registations/EmployerRegistation/ActivationEmail"
 import EditAppliedVacancy from "./components/pages/Appling Vacancies Form/editAppliedVacancie"
 import EmployerCreatedJobList from "./components/pages/Employer Create Job/emp_created_job_list"
-import ApplicanEventView from "./components/pages/Applicant Event View/applicantEventView"
-
-
 
 
 
@@ -76,8 +73,6 @@ function App() {
           <Route path="/ApplicantAppliedJobList" component={ApplicantAppliedJobList} />
           <Route path="/applicant/activate/:activation_token" component={ActivationEmailApplicant} exact/>
           <Route path="/EditAppliedVacancy" component={EditAppliedVacancy} />
-          <Route path="/ApplicanEventView" component={ApplicanEventView} />
-
 
 
         

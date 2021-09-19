@@ -29,7 +29,7 @@ class RegistationHome extends Component {
                     Applicant User Profile allows you to edit user profiles,
                     search for jobs, apply them, view their statuses and much more.
                   </p>
-                  <a href="/studentRegister">Register as Applicant</a>
+                  <a href="/studentRegister">Register as Student</a>
                 </div>
               </div>
             </div>

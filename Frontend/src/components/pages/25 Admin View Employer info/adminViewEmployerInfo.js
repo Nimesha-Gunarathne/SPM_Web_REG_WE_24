@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import { APIURL } from "../../API/environment";
 import { toast } from "react-toastify";
-import Navbar from '../Employernavibar';
+import Navbar from '../Adminnavibar';
 import Daybar from '../DayBar';
 
 
-const EmployerID = localStorage.getItem("LocalEmployerID");
+const EmployerID = localStorage.getItem("GetAddedAllJobsADMIN");
 // const UserID = "60f9393bf9010e001577b6ea";
 
 class EmployerCreatedJobList extends Component {
@@ -50,7 +50,7 @@ class EmployerCreatedJobList extends Component {
           {/* Top Bar Start */}
           <div className="topbar">
             {/* Navbar */}
-            
+
             {/* end navbar*/}
           </div>
           {/* Top Bar End */}
@@ -99,7 +99,7 @@ class EmployerCreatedJobList extends Component {
                               <th>Job</th>
                               <th>Description</th>
                               <th>Deadline</th>
-                              <th className="text-center">Status</th>
+                              <th className="text-center">Job status</th>
                               {/* <th></th> */}
                             </tr>
                           </thead>
@@ -122,22 +122,28 @@ class EmployerCreatedJobList extends Component {
                                   <div className="button-items">
 
 
-                                    <button type="button" className="btn btn-warning waves-effect waves-light"
-                                      onClick={e => this.navigateWithID(e, item._id)}>Edit</button>
 
-
-                                    {item.IsApprove == 2 && (
+                                    {item.isOpen == 2 && (
                                       <>
 
-                                        <span className=" badge badge-soft-danger">Reject</span>
+                                        <span className=" badge badge-soft-danger">Delete</span>
 
                                       </>
                                     )}
 
-                                    {item.IsApprove == 1 && (
+                                    {item.isOpen == 0 && (
                                       <>
 
-                                        <span className=" badge badge-soft-success">Selected</span>
+                                        <span className=" badge badge-soft-success">Open</span>
+
+                                      </>
+                                    )}
+
+
+                                    {item.isOpen == 1 && (
+                                      <>
+
+                                        <span className=" badge badge-soft-warning">close</span>
 
                                       </>
                                     )}
