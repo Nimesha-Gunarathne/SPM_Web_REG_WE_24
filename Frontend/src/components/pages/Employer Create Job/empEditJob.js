@@ -16,7 +16,8 @@ const initialState = {
     closing_date: "",
     employerID: "",
     employerName: EMPName,
-    IsApprove: 0
+    IsApprove: 0,
+    isOpen: ""
 };
 
 const JobCategoryies = [
@@ -26,8 +27,8 @@ const JobCategoryies = [
 
 const JobType = [
     { value: "Architecture and Engineering Occupations", label: "Architecture and Engineering Occupations" },
-    { value: "Human Resources Managing", label: "Human Resources Managing" },
-    { value: "Information Technology/Software Engineering", label: "Information Technology/Software Engineering" },
+    { value: "Arts, Design, Entertainment, Sports, and Media Occupations", label: "Arts, Design, Entertainment, Sports, and Media Occupations" },
+    { value: "Building and Grounds Cleaning and Maintenance Occupations", label: "Building and Grounds Cleaning and Maintenance Occupations" },
 ];
 
 const JOBId = localStorage.getItem("employerEditJobID");
@@ -46,7 +47,89 @@ class EmployerCreateJob extends Component {
         this.onRequestTopList = this.onRequestTopList.bind(this);
         this.onJobCategoryiesOptionSelected = this.onJobCategoryiesOptionSelected.bind(this);
         this.onJobTypeOptionSelected = this.onJobTypeOptionSelected.bind(this);
+        this.onReOpen = this.onReOpen.bind(this);
+        this.onDelete = this.onDelete.bind(this);
 
+
+
+    }
+
+    onDelete() {
+        axios
+            .delete(`${APIURL}/vacancy/deletejob/${JOBId}`)
+            .then((res) => {
+                console.log("res", res);
+                if (res.data.code === 200) {
+                    console.log("res.data.code", res.data.code);
+
+                    toast.success("Your Vacancy is Deleted!");
+
+
+                    window.setTimeout(function () {
+                        window.location= "/EmployerCreatedJobList"
+                    }, 2500);
+                } else {
+                    toast.error(res.data.message);
+
+                }
+            });
+    }
+
+    onClose(event) {
+        event.preventDefault();
+
+        let reopen = {
+            isOpen: 1
+        };
+
+        console.log("reopen Details : ", reopen);
+
+        axios
+            .put(`${APIURL}/vacancy/reopenroute/${JOBId}`, reopen)
+            .then((res) => {
+                console.log("res", res);
+                if (res.data.code === 200) {
+                    console.log("res.data.code", res.data.code);
+
+                    toast.success("Your Vacancy is Closed!");
+
+
+                    window.setTimeout(function () {
+                        window.location.reload();
+                    }, 2500);
+                } else {
+                    toast.error(res.data.message);
+
+                }
+            });
+    }
+
+    onReOpen(event) {
+        event.preventDefault();
+
+        let reopen = {
+            isOpen: 0
+        };
+
+        console.log("reopen Details : ", reopen);
+
+        axios
+            .put(`${APIURL}/vacancy/reopenroute/${JOBId}`, reopen)
+            .then((res) => {
+                console.log("res", res);
+                if (res.data.code === 200) {
+                    console.log("res.data.code", res.data.code);
+                    toast.success("Reopen Process successfully completed");
+
+
+                    window.setTimeout(function () {
+                        window.location.reload();
+                    }, 2500);
+                } else {
+                    toast.error(res.data.message);
+
+                }
+            });
     }
 
     componentDidMount() {
@@ -70,16 +153,11 @@ class EmployerCreateJob extends Component {
 
                 this.setState({ employerID: this.state.jobs.employerID });
 
-
-                // this.setState({ jobID: this.state.jobs._id});
-
-
+                this.setState({ isOpen: this.state.jobs.isOpen });
+                console.log("this.state.jobs.isOpen", this.state.isOpen)
 
             })
-
-
     }
-
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
@@ -115,68 +193,50 @@ class EmployerCreateJob extends Component {
                 console.log("res", res);
                 if (res.data.code === 200) {
                     console.log("res.data.code", res.data.code);
-                    alert("Your TopList Request Added!");
-                    window.location.reload();
-                    // toast.success(res.data.message);
-                    // window.setTimeout(function () {
-                    //     window.location.href = "/login";
-                    // }, 5000);
-                    //   window.location.href = "/login";
+                    toast.success("Your TopList Request Added!");
+                    window.setTimeout(function () {
+                        window.location.reload();
+                    }, 1000);
                 } else {
                     toast.error(res.data.message);
-                    alert(res.data.message);
+
+                    window.location.reload();
 
                 }
             });
-
     }
 
     onUpdate(event) {
         event.preventDefault();
 
-        var todayDate = new Date();
-        var dd = String(todayDate.getDate()).padStart(2, '0');
-        var mm = String(todayDate.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = todayDate.getFullYear();
+        let JobDetails = {
+            job_title: this.state.job_title,
+            job_description: this.state.job_description,
+            job_category: this.state.job_category,
+            job_type: this.state.job_type,
+            closing_date: this.state.closing_date
+        };
 
-        todayDate = yyyy + '/' + mm + '/' + dd;
+        console.log("Job Details : ", JobDetails);
 
-        var date2Updated = this.state.closing_date.substr(0,10).replace(/-/g,'/');
+        axios
+            .put(`${APIURL}/vacancy/UpdateCreatedJobDetails/${JOBId}`, JobDetails)
+            .then((res) => {
+                console.log("res", res);
+                if (res.data.code === 200) {
+                    console.log("res.data.code", res.data.code);
 
-        if (todayDate < date2Updated) {
-            let JobDetails = {
-                job_title: this.state.job_title,
-                job_description: this.state.job_description,
-                job_category: this.state.job_category,
-                job_type: this.state.job_type,
-                closing_date: this.state.closing_date
-            };
+                    toast.success(res.data.message);
+                    window.setTimeout(function () {
+                        window.location.reload()
+                    }, 1000);
 
-            console.log("Job Details : ", JobDetails);
+                } else {
+                    toast.error(res.data.message);
 
-            axios
-                .put(`${APIURL}/vacancy/UpdateCreatedJobDetails/${JOBId}`, JobDetails)
-                .then((res) => {
-                    console.log("res", res);
-                    if (res.data.code === 200) {
-                        console.log("res.data.code", res.data.code);
-                        alert("Job is Updated!");
-                        window.location.reload();
-                        // toast.success(res.data.message);
-                        // window.setTimeout(function () {
-                        //     window.location.href = "/login";
-                        // }, 5000);
-                        //   window.location.href = "/login";
-                    } else {
-                        toast.error(res.data.message);
-                        alert(res.data.message);
 
-                    }
-                });
-        }
-        else {
-            alert("Please enter a future date as the closing date.")
-        }
+                }
+            });
 
     }
 
@@ -300,13 +360,40 @@ class EmployerCreateJob extends Component {
                                                     </div>
                                                 </div>
                                                 <div className="button-items">
-                                                    <button className="btn btn-outline-warning waves-effect waves-light float-left" style={{ marginLeft: "300px" }} >Close/ReOpen Vacancy</button>
-                                                    <button className="btn btn-outline-primary waves-effect waves-light float-left" style={{ marginLeft: "50px" }}
-                                                        onClick={this.onRequestTopList}>Request Top List</button>
 
-                                                    <a href="emp-job-list.html" type="button" className="btn btn-outline-danger waves-effect float-left" style={{ marginLeft: "50px" }}>Delete</a>
-                                                    <a href="emp-job-list.html" type="button" className="btn btn-outline-success waves-effect float-left" style={{ marginLeft: "50px" }}
-                                                        onClick={this.onUpdate}>Update</a>
+
+                                                    {this.state.isOpen == 0 && (
+                                                        <>
+
+                                                            <button className="btn btn-outline-warning waves-effect waves-light float-left" style={{ marginLeft: "300px" }}
+                                                                onClick={this.onClose}>Close</button>
+                                                            <button className="btn btn-outline-primary waves-effect waves-light float-left" style={{ marginLeft: "50px" }}
+                                                                onClick={this.onRequestTopList}>Request Top List</button>
+
+                                                            {/* <a href="emp-job-list.html" type="button" className="btn btn-outline-danger waves-effect float-left" style={{ marginLeft: "50px" }}
+                                                                onClick={this.onDelete}>Delete</a> */}
+
+                                                            <button className="btn btn-outline-danger waves-effect waves-light float-left" style={{ marginLeft: "50px" }}
+                                                                onClick={this.onDelete}>Delete</button>
+
+                                                            <a href="emp-job-list.html" type="button" className="btn btn-outline-success waves-effect float-left" style={{ marginLeft: "50px" }}
+                                                                onClick={this.onUpdate}>Update</a>
+
+                                                        </>
+                                                    )}
+
+                                                    {this.state.isOpen == 1 && (
+                                                        <>
+
+                                                            <button className="btn btn-outline-primary waves-effect waves-light float-left" style={{ marginLeft: "500px" }}
+                                                                onClick={this.onReOpen}>Re Open</button>
+
+                                                        </>
+                                                    )}
+
+
+                                                    {/* <button className="btn btn-outline-warning waves-effect waves-light float-left" style={{ marginLeft: "300px" }} >Close/ReOpen Vacancy</button> */}
+
 
                                                 </div>
                                             </div>

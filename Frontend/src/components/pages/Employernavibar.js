@@ -50,7 +50,9 @@ class NavBar extends Component {
                             <li>
                                 <a href="#" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-user-md" style={{ color: "white" }} /><span>Vacancies</span></a>
                             </li>
-
+                            <li>
+                                <a href="/TopCompantEmp" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-history" style={{ color: "white" }} /><span>Top Companies</span></a>
+                            </li>
                            
 
                             <li>
@@ -78,7 +80,7 @@ class NavBar extends Component {
                                 <a href="#"><i data-feather="layers" className="align-self-center menu-icon" /><span>Job History</span></a>
                             </li> */}
                             <li>
-                                <a href="/login" style={{ marginTop: "320px" }}><i data-feather="layers" class="align-self-center fas fa-sign-out-alt" style={{ color: "white" }}></i><span>Log out</span></a>
+                                <a href="/login" style={{ marginTop: "150px" }}><i data-feather="layers" class="align-self-center fas fa-sign-out-alt" style={{ color: "white" }}></i><span>Log out</span></a>
                             </li>
                         </ul>
                     </div>
