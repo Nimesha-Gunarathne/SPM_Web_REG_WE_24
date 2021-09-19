@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Select from "react-select";
 import Navbar from '../Adminnavibar';
+import Daybar from '../DayBar';
 
 const initialState = {
     eventTitle: "",
@@ -22,8 +23,6 @@ const EventTypes = [
     { value: "Conferences", label: "Conferences" },
     { value: "A seminar ", label: "A seminar " },
     { value: "Networking sessions", label: "Networking sessions" },
-    { value: "Open Days", label: "Open Days" },
-    { value: "Career week", label: "Career week" },
 
 ];
 
@@ -120,12 +119,14 @@ class AdminCreateEvent extends Component {
                                                 </div>
 
                                             </div>
-                                            {/*end row*/}
+                                            {/*end row*/}           
                                         </div>
-                                        {/*end page-title-box*/}
+                                        {/*end page-title-box*/}                     
                                     </div>
+                                
                                     {/*end col*/}
                                 </div>
+                         
                                 {/*end row*/}
                                 {/* end page title end breadcrumb */}
                                 <div className="row" style={{ marginTop: "60px" }}>
@@ -133,7 +134,9 @@ class AdminCreateEvent extends Component {
                                         <div className="card">
                                             <div className="card-header">
                                                 <h4 className="card-title">New Event</h4>
-                                                
+                                                {/* <p class="text-muted mb-0">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each
+                                        textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.
+                                    </p> */}
                                             </div>
                                             {/*end card-header*/}
                                             <div className="card-body">
@@ -190,7 +193,7 @@ class AdminCreateEvent extends Component {
 
 
                                                                 <Select
-                                                                    placeholder="Select Event Type"
+                                                                    placeholder="Select Job Category"
                                                                     options={EventTypes}
                                                                     onChange={this.onEventTypesOptionSelected}
                                                                 />

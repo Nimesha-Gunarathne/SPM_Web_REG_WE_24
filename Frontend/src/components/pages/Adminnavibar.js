@@ -40,17 +40,22 @@ class NavBar extends Component {
                                 <a href="#"><i data-feather="layers" className="align-self-center menu-icon" /><span>Job Market</span></a>
                             </li> */}
                             <li>
-                                <a href="/adminDashboard" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-user-alt" style={{ color: "white" }} /><span>Profile</span></a>
+                                <a href="/adminProfile" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-user-alt" style={{ color: "white" }} /><span>Profile</span></a>
                             </li>
 
                             <li>
-                                <a href="#" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-equals" style={{ color: "white" }} /><span>Dashboard</span></a>
+                                <a href="/AdminDashboard" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-equals" style={{ color: "white" }} /><span>Dashboard</span></a>
                             </li>
 
-                            
+                            <li>
+                                <a href="/TopCompantAdmin" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-history" style={{ color: "white" }} /><span>Top Companies</span></a>
+                            </li>
                             <li>
                                 <a href="/EmployerRegistationRequestList" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-calendar-week" style={{ color: "white" }} /><span>Companies Register Request</span></a>
                             </li>
+                            {/* <li>
+                                <a href="/AdminViewVacancy" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-calendar-week" style={{ color: "white" }} /><span>All Vacancies</span></a>
+                            </li> */}
                             <li>
                                 <a href="/AdminEventView"><i data-feather="grid" className="align-self-center fas fa-calendar-week " style={{ color: "white" }} /><span>Events</span><span className="menu-arrow"></span></a>
                                 <ul className="nav-second-level" aria-expanded="false">
@@ -62,8 +67,8 @@ class NavBar extends Component {
                             <li>
                                 <a href="javascript: void(0);"><i data-feather="grid" className="align-self-center fas fa-arrow-up " style={{ color: "white" }} /><span>Top List Request</span><span className="menu-arrow"></span></a>
                                 <ul className="nav-second-level" aria-expanded="false">
-                                    <li className="nav-item"><a className="nav-link" href="/employerTopVacancyReqList"><i className="align-self-center far fa-building" style={{ color: "white" }} />Company Request</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="#"><i className="align-self-center fas fa-user-md" style={{ color: "white" }} />Vacancy Request</a></li>
+                                    <li className="nav-item"><a className="nav-link" href="/employerTopCompanyReqList"><i className="align-self-center far fa-building" style={{ color: "white" }} />Company Request</a></li>
+                                    <li className="nav-item"><a className="nav-link" href="/employerTopVacancyReqList"><i className="align-self-center fas fa-user-md" style={{ color: "white" }} />Vacancy Request</a></li>
 
                                 </ul>
                             </li>
