@@ -8,6 +8,8 @@ routes.get("/getAppliedJob/:id", ApplicantRoutes.getAppliedJob);
 routes.get("/getAppliedJobByJobID/:id", ApplicantRoutes.getJobDetailsByJobID);
 
 routes.put("/update-appliedJob/:id",ApplicantRoutes.UpdateAppliedJobDetailsByJobID);
+routes.delete("/deleteappliedJob/:id",ApplicantRoutes.DeleteByID);
+
 
 
 

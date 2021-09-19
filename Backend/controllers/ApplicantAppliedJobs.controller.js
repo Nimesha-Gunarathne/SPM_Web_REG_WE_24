@@ -97,6 +97,40 @@ const ApplicantAppliedJobsControllers = {
       });
     }
   },
+
+
+  DeleteByID: async (req, res) => {
+    try {
+      if (req.params && req.params.id) {
+        console.log("Stage 01");
+        const {
+          isOpen
+
+        } = req.body;
+
+        // await Jobs.findByIdAndDelete(req.params.id, {
+        //   isOpen
+        // });
+
+        const Job = await applicantAppliedJobsModel.findByIdAndDelete(req.params.id);
+
+        return res.status(200).json({
+          code: messages.SuccessCode,
+          success: messages.Success,
+          status: messages.SuccessStatus,
+          data: Job,
+          message: "Job Request is deleted!",
+        });
+      }
+    } catch (err) {
+      return res.status(500).json({
+        code: messages.InternalCode,
+        success: messages.NotSuccess,
+        status: messages.InternalStatus,
+        message: err.message,
+      });
+    }
+  },
 }  
 
 module.exports = ApplicantAppliedJobsControllers;
