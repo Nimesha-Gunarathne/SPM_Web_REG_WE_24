@@ -8,8 +8,9 @@ import { APIURL } from "../../API/environment";
 const initialState = {
   email: "",
   password: "",
+  stu:1,
+  emp:1,
 };
-
 
 class Login extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class Login extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
- 
+
   onSubmit(event) {
     localStorage.clear();
     event.preventDefault();
@@ -30,39 +31,23 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password,
     };
-    
 
-    // if(login.email == "applicant@gmail.com" && login.password=="1234"){
+  
 
-    //   this.props.history.push("/applicantHome");
-    //         toast.success(
-    //             "applicant@gmail.com is logged as Applicant" 
-    //         );
-
-    // }
-    
-    if(login.email == "admin@gmail.com" && login.password=="1234"){
-
-      this.props.history.push("/adminDashboard");
-            toast.success(
-                "admin@gmail.com is logged as Applicant" 
-            );
-
+    if (login.email == "admin@gmail.com" && login.password == "1234") {
+      this.props.history.push("/adminProfile");
+      toast.success("admin@gmail.com is logged as Admin");
+  
     }
-    
-    // if(login.email == "employer@gmail.com" && login.password=="1234"){
 
-    //   this.props.history.push("/employerDashboard");
-    //         toast.success(
-    //             "employer@gmail.com is logged as Applicant" 
-    //         );
-
-    // }
-
+    if (login.email == "admin@gmail.com" && login.password != "1234") {
+      toast.error("Admin, Please check ypur PASSCODE!");
+    }
 
     axios.post(`${APIURL}/employer/login-employer`, login).then((res) => {
       console.log("res", res);
       if (res.data.code === 200) {
+      
         console.log("data are ", res.data.data);
         const { userRoleStatus } = res.data.data;
 
@@ -80,55 +65,59 @@ class Login extends Component {
 
           localStorage.setItem("LocalEmployerName", EName);
 
-
           localStorage.setItem("employer", JSON.stringify(res.data.data));
           localStorage.setItem("token", result);
           console.log("tok", result);
           this.props.history.push("/employerDashboard");
           toast.success(
-            res.data.data.employer_name +
-              " is logged as " +
-              res.data.data.Profile_Status
+            this.state.email +
+              " is logged as an Employer"
           );
         }
-      } else {
+      } else if(res.data.message == "This email doest not exist. Please create a your account first.")  {
+        this.state.emp=2;
         // toast.error(res.data.message);
+        // toast.error("Password does not mach this"+ login.email);
+        // alert(res.data.message)
+      }
+      else{
+             toast.error(res.data.message);
       }
     });
     console.log("email", login);
-    axios
-      .post(`${APIURL}/applicantReg/applicant-login`, login)
-      .then((res) => {
-        console.log("res", res);
-        if (res.data.code === 200) {
-          console.log("data are ", res.data.data);
-          const { userRoleStatus } = res.data.data;
+    axios.post(`${APIURL}/applicantReg/applicant-login`, login).then((res) => {
+      console.log("res", res);
+      if (res.data.code === 200) {
+        this.state.stu=2;
+        console.log("data are ", res.data.data);
+        const { userRoleStatus } = res.data.data;
 
-          if (userRoleStatus == "Applicant") {
-            let i = JSON.stringify(res.data.token);
-            let result = i.slice(1, -1);
+        if (userRoleStatus == "Applicant") {
+          let i = JSON.stringify(res.data.token);
+          let result = i.slice(1, -1);
 
-            let User = JSON.stringify(res.data.data._id);
-            let UId = User.slice(1, -1);
+          let User = JSON.stringify(res.data.data._id);
+          let UId = User.slice(1, -1);
 
-            localStorage.setItem("User", JSON.stringify(res.data.data));
-            localStorage.setItem("token", result);
+          localStorage.setItem("User", JSON.stringify(res.data.data));
+          localStorage.setItem("token", result);
 
-            localStorage.setItem("LocalUserID", UId);
-            console.log("tok", result);
-            this.props.history.push("/applicantHome");
-            toast.success(
-              res.data.data.lastName +
-                " is logged as " +
-                res.data.data.Profile_Status
-            );
-          }
-        } else {
-          // toast.error(res.data.message);
+          localStorage.setItem("LocalUserID", UId);
+          console.log("tok", result);
+          this.props.history.push("/applicantHome");
+          // alert(res.data.message)
+
+          toast.success(
+            res.data.data.firstName +
+              " is logged as an APPLICANT"
+          );
         }
-      });
-
-    
+      } else if(this.state.emp == 2) {
+        toast.error(res.data.message);
+        // toast.error("Password does not mach this"+ login.email);
+        // alert(res.data.message);
+      }
+    });
   }
 
   render() {
@@ -174,17 +163,17 @@ class Login extends Component {
                 />
               </div>
               <div>
-                <div className="con-checkbox">
+                <div className="con-checkbox" style={{ marginTop: "20px"}}>
                   <input
                     type="checkbox"
-                    style={{ marginTop: "7px", marginLeft: "-100px" }}
+                    style={{  marginLeft: "-100px" }}
                   />
-                  <span style={{ color: "black", marginLeft: "-100px" }}>
+                  <span style={{marginTop: "0px", color: "black", marginLeft: "-100px" }}>
                     Remember
                   </span>
                   {/* <span className="lable-data">Remember</span> */}
                 </div>
-                <div className="con">
+                <div className="con" style={{marginTop:"20px"}}>
                   <input
                     className="add-data-submit"
                     type="submit"

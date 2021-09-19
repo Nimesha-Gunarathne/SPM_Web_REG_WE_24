@@ -5,6 +5,8 @@ const ApplicantRoute = require("./Applicant/Applied Jobs/index");
 const EmployerRoute = require("./Registations/Employer/index");
 const EventRoute = require("./Event/index");
 const TopListRoute = require("./TOPList/index");
+const EMPTopListRoute = require("./Emp TopList/index");
+
 
 
 
@@ -18,6 +20,8 @@ routes.use("/Applicant", ApplicantRoute);
 routes.use("/Employer", EmployerRoute);
 routes.use("/Events", EventRoute);
 routes.use("/TopList", TopListRoute);
+routes.use("/EMPTopList", EMPTopListRoute);
+
 
 
 

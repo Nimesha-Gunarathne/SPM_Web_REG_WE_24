@@ -6,7 +6,10 @@ const ApplicantRoute = require('../../../controllers/ApplicantRegistation.contro
     router.post('/newApplicant',ApplicantRoute.registerApplicant);
     router.post("/activate-email", ApplicantRoute.activateEmail);
     router.post("/applicant-login", ApplicantRoute.StudentLogin);
-    // router.put("/changeProfileStatus/:id", StudentRoutes.updateProfile_Status);
+    router.get("/getAllApplicant", ApplicantRoute.getAllApplicant);
+    router.delete("/DeleteAllApplicant/:id", ApplicantRoute.DeleteByID);
+
   
 
     module.exports = router;
+  

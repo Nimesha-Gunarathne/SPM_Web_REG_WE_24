@@ -78,19 +78,11 @@ class StudentJobList extends Component {
     componentDidMount() {
 
 
-        axios.get(`${APIURL}/vacancy/getAllJobs`)
+        axios.get(`${APIURL}/EMPTopList/getApproedAllTopList`)
 
             .then(response => {
                 this.setState({ Jobs: response.data.data });
-                console.log("All jobs response ", response.data.data);
-            })
-
-
-        axios.get(`${APIURL}/TopList/getApproedAllTopList`)
-
-            .then(Approveresponse => {
-                this.setState({ ApprovedTopList: Approveresponse.data.data });
-                console.log("ApprovedTopList ", Approveresponse.data.data);
+                console.log("All getApproedAllTopList response ", response.data.data);
             })
     }
 
@@ -186,62 +178,7 @@ class StudentJobList extends Component {
 
 
 
-                            <h1 className="page-title">Top Vacancies</h1>
-
-                            <div className="row justify-content-center" style={{ marginTop: "40px" }}>
-                                {this.state.ApprovedTopList.length > 0 && this.state.ApprovedTopList.map((item, index) => (
-                                    <div className="col-md-6 col-lg-3">
-                                        <div className="card report-card">
-                                            <div className="card-body">
-                                                <div className="row d-flex justify-content-center">
-                                                    <div className="col">
-                                                        <p className="text-dark mb-1 font-weight-semibold" style={{ fontSize: "20px", marginTop: "-20px" }}>
-                                                            {item.job_title}
-                                                        </p>
-                                                        <h3 className="my-2"></h3>
-                                                        <p className="mb-0 text-truncate text-muted">
-                                                            <span className="text-success">
-
-                                                                Closing Date
-                                                            </span>
-
-                                                        </p>
-                                                        {item.closing_date}
-                                                    </div>
-                                                    <div className="col-auto align-self-center">
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                            {/*end card-body*/}
-                                            <button type="button" className="btn btn-primary waves-effect waves-light btn-block"><i className="mdi mdi-check-all mr-2" />View</button>
-
-                                        </div>
-                                        {/*end card*/}
-                                    </div>
-
-                                ))}
-                            </div>
-                            {/* <hr className="hr-dashed" style={{height:"20px"}}/> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                            <h1 className="page-title">Top Companies</h1>
 
 
                             <div className="row" style={{ marginTop: "40px" }}>
@@ -256,7 +193,7 @@ class StudentJobList extends Component {
                                                     <div className="media-body align-self-center text-truncate ml-3">
                                                         <h4 className="m-0 font-weight-semibold text-dark font-16">{item.job_title}</h4>
                                                         <p className="text-muted  mb-0 font-13"><span className="text-dark">Employer:
-                                                        </span>{item.employerName}</p>
+                                                        </span>{item.EmpName}</p>
                                                     </div>
                                                     {/*end media-body*/}
                                                 </div>
@@ -273,15 +210,24 @@ class StudentJobList extends Component {
 
                                                     {/*end col*/}
                                                 </div>
+                                                
                                                 {/*end row*/}
-                                                <div style={{ marginTop: "-10px", height: "90px" }}>
+                                                <div style={{ marginTop: "-10px", height: "70px" }}>
                                                     <p className="text-muted mt-4 mb-1">
-                                                        {item.job_description}
+                                                        {item.description}
                                                     </p>
 
                                                 </div>
                                                 <div className="d-flex justify-content-between" style={{ marginTop: "60px" }}>
-                                                    <h6 className="font-weight-semibold">Closing Date : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6>
+                                                    <h6 className="font-weight-semibold">Email : <span className="text-muted font-weight-normal"> {item.email}</span></h6>
+                                                    {/* <h6 className="font-weight-semibold">Deadline : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6> */}
+                                                </div>
+                                                <div className="d-flex justify-content-between" style={{ marginTop: "0" }}>
+                                                    <h6 className="font-weight-semibold">Contact : <span className="text-muted font-weight-normal"> {item.mobile}</span></h6>
+                                                    {/* <h6 className="font-weight-semibold">Deadline : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6> */}
+                                                </div>
+                                                <div className="d-flex justify-content-between" style={{ marginTop: "0" }}>
+                                                    <h6 className="font-weight-semibold">Web : <span className="text-muted font-weight-normal"> {item.weblink}</span></h6>
                                                     {/* <h6 className="font-weight-semibold">Deadline : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6> */}
                                                 </div>
                                                 {/*end task-box*/}
