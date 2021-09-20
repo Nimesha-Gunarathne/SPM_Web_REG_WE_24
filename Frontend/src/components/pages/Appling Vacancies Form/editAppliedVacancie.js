@@ -49,7 +49,7 @@ class editApplyedVacancie extends Component {
                 this.setState({ Email: this.state.jobs.Email});
                 this.setState({ Contact_Number: this.state.jobs.Contact_Number });
 
-                this.setState({ Description: this.state.jobs.job_description});
+                this.setState({ Description: this.state.jobs.Description});
                 this.setState({ CV_Link: this.state.jobs.CV_Link });
 
                 this.setState({ jobID: this.state.jobs._id});

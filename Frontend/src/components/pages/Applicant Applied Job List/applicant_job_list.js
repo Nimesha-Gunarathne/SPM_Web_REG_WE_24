@@ -5,6 +5,8 @@ import { APIURL } from "../../API/environment";
 import { toast } from "react-toastify";
 import Navbar from '../Applicantnavibar';
 import Daybar from '../DayBar';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 const UserID = localStorage.getItem("LocalUserID");
 // const UserID = "60f9393bf9010e001577b6ea";
@@ -24,8 +26,29 @@ class StudentJobList extends Component {
     }
   }
 
-  RollBack(e,jobID){
 
+
+  RollBack(e, jobID) {
+    console.log(jobID)
+
+    axios.delete(`${APIURL}/Applicant/deleteappliedJob/${jobID}`)
+
+      .then((res) => {
+        console.log("res", res);
+        if (res.data.code === 200) {
+          console.log("res.data.code", res.data.code);
+
+          toast.success("Applied Job is Deleted!");
+
+
+          window.setTimeout(function () {
+            window.location.reload();
+          }, 1500);
+        } else {
+          toast.error(res.data.message);
+
+        }
+      });
   }
 
   navigateWithID(e, jobsId) {
@@ -94,38 +117,44 @@ class StudentJobList extends Component {
   render() {
     return (
       <div>
-       <Navbar/>
-        
+        <Navbar />
+
         <div className="page-wrapper">
           {/* Page Content*/}
           <div className="page-content">
             <div className="container-fluid">
               {/* Page-Title */}
-              <div className="row" style={{width:"1200px"}}>
+              <div className="row" style={{ width: "1200px" }}>
                 <div className="col-sm-12">
                   <div className="page-title-box">
                     <div className="row">
                       <div className="col">
                         <h4 className="page-title">Applied Job List</h4>
                         <ol className="breadcrumb">
-                          <li className="breadcrumb-item"><a href="javascript:void(0);">Stablo</a></li>
+                          <li className="breadcrumb-item"><a href="javascript:void(0);">JobBank</a></li>
                           {/* <li class="breadcrumb-item"><a href="javascript:void(0);">pages</a></li> */}
                           <li className="breadcrumb-item active">Apply Jobs</li>
                         </ol>
                       </div>
                       {/*end col*/}
-                     <Daybar/>
+                      <Daybar />
                       {/*end col*/}
                     </div>
                     {/*end row*/}
                   </div>
+
                   {/*end page-title-box*/}
                 </div>
                 {/*end col*/}
               </div>
+
               {/*end row*/}
               {/* end page title end breadcrumb */}
               <div className="row">
+                <li className="list-inline-item">
+                  <a href="/ApplicantReport"><button type="button" className="btn btn-success btn-sm" style={{ marginLeft: "1050px" }}
+                  >Genarate Report</button></a>
+                </li>
                 <div className="col-12">
                   <div className="card">
                     <div className="card-header">
@@ -136,38 +165,46 @@ class StudentJobList extends Component {
                     <div className="card-body">
                       {/* <button class="btn  btn-primary mb-3" id="submit_data">Submit</button> */}
                       <div className="table-responsive">
-                        <table className="table  table-bordered">
-                          <thead>
-                            <tr>
-                              <th>Job</th>
-                              <th>Company</th>
-                              <th>Description</th>
-                              <th>Deadline</th>
-                              <th className="text-center">Status</th>
-                              {/* <th></th> */}
-                            </tr>
-                          </thead>
-                          <tbody>
 
 
 
 
-
-
-                            {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
-
-
-
+                        <div id="viewtable">
+                          <h3 style={{ 'textAlign': 'center' }}>
+                            Applied Job List
+                          </h3>
+                          <table className="table  table-bordered" >
+                            <thead>
                               <tr>
-                                <td>{item.job_title}</td>
-                                <td>{item.JobemployerName}</td>
-                                <td>{item.job_description}</td>
-                                <td>{item.Jobclosing_date}</td>
-                                <td className="text-center">
-                                  <div className="button-items">
+                                <th>Job</th>
+                                <th>Company</th>
+                                <th>Description</th>
+                                <th>Deadline</th>
+                                <th className="text-center">Status</th>
+                                {/* <th></th> */}
+                              </tr>
+                            </thead>
+                            <tbody>
 
 
-                                    {/* {item.IsApprove == 1 && (
+
+
+
+
+                              {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
+
+
+
+                                <tr>
+                                  <td>{item.job_title}</td>
+                                  <td>{item.JobemployerName}</td>
+                                  <td>{item.job_description}</td>
+                                  <td>{item.Jobclosing_date}</td>
+                                  <td className="text-center">
+                                    <div className="button-items">
+
+
+                                      {/* {item.IsApprove == 1 && (
 
                                       <a href="/Contract">
                                         <button type="button"
@@ -183,48 +220,49 @@ class StudentJobList extends Component {
                                         <button type="button" className="btn btn-danger waves-effect waves-light">Delete</button>
                                     )} */}
 
-                                    {item.IsApprove == 0 && (
-                                      <>
+                                      {item.IsApprove == 0 && (
+                                        <>
 
-                                        <button type="button" className="btn btn-warning waves-effect waves-light"
-                                        onClick={e => this.navigateWithID(e, item._id)}>Edit</button>
-                                        <button type="button" className="btn btn-danger waves-effect waves-light"
-                                        onClick={e => this.RollBack(e, item._id)}>Roll Back</button>
-                                        <span className=" badge badge-soft-warning">Pending</span>
+                                          <button type="button" className="btn btn-warning waves-effect waves-light"
+                                            onClick={e => this.navigateWithID(e, item._id)}>Edit</button>
+                                          <button type="button" className="btn btn-danger waves-effect waves-light"
+                                            onClick={e => this.RollBack(e, item._id)}>Roll Back</button>
+                                          <span className=" badge badge-soft-warning">Pending</span>
 
-                                      </>
-                                    )}
+                                        </>
+                                      )}
 
-                                    {item.IsApprove == 2 && (
-                                      <>
+                                      {item.IsApprove == 2 && (
+                                        <>
 
-                                        <span className=" badge badge-soft-danger">Reject</span>
+                                          <span className=" badge badge-soft-danger">Reject</span>
 
-                                      </>
-                                    )}
+                                        </>
+                                      )}
 
-                                    {item.IsApprove == 1 && (
-                                      <>
+                                      {item.IsApprove == 1 && (
+                                        <>
 
-                                        <span className=" badge badge-soft-success">Selected</span>
+                                          <span className=" badge badge-soft-success">Selected</span>
 
-                                      </>
-                                    )}
-                                  </div>
-                                </td>
-                              </tr>
+                                        </>
+                                      )}
+                                    </div>
+                                  </td>
+                                </tr>
 
-                            ))}
-
-
+                              ))}
 
 
 
 
 
 
-                          </tbody>
-                        </table>
+
+
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                       <span className="float-right">
                         {/* <button id="but_add" class="btn btn-danger">Add New Row</button> */}

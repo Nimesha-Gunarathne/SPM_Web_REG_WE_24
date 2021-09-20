@@ -23,11 +23,28 @@ import TopCompantApplicant from "./components/pages/Top Companies Applicant/appl
 
 
 import AdminViewVacancy from "./components/pages/23 Admin view Vacancy/adminViewVacancy";
-import AdminDashboard from "./components/pages/Admin Dashboard/adminDashboard";
+import AdminDashboard from "./components/pages/Admin Dashboard/AdminDashboard";
 import AdminViewApplicant from "./components/pages/24 Admin View Applicant/adminViewApplicant";
 import AdminViewApplicantInfo from "./components/pages/24 Admin View Applicant info/adminViewApplicantInfo";
 import AdminViewEmployer from "./components/pages/25 Admin View Employer/adminViewEmployer";
 import AdminViewEmployerInfo from "./components/pages/25 Admin View Employer info/adminViewEmployerInfo";
+import ApplicantReport from "./components/pages/Applicant Report/AllItems";
+import EmployerJobApplications from "./components/pages/Employer Job Applications/emjobApplications";
+import EmployerHome from "./components/pages/Employer Home/empHome";
+import EmployerEventView from "./components/pages/Employer Event View/applicantEventView";
+import OpenVacanciesList from "./components/pages/Open Vacancies List/openvacancies";
+import CloseVacanciesList from "./components/pages/Closed Vacancies List/closevacancies";
+import EmpShortListReport from "./components/pages/Employer ShortList Report/AllItems";
+import EmpRejectedListReport from "./components/pages/Employer Rejected Report/AllItems";
+import AdminEventReportView from "./components/pages/Admin Event Report View/adminReportView";
+
+
+
+
+
+
+
+
 
 
 
@@ -45,6 +62,14 @@ import EmpActiveEmail from "./components/pages/Registations/EmployerRegistation/
 import EditAppliedVacancy from "./components/pages/Appling Vacancies Form/editAppliedVacancie";
 import EmployerCreatedJobList from "./components/pages/Employer Create Job/emp_created_job_list";
 import ApplicanEventView from "./components/pages/Applicant Event View/applicantEventView";
+import ApplicanProfile from "./components/pages/Applicant Profile/applicantProfile";
+import ShortListView from "./components/pages/Employer ShortList View/shortlistview";
+import RejectedListView from "./components/pages/Employer RejectedList View/rejectedlist";
+import AdminHome from "./components/pages/Admin Home/empHome";
+
+
+
+
 
 function App() {
   return (
@@ -66,6 +91,7 @@ function App() {
           <Route path="/studentRegister" component={studentRegister} />
           <Route path="/employeRegister" component={employeRegister} />
 
+
           <Route path="/login" component={login} />
 {/* ADMIN */}
           <Route path="/AdminPublishEvent" component={AdminPublishEvent} />
@@ -82,6 +108,9 @@ function App() {
           <Route path="/AdminViewEmployerInfo" component={AdminViewEmployerInfo} />
           <Route path="/employerTopCompanyReqList" component={employerTopCompanyReqList} />
           <Route path="/TopCompantAdmin" component={TopCompantAdmin} />
+          <Route path="/AdminEventReportView" component={AdminEventReportView} />
+          <Route path="/AdminHome" component={AdminHome} />
+
 
 
 
@@ -95,6 +124,10 @@ function App() {
           <Route path="/EditAppliedVacancy" component={EditAppliedVacancy} />
           <Route path="/ApplicanEventView" component={ApplicanEventView} />
           <Route path="/TopCompantApplicant" component={TopCompantApplicant} />
+          <Route path="/ApplicanProfile" component={ApplicanProfile} />
+          <Route path="/ApplicantReport" component={ApplicantReport} />
+
+
 
 {/* EMPLOYER */}
           <Route path="/employerDashboard" component={employerDashboard} />
@@ -104,6 +137,18 @@ function App() {
           <Route path="/SetPassword" component={EmployerSetPassword} />
           <Route path="/employer/activate/:activation_token" component={EmpActiveEmail} exact />
           <Route path="/TopCompantEmp" component={TopCompantEmp} />
+          <Route path="/EmployerJobApplications" component={EmployerJobApplications} />
+          <Route path="/ShortListView" component={ShortListView} />
+          <Route path="/RejectedListView" component={RejectedListView} />
+          <Route path="/EmployerHome" component={EmployerHome} />
+          <Route path="/EmployerEventView" component={EmployerEventView} />
+          <Route path="/OpenVacanciesList" component={OpenVacanciesList} />
+          <Route path="/CloseVacanciesList" component={CloseVacanciesList} />
+          <Route path="/EmpShortListReport" component={EmpShortListReport} />
+          <Route path="/EmpRejectedListReport" component={EmpRejectedListReport} />
+
+
+
 
         </Switch>
       </Router>
