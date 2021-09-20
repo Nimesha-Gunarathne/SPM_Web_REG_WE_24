@@ -69,11 +69,11 @@ class AdminViewVacancy extends Component {
                   <div className="page-title-box">
                     <div className="row">
                       <div className="col">
-                        <h4 className="page-title">Apply Jobs</h4>
+                        <h4 className="page-title">All Vacancies</h4>
                         <ol className="breadcrumb">
-                          <li className="breadcrumb-item"><a href="javascript:void(0);">Stablo</a></li>
+                          <li className="breadcrumb-item"><a href="javascript:void(0);">JobBank</a></li>
                           {/* <li class="breadcrumb-item"><a href="javascript:void(0);">pages</a></li> */}
-                          <li className="breadcrumb-item active">Apply Jobs</li>
+                          <li className="breadcrumb-item active">Vacancies</li>
                         </ol>
                       </div>
                       {/*end col*/}

@@ -11,11 +11,11 @@ const UserID = localStorage.getItem("LocalUserID");
 
 
 
-class StudentJobList extends Component {
+class EmpHome extends Component {
 
     constructor(props) {
         super(props);
-        this.applyJob = this.applyJob.bind(this);
+
         this.search = this.search.bind(this);
 
         var today = new Date(),
@@ -34,55 +34,25 @@ class StudentJobList extends Component {
         }
     }
 
-    applyJob(e,
-        _id,
-        closing_date,
-        createdAt,
-        employerID,
-        employerName,
-        job_category,
-        job_description,
-        job_title,
-        job_type
-    ) {
 
-        e.preventDefault();
-
-        window.localStorage.removeItem("ViewedJobID");
-        window.localStorage.removeItem("ViewedJobclosing_date");
-        window.localStorage.removeItem("ViewedJobcreatedAt");
-        window.localStorage.removeItem("ViewedJobemployerID");
-        window.localStorage.removeItem("ViewedJobemployerName");
-        window.localStorage.removeItem("ViewedJobjob_category");
-        window.localStorage.removeItem("ViewedJobjob_description");
-        window.localStorage.removeItem("ViewedJobjob_title");
-        window.localStorage.removeItem("ViewedJobjob_type");
-
-        localStorage.setItem("ViewedJobID", _id)
-        localStorage.setItem("ViewedJobclosing_date", closing_date)
-        localStorage.setItem("ViewedJobcreatedAt", createdAt)
-        localStorage.setItem("ViewedJobemployerID", employerID)
-        localStorage.setItem("ViewedJobemployerName", employerName)
-        localStorage.setItem("ViewedJobjob_category", job_category)
-        localStorage.setItem("ViewedJobjob_description", job_description)
-        localStorage.setItem("ViewedJobjob_title", job_title)
-        localStorage.setItem("ViewedJobjob_type", job_type)
-
-
-        window.location = "/ApplicantViewVacancy"
-
-
-    }
 
 
     componentDidMount() {
 
 
-        axios.get(`${APIURL}/EMPTopList/getApproedAllTopList`)
+        axios.get(`${APIURL}/vacancy/getAllJobs`)
 
             .then(response => {
                 this.setState({ Jobs: response.data.data });
-                console.log("All getApproedAllTopList response ", response.data.data);
+                console.log("All jobs response ", response.data.data);
+            })
+
+
+        axios.get(`${APIURL}/TopList/getApproedAllTopList`)
+
+            .then(Approveresponse => {
+                this.setState({ ApprovedTopList: Approveresponse.data.data });
+                console.log("ApprovedTopList ", Approveresponse.data.data);
             })
     }
 
@@ -111,11 +81,11 @@ class StudentJobList extends Component {
                                     <div className="page-title-box">
                                         <div className="row">
                                             <div className="col">
-                                                <h4 className="page-title">Top Companies</h4>
+                                                <h4 className="page-title">Admin Home</h4>
                                                 <ol className="breadcrumb">
                                                     <li className="breadcrumb-item"><a href="javascript:void(0);">Job Bank</a></li>
                                                     {/* <li class="breadcrumb-item"><a href="javascript:void(0);">Projects</a></li> */}
-                                                    <li className="breadcrumb-item active">Top Companies</li>
+                                                    <li className="breadcrumb-item active">Admin Home</li>
                                                 </ol>
                                             </div>
                                             {/*end col*/}
@@ -173,7 +143,62 @@ class StudentJobList extends Component {
 
 
 
-                            <h1 className="page-title">Top Companies</h1>
+                            <h1 className="page-title">Top Vacancies</h1>
+
+                            <div className="row justify-content-center" style={{ marginTop: "40px" }}>
+                                {this.state.ApprovedTopList.length > 0 && this.state.ApprovedTopList.map((item, index) => (
+                                    <div className="col-md-6 col-lg-3">
+                                        <div className="card report-card">
+                                            <div className="card-body">
+                                                <div className="row d-flex justify-content-center">
+                                                    <div className="col">
+                                                        <p className="text-dark mb-1 font-weight-semibold" style={{ fontSize: "20px", marginTop: "-20px" }}>
+                                                            {item.job_title}
+                                                        </p>
+                                                        <h3 className="my-2"></h3>
+                                                        <p className="mb-0 text-truncate text-muted">
+                                                            <span className="text-success">
+
+                                                                Closing Date
+                                                            </span>
+
+                                                        </p>
+                                                        {item.closing_date}
+                                                    </div>
+                                                    <div className="col-auto align-self-center">
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            {/*end card-body*/}
+                                            {/* <button type="button" className="btn btn-primary waves-effect waves-light btn-block"><i className="mdi mdi-check-all mr-2" />View</button> */}
+
+                                        </div>
+                                        {/*end card*/}
+                                    </div>
+
+                                ))}
+                            </div>
+                            {/* <hr className="hr-dashed" style={{height:"20px"}}/> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                             <div className="row" style={{ marginTop: "40px" }}>
@@ -188,7 +213,7 @@ class StudentJobList extends Component {
                                                     <div className="media-body align-self-center text-truncate ml-3">
                                                         <h4 className="m-0 font-weight-semibold text-dark font-16">{item.job_title}</h4>
                                                         <p className="text-muted  mb-0 font-13"><span className="text-dark">Employer:
-                                                        </span>{item.EmpName}</p>
+                                                        </span>{item.employerName}</p>
                                                     </div>
                                                     {/*end media-body*/}
                                                 </div>
@@ -198,31 +223,22 @@ class StudentJobList extends Component {
                                                     <div className="col">
                                                         <div className="mt-3">
 
-                                                            <p className="mb-0 font-weight-semibold">Company Description</p>
+                                                            <p className="mb-0 font-weight-semibold">Job Description</p>
                                                         </div>
                                                     </div>
                                                     {/*end col*/}
 
                                                     {/*end col*/}
                                                 </div>
-                                                
                                                 {/*end row*/}
-                                                <div style={{ marginTop: "-10px", height: "70px" }}>
+                                                <div style={{ marginTop: "-10px", height: "90px" }}>
                                                     <p className="text-muted mt-4 mb-1">
-                                                        {item.description}
+                                                        {item.job_description}
                                                     </p>
 
                                                 </div>
                                                 <div className="d-flex justify-content-between" style={{ marginTop: "60px" }}>
-                                                    <h6 className="font-weight-semibold">Email : <span className="text-muted font-weight-normal"> {item.email}</span></h6>
-                                                    {/* <h6 className="font-weight-semibold">Deadline : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6> */}
-                                                </div>
-                                                <div className="d-flex justify-content-between" style={{ marginTop: "0" }}>
-                                                    <h6 className="font-weight-semibold">Contact : <span className="text-muted font-weight-normal"> {item.mobile}</span></h6>
-                                                    {/* <h6 className="font-weight-semibold">Deadline : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6> */}
-                                                </div>
-                                                <div className="d-flex justify-content-between" style={{ marginTop: "0" }}>
-                                                    <h6 className="font-weight-semibold">Web Link: <span className="text-muted font-weight-normal"> {item.weblink}</span></h6>
+                                                    <h6 className="font-weight-semibold">Closing Date : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6>
                                                     {/* <h6 className="font-weight-semibold">Deadline : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6> */}
                                                 </div>
                                                 {/*end task-box*/}
@@ -240,20 +256,8 @@ class StudentJobList extends Component {
                                                     {item.isOpen == 0 && (
                                                         <>
 
-                                                            <button type="button" className="btn btn-primary waves-effect waves-light btn-block"
-                                                                onClick={e => this.applyJob
-                                                                    (
-                                                                        e,
-                                                                        item._id,
-                                                                        item.closing_date,
-                                                                        item.createdAt,
-                                                                        item.employerID,
-                                                                        item.employerName,
-                                                                        item.job_category,
-                                                                        item.job_description,
-                                                                        item.job_title,
-                                                                        item.job_type
-                                                                    )}><i className="mdi mdi-check-all mr-2" />View</button>
+                                                            <button className="btn btn-success waves-effect waves-light btn-block" disabled
+                                                            >Open</button>
 
                                                         </>
                                                     )}
@@ -302,4 +306,4 @@ class StudentJobList extends Component {
         );
     }
 }
-export default StudentJobList;
+export default EmpHome;

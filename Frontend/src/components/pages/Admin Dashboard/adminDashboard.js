@@ -25,7 +25,7 @@ class AdminDashboard extends Component {
                 <div className="card-content">
                   <h3>Applicant</h3>
                 
-                  <a href="/AdminViewApplicant">View All Applicant</a>
+                  <a href="/AdminViewApplicant">View All Applicants</a>
                 </div>
               </div>
             </div>
