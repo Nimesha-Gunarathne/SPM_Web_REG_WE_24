@@ -8,6 +8,8 @@ const ApplicantRoute = require('../../../controllers/ApplicantRegistation.contro
     router.post("/applicant-login", ApplicantRoute.StudentLogin);
     router.get("/getAllApplicant", ApplicantRoute.getAllApplicant);
     router.delete("/DeleteAllApplicant/:id", ApplicantRoute.DeleteByID);
+    router.get("/getAllApplicantByID/:id", ApplicantRoute.getApplicantDetailsById);
+
 
   
 

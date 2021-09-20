@@ -11,11 +11,15 @@ routes.get("/get-jobs-by-name/:id",jobsRoutes.getJobDetailsByJobName);
 
 routes.get("/get-jobs-by-employer-id/:id",jobsRoutes.getJobDetailsByEmployerId);
 
+// routes.get("/allope/:id",jobsRoutes.getJobDetailsByEmployerId);
+
+
 routes.put("/UpdateCreatedJobDetails/:id",jobsRoutes.UpdateJobsDetailsByJobID);
 
 routes.put("/reopenroute/:id",jobsRoutes.ReopenrouteByJobID);
 
 routes.delete("/deletejob/:id",jobsRoutes.DeleteByID);
+
 
 
 
