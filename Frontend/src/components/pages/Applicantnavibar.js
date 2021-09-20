@@ -52,7 +52,7 @@ class NavBar extends Component {
                             </li>
 
                             <li>
-                                <a href="#" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-user-alt" style={{ color: "white" }} /><span>My profile</span></a>
+                                <a href="/ApplicanProfile" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-user-alt" style={{ color: "white" }} /><span>My profile</span></a>
                             </li>
 
                             <li>

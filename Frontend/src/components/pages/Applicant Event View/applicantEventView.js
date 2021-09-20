@@ -61,11 +61,11 @@ class ApplicantEventView extends Component {
                                     <div className="page-title-box">
                                         <div className="row">
                                             <div className="col">
-                                                <h4 className="page-title">Job Market</h4>
+                                                <h4 className="page-title">Events</h4>
                                                 <ol className="breadcrumb">
                                                     <li className="breadcrumb-item"><a href="javascript:void(0);">Job Bank</a></li>
                                                     {/* <li class="breadcrumb-item"><a href="javascript:void(0);">Projects</a></li> */}
-                                                    <li className="breadcrumb-item active">Job Market</li>
+                                                    <li className="breadcrumb-item active">events list</li>
                                                 </ol>
                                             </div>
                                             {/*end col*/}
@@ -139,10 +139,7 @@ class ApplicantEventView extends Component {
 
                                                 {/*end task-box*/}
                                                 <br />
-                                                <div className="button-items" style={{ width: "500px", marginLeft: "280px", marginTop: "-50px" }}>
-                                                    <button type="button" className="btn btn-primary waves-effect waves-light btn-block"><i className="mdi mdi-check-all mr-2" />View</button>
-
-                                                </div>
+                                    
                                             </div>
                                             {/*end card-body*/}
                                         </div>
@@ -150,18 +147,6 @@ class ApplicantEventView extends Component {
                                     </div>
                                 </div>
                             ))}
-
-
-
-
-
-
-
-
-
-
-
-
 
                             <div className="row">
 

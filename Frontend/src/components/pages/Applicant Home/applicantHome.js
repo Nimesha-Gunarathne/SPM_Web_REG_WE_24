@@ -119,11 +119,11 @@ class StudentJobList extends Component {
                                     <div className="page-title-box">
                                         <div className="row">
                                             <div className="col">
-                                                <h4 className="page-title">Job Market</h4>
+                                                <h4 className="page-title">Home</h4>
                                                 <ol className="breadcrumb">
                                                     <li className="breadcrumb-item"><a href="javascript:void(0);">Job Bank</a></li>
                                                     {/* <li class="breadcrumb-item"><a href="javascript:void(0);">Projects</a></li> */}
-                                                    <li className="breadcrumb-item active">Job Market</li>
+                                                    <li className="breadcrumb-item active">Applicant Home</li>
                                                 </ol>
                                             </div>
                                             {/*end col*/}
@@ -167,12 +167,8 @@ class StudentJobList extends Component {
                                                     </span>
                                                 </div>
                                             </li>
-                                            <li className="list-inline-item">
-                                                <button type="button" className="btn btn-primary btn-sm"><i className="fas fa-filter" /></button>
-                                            </li>
-                                            <li className="list-inline-item">
-                                                <button type="button" className="btn btn-primary btn-sm">Add New Project</button>
-                                            </li>
+                                         
+                                            
                                         </ul>
                                     </div>
                                 </div>

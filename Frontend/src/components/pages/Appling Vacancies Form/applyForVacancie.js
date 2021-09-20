@@ -81,12 +81,12 @@ class ApplyForJobForm extends Component {
                 console.log("res", res);
                 if (res.status === 200) {
                     console.log("res.data.code", res.data.code);
-                    alert("Job is Applied");
+                    // alert("Job is Applied");
 
-                    // toast.success(res.data.message);
+                    toast.success("You Have Successfully Applied For " + localStorage.getItem("ViewedJobjob_title"));
                     window.setTimeout(function () {
                         window.location.href = "/applicantHome";
-                    }, 400);
+                    }, 1200);
                     //   window.location.href = "/login";
                 } else {
                     toast.error(res.data.message);
@@ -99,7 +99,7 @@ class ApplyForJobForm extends Component {
         return (
             <>
                 <div>
-            <Navbar/>
+                    <Navbar />
                     <div className="page-wrapper">
                         {/* Top Bar Start */}
                         <div className="topbar">
@@ -147,6 +147,7 @@ class ApplyForJobForm extends Component {
                                             <div className="card-body">
                                                 <div className="row">
                                                     <div className="col-lg-12">
+
                                                         <div className="form-group row">
                                                             <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Applicant Name</label>
                                                             <div className="col-sm-10">

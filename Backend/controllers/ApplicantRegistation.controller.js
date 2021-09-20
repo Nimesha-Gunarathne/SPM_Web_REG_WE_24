@@ -287,6 +287,29 @@ const STUDENTControllers = {
         });
       }
     },
+
+    getApplicantDetailsById: async (req, res) => {
+      try {
+        if (req.params && req.params.id) {
+          const registationStudents = await registationStudent.findById({ _id: req.params.id });
+  
+          return res.status(200).json({
+            code: messages.SuccessCode,
+            success: messages.Success,
+            status: messages.SuccessStatus,
+            data: registationStudents,
+            message: "The Applicant detail recieved",
+          });
+        }
+      } catch (err) {
+        return res.status(500).json({
+          code: messages.InternalCode,
+          success: messages.NotSuccess,
+          status: messages.InternalStatus,
+          message: err.message,
+        });
+      } 
+    },
 }
 
 function validateEmail(email) {
