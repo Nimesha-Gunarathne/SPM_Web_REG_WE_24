@@ -146,7 +146,7 @@ class AdminCreateEvent extends Component {
                                                     <ol className="breadcrumb">
                                                         <li className="breadcrumb-item"><a href="javascript:void(0);">Job Bank</a></li>
                                                         <li className="breadcrumb-item"><a href="javascript:void(0);">Admin</a></li>
-                                                        <li className="breadcrumb-item active">New Event</li>
+                                                        <li className="breadcrumb-item active">Edit Event</li>
                                                     </ol>
                                                 </div>
 
@@ -164,7 +164,7 @@ class AdminCreateEvent extends Component {
                                     <div className="col-lg-12">
                                         <div className="card">
                                             <div className="card-header">
-                                                <h4 className="card-title">New Event</h4>
+                                                <h4 className="card-title">Edit Event</h4>
                                                 {/* <p class="text-muted mb-0">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each
                                         textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.
                                     </p> */}
@@ -224,7 +224,7 @@ class AdminCreateEvent extends Component {
                                                                
 
                                                                 <Select
-                                                                    placeholder="Select Job Category"
+                                                                    placeholder="Select Event Type"
                                                                     options={EventTypes}
                                                                     onChange={this.onEventTypesOptionSelected}
                                                                 />
