@@ -34,7 +34,7 @@ class NavBar extends Component {
                     <div className="menu-content h-100" data-simplebar style={{ marginTop: "70px" }}>
                         <ul className="metismenu left-sidenav-menu">
                             <li>
-                                <a href="/employerDashboard" ><i class="fas fa-home" style={{ color: "white" }}></i><span>Home</span></a>
+                                <a href="/EmployerHome" ><i class="fas fa-home" style={{ color: "white" }}></i><span>Home</span></a>
                             </li>
                             {/* <li>
                                 <a href="#"><i data-feather="layers" className="align-self-center menu-icon" /><span>Job Market</span></a>
@@ -44,12 +44,10 @@ class NavBar extends Component {
                             </li> */}
 
                             <li>
-                                <a href="#" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-calendar-week" style={{ color: "white" }} /><span>Events</span></a>
+                                <a href="/EmployerEventView" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-calendar-week" style={{ color: "white" }} /><span>Events</span></a>
                             </li>
 
-                            <li>
-                                <a href="#" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-user-md" style={{ color: "white" }} /><span>Vacancies</span></a>
-                            </li>
+                           
                             <li>
                                 <a href="/TopCompantEmp" style={{ marginTop: "10px" }}><i data-feather="layers" className="align-self-center fas fa-history" style={{ color: "white" }} /><span>Top Companies</span></a>
                             </li>
@@ -80,7 +78,7 @@ class NavBar extends Component {
                                 <a href="#"><i data-feather="layers" className="align-self-center menu-icon" /><span>Job History</span></a>
                             </li> */}
                             <li>
-                                <a href="/login" style={{ marginTop: "150px" }}><i data-feather="layers" class="align-self-center fas fa-sign-out-alt" style={{ color: "white" }}></i><span>Log out</span></a>
+                                <a href="/login" style={{ marginTop: "200px" }}><i data-feather="layers" class="align-self-center fas fa-sign-out-alt" style={{ color: "white" }}></i><span>Log out</span></a>
                             </li>
                         </ul>
                     </div>

@@ -10,7 +10,7 @@ import Daybar from '../DayBar';
 const EmployerID = localStorage.getItem("LocalEmployerID");
 // const UserID = "60f9393bf9010e001577b6ea";
 
-class EmployerCreatedJobList extends Component {
+class CloseVacancies extends Component {
 
   constructor(props) {
     super(props);
@@ -72,11 +72,11 @@ class EmployerCreatedJobList extends Component {
                   <div className="page-title-box">
                     <div className="row">
                       <div className="col">
-                        <h4 className="page-title">Apply Jobs</h4>
+                        <h4 className="page-title">Closed Vacancies</h4>
                         <ol className="breadcrumb">
                           <li className="breadcrumb-item"><a href="javascript:void(0);">JobBank</a></li>
                           {/* <li class="breadcrumb-item"><a href="javascript:void(0);">pages</a></li> */}
-                          <li className="breadcrumb-item active">Apply Jobs</li>
+                          <li className="breadcrumb-item active">Closed Vacancies</li>
                         </ol>
                       </div>
                       {/*end col*/}
@@ -120,43 +120,28 @@ class EmployerCreatedJobList extends Component {
 
 
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
+                              <>
+                                {item.isOpen == 1 && (
+
+                                  <tr>
+                                    <td>{item.job_title}</td>
+                                    <td>{item.job_description}</td>
+                                    <td>{item.closing_date}</td>
+                                    <td className="text-center">
+                                      <div className="button-items">
 
 
 
-                              <tr>
-                                <td>{item.job_title}</td>
-                                <td>{item.job_description}</td>
-                                <td>{item.closing_date}</td>
-                                <td className="text-center">
-                                  <div className="button-items">
+                                        <a href="/EmployerCreatedJobList"><button type="button" className="btn btn-primary waves-effect waves-light"
+                                          onClick={e => this.onApplicant(e, item._id)}>Modify & View Applications</button></a>
 
 
-                                    <button type="button" className="btn btn-warning waves-effect waves-light"
-                                      onClick={e => this.navigateWithID(e, item._id)}>Edit</button>
+                                      </div>
+                                    </td>
+                                  </tr>
 
-                                    <button type="button" className="btn btn-success waves-effect waves-light"
-                                      onClick={e => this.onApplicant(e, item._id)}>Applications</button>
-
-
-                                    {item.IsApprove == 2 && (
-                                      <>
-
-                                        <span className=" badge badge-soft-danger">Reject</span>
-
-                                      </>
-                                    )}
-
-                                    {item.IsApprove == 1 && (
-                                      <>
-
-                                        <span className=" badge badge-soft-success">Selected</span>
-
-                                      </>
-                                    )}
-                                  </div>
-                                </td>
-                              </tr>
-
+                                )}
+                              </>
                             ))}
 
 
@@ -198,4 +183,4 @@ class EmployerCreatedJobList extends Component {
     );
   }
 }
-export default EmployerCreatedJobList;
+export default CloseVacancies;

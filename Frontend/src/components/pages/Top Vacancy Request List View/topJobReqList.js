@@ -30,7 +30,7 @@ class Admin_Employer_Request_List extends Component {
       if (res.data.code === 200) {
         console.log("res.data.code", res.data.code);
 
-        toast.success("TopList is Deleted!");
+        toast.error("TopList is Deleted!");
 
 
         window.setTimeout(function () {

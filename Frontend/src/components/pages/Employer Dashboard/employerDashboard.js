@@ -7,7 +7,7 @@ import { APIURL } from "../../API/environment";
 import { toast } from "react-toastify";
 
 const initialState = {
-  ID:"",
+  ID: "",
   EmpName: "",
   des: "",
   email: "",
@@ -32,7 +32,7 @@ class EmployerDashboard extends Component {
     event.preventDefault();
 
     let ToplistDetails = {
-      employerID:this.state.ID,
+      employerID: this.state.ID,
       EmpName: this.state.EmpName,
       description: this.state.des,
       email: this.state.email,
@@ -208,10 +208,13 @@ class EmployerDashboard extends Component {
                         </div> */}
                       </div>
                     </div>
-                    {/* <div className="col-sm-12 mb-3">
-                  
-                </div> */}
+
                   </div>
+                  <a href="/OpenVacanciesList" type="button" className="btn btn-outline-primary waves-effect float-left" style={{ marginLeft: "280px" }}
+                   >Open Vacancies</a>
+                  <a href="/CloseVacanciesList" type="button" className="btn btn-outline-danger waves-effect float-left" style={{ marginLeft: "280px" }}
+                    >Closed Vacancies</a>
+               
                 </div>
               </div>{/* container */}
               <footer className="footer text-center text-sm-left">

@@ -26,12 +26,17 @@ const initialState = {
 const JobCategoryies = [
     { value: "Full Time", label: "Full Time" },
     { value: "Part Time", label: "Part Time" },
+    { value: "Contract", label: "Contract" },
+
 ];
 
 const JobType= [
-    { value: "Architecture and Engineering Occupations", label: "Architecture and Engineering Occupations" },
-    { value: "Arts, Design, Entertainment, Sports, and Media Occupations", label: "Arts, Design, Entertainment, Sports, and Media Occupations" },
-    { value: "Building and Grounds Cleaning and Maintenance Occupations", label: "Building and Grounds Cleaning and Maintenance Occupations" },
+    { value: "Human Resources Managment", label: "Human Resources Managment" },
+    { value: "Information Technology", label: "Information Technology" },
+    { value: "Accounting and Finance", label: "Accounting and Finance" },
+    { value: "Health Sector", label: "Health Sector" },
+    { value: "Education", label: "Education" },
+
 ];
 
 
@@ -170,7 +175,7 @@ class EmployerCreateJob extends Component {
                                                             </div>
                                                         </div>
                                                         <div className="form-group row" style={{ marginTop: "40px" }}>
-                                                            <label htmlFor="example-tel-input" className="col-sm-2 col-form-label text-right">Job Category</label>
+                                                            <label htmlFor="example-tel-input" className="col-sm-2 col-form-label text-right">Job Type</label>
                                                             <div className="col-sm-4">
                                                                 {/* <input className="form-control" type="text" placeholder="Job Category is..." id="example-tel-input"
                                                                     name="job_category"
@@ -179,12 +184,12 @@ class EmployerCreateJob extends Component {
                                                                     required /> */}
 
                                                                 <Select
-                                                                    placeholder="Select Job Category"
+                                                                    placeholder="Select Job Type"
                                                                     options={JobCategoryies}
                                                                     onChange={this.onJobCategoryiesOptionSelected}
                                                                 />
                                                             </div>
-                                                            <label htmlFor="example-tel-input" className="col-sm-2 col-form-label text-right">Job Type</label>
+                                                            <label htmlFor="example-tel-input" className="col-sm-2 col-form-label text-right">Job Category</label>
                                                             <div className="col-sm-4">
                                                                 {/* <input className="form-control" type="text" placeholder="Job Type is..."
                                                                     name="job_type"
@@ -193,7 +198,7 @@ class EmployerCreateJob extends Component {
                                                                     required /> */}
 
                                                                 <Select
-                                                                    placeholder="Select Job Type"
+                                                                    placeholder="Select Job Category"
                                                                     options={JobType}
                                                                     onChange={this.onJobTypeOptionSelected}
                                                                 />
