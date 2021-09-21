@@ -208,35 +208,49 @@ class EmployerCreateJob extends Component {
 
     onUpdate(event) {
         event.preventDefault();
+		
+		var todayDate = new Date();
+        var dd = String(todayDate.getDate()).padStart(2, '0');
+        var mm = String(todayDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = todayDate.getFullYear();
 
-        let JobDetails = {
-            job_title: this.state.job_title,
-            job_description: this.state.job_description,
-            job_category: this.state.job_category,
-            job_type: this.state.job_type,
-            closing_date: this.state.closing_date
-        };
+        todayDate = yyyy + '/' + mm + '/' + dd;
 
-        console.log("Job Details : ", JobDetails);
+        var date2Updated = this.state.closing_date.substr(0,10).replace(/-/g,'/');
 
-        axios
-            .put(`${APIURL}/vacancy/UpdateCreatedJobDetails/${JOBId}`, JobDetails)
-            .then((res) => {
-                console.log("res", res);
-                if (res.data.code === 200) {
-                    console.log("res.data.code", res.data.code);
+        if (todayDate < date2Updated) {
+			let JobDetails = {
+				job_title: this.state.job_title,
+				job_description: this.state.job_description,
+				job_category: this.state.job_category,
+				job_type: this.state.job_type,
+				closing_date: this.state.closing_date
+			};
 
-                    toast.success(res.data.message);
-                    window.setTimeout(function () {
-                        window.location.reload()
-                    }, 1000);
+			console.log("Job Details : ", JobDetails);
 
-                } else {
-                    toast.error(res.data.message);
+			axios
+				.put(`${APIURL}/vacancy/UpdateCreatedJobDetails/${JOBId}`, JobDetails)
+				.then((res) => {
+					console.log("res", res);
+					if (res.data.code === 200) {
+						console.log("res.data.code", res.data.code);
+
+						toast.success(res.data.message);
+						window.setTimeout(function () {
+							window.location.reload()
+						}, 1000);
+
+					} else {
+						toast.error(res.data.message);
 
 
-                }
-            });
+					}
+				});
+		}
+		else {
+            alert("Please enter a future date as the closing date.")
+        }
 
     }
 
