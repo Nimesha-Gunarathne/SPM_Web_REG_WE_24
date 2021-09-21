@@ -86,8 +86,6 @@ class EmployerCreatedJobList extends Component {
                 <div className="col-12">
                   <div className="card">
                     <div className="card-header">
-                      {/* <h4 class="card-title">Job Requests</h4>
-                                <p class="text-muted mb-0">Add toolbar column with edit and delete buttons.</p> */}
                     </div>
                     {/*end card-header*/}
                     <div className="card-body">
@@ -105,11 +103,6 @@ class EmployerCreatedJobList extends Component {
                           </thead>
                           <tbody>
 
-
-
-
-
-
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
 
 
@@ -120,7 +113,6 @@ class EmployerCreatedJobList extends Component {
                                 <td>{item.closing_date}</td>
                                 <td className="text-center">
                                   <div className="button-items">
-
 
 
                                     {item.isOpen == 2 && (
@@ -153,13 +145,6 @@ class EmployerCreatedJobList extends Component {
 
                             ))}
 
-
-
-
-
-
-
-
                           </tbody>
                         </table>
                       </div>
@@ -176,8 +161,6 @@ class EmployerCreatedJobList extends Component {
               {/* end row */}
             </div>{/* container */}
             <footer className="footer text-center text-sm-left">
-              {/* &copy; 2020 Dastyle <span class="d-none d-sm-inline-block float-right">Crafted with <i
-                        class="mdi mdi-heart text-danger"></i> by Mannatthemes</span> */}
             </footer>
             {/*end footer*/}
           </div>

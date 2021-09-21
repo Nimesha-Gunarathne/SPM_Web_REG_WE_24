@@ -53,24 +53,7 @@ class StudentJobList extends Component {
     console.log("JobData ", JobData)
     window.location.href = "/Contract";
 
-    // axios.post(`${APIURL}/student/JobApply`, JobData)
-    //     .then(response => {
-
-    //       toast.success("Your job applies!");
     localStorage.setItem("employerName", JobData.employerName)
-    //     //   window.setTimeout(function() {
-    //     //     window.location.href = "/Contract";
-    //     // }, 1500);
-
-    //       // alert('Your Job is Applied!');
-    //       // this.setState({
-    //       //     ButtonWord:"Applied"
-    //       // })
-    //     })
-    //     .catch(error => {
-    //       console.log(error.message)
-    //       alert(error.message);
-    //     })
 
   }
 
@@ -144,10 +127,6 @@ class StudentJobList extends Component {
                           <tbody>
 
 
-
-
-
-
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
 
 
@@ -160,22 +139,6 @@ class StudentJobList extends Component {
                                 <td className="text-center">
                                   <div className="button-items">
 
-
-                                    {/* {item.IsApprove == 1 && (
-
-                                      <a href="/Contract">
-                                        <button type="button"
-                                          className="btn btn-success waves-effect waves-light"
-                                          onClick={e => this.applyJob(e, item.employerID, item.employerName, item.Deadline_date, item.JobTitle, item._id, item.jobDescription,item.Start_date)}
-                                        >
-                                          Create Contract
-                                        </button>
-                                      </a>
-                                    )}
-
-                                      {item.IsApprove == 2 && (
-                                        <button type="button" className="btn btn-danger waves-effect waves-light">Delete</button>
-                                    )} */}
 
                                     {item.IsApprove == 0 && (
                                       <>
@@ -207,12 +170,6 @@ class StudentJobList extends Component {
                             ))}
 
 
-
-
-
-
-
-
                           </tbody>
                         </table>
                       </div>
@@ -229,8 +186,6 @@ class StudentJobList extends Component {
               {/* end row */}
             </div>{/* container */}
             <footer className="footer text-center text-sm-left">
-              {/* &copy; 2020 Dastyle <span class="d-none d-sm-inline-block float-right">Crafted with <i
-                        class="mdi mdi-heart text-danger"></i> by Mannatthemes</span> */}
             </footer>
             {/*end footer*/}
           </div>

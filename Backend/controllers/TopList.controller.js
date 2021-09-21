@@ -64,7 +64,6 @@ const TopListController = {
     getAllTopList: async (req, res) => {
         await TopList.find({IsApprove:0})
           .then((data) => {
-            // console.log("Len: ", data.length)
             const count = data.length;
             res.status(200).json({
               code: 200,
@@ -82,7 +81,6 @@ const TopListController = {
       getApproedAllTopList: async (req, res) => {
         await TopList.find({IsApprove:1})
           .then((data) => {
-            // console.log("Len: ", data.length)
             const count = data.length;
             res.status(200).json({
               code: 200,
@@ -133,10 +131,6 @@ const TopListController = {
               isOpen
     
             } = req.body;
-    
-            // await Jobs.findByIdAndDelete(req.params.id, {
-            //   isOpen
-            // });
     
             const Job = await TopList.findByIdAndDelete(req.params.id);
     

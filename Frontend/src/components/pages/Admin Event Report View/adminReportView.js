@@ -58,7 +58,6 @@ export default class AllItems extends Component {
                         Event Report
                     </h3>
 
-
                     <h3 style={{ 'textAlign': 'center' }}>
                         {this.state.applicantName}
                     </h3>
@@ -75,8 +74,6 @@ export default class AllItems extends Component {
                              
                             </tr>
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
-
-
 
                                 <tr>
                                     <td>{item.eventTitle}</td>
