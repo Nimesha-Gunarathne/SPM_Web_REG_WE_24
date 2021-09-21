@@ -7,7 +7,6 @@ import Navbar from '../Adminnavibar';
 import Daybar from '../DayBar';
 
 const UserID = localStorage.getItem("LocalUserID");
-// const UserID = "60f9393bf9010e001577b6ea";
 
 class AdminViewVacancy extends Component {
 
@@ -40,8 +39,6 @@ class AdminViewVacancy extends Component {
             }
         });
 }
-
-
 
   componentDidMount() {
 
@@ -112,11 +109,6 @@ class AdminViewVacancy extends Component {
                           </thead>
                           <tbody>
 
-
-
-
-
-
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
 
 
@@ -154,12 +146,6 @@ class AdminViewVacancy extends Component {
                               </tr>
 
                             ))}
-
-
-
-
-
-
 
 
                           </tbody>

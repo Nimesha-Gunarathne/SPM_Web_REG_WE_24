@@ -68,7 +68,6 @@ const JobsController = {
     getAllEvents: async (req, res) => {
       await Event.find()
         .then((data) => {
-          // console.log("Len: ", data.length)
           const count = data.length;
           res.status(200).json({
             code: 200,
