@@ -40,8 +40,6 @@ class AdminDashboard extends Component {
                           <h4>Nimesha Gunarathne</h4>
                           <p className="text-secondary mb-1">JobBank Web Admin</p>
                           <p className="text-muted font-size-sm">Full Stack Developer</p>
-                          {/* <button class="btn btn-primary">Follow</button>
-                              <button class="btn btn-outline-primary">Message</button> */}
                         </div>
                       </div>
                     </div>
@@ -105,11 +103,6 @@ class AdminDashboard extends Component {
                         </div>
                       </div>
                       <hr />
-                      {/* <div class="row">
-                            <div class="col-sm-12">
-                              <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
-                            </div>
-                          </div> */}
                     </div>
                   </div>
                   {/* <div className="col-sm-12 mb-3">
@@ -132,6 +125,5 @@ class AdminDashboard extends Component {
 
     }
 }
-
 
 export default AdminDashboard;

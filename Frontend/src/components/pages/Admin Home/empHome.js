@@ -9,8 +9,6 @@ import Daybar from '../DayBar';
 
 const UserID = localStorage.getItem("LocalUserID");
 
-
-
 class EmpHome extends Component {
 
     constructor(props) {
@@ -33,9 +31,6 @@ class EmpHome extends Component {
 
         }
     }
-
-
-
 
     componentDidMount() {
 
@@ -84,7 +79,6 @@ class EmpHome extends Component {
                                                 <h4 className="page-title">Admin Home</h4>
                                                 <ol className="breadcrumb">
                                                     <li className="breadcrumb-item"><a href="javascript:void(0);">Job Bank</a></li>
-                                                    {/* <li class="breadcrumb-item"><a href="javascript:void(0);">Projects</a></li> */}
                                                     <li className="breadcrumb-item active">Admin Home</li>
                                                 </ol>
                                             </div>
@@ -137,12 +131,6 @@ class EmpHome extends Component {
                             </div>
                             {/*end row*/}
 
-
-
-
-
-
-
                             <h1 className="page-title">Top Vacancies</h1>
 
                             <div className="row justify-content-center" style={{ marginTop: "40px" }}>
@@ -171,16 +159,13 @@ class EmpHome extends Component {
                                                 </div>
 
                                             </div>
-                                            {/*end card-body*/}
-                                            {/* <button type="button" className="btn btn-primary waves-effect waves-light btn-block"><i className="mdi mdi-check-all mr-2" />View</button> */}
-
+                                            
                                         </div>
                                         {/*end card*/}
                                     </div>
 
                                 ))}
                             </div>
-                            {/* <hr className="hr-dashed" style={{height:"20px"}}/> */}
 
 
 

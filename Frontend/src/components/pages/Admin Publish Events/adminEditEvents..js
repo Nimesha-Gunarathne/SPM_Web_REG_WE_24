@@ -65,10 +65,7 @@ class AdminCreateEvent extends Component {
 
                 this.setState({ jobID: this.state.events._id});
 
-                
-
             })
-
 
     }
 
@@ -105,11 +102,6 @@ class AdminCreateEvent extends Component {
 
                     window.location.reload();
 
-                    // toast.success(res.data.message);
-                    // window.setTimeout(function () {
-                    //     window.location.href = "/login";
-                    // }, 5000);
-                    //   window.location.href = "/login";
                 } else {
                     toast.error(res.data.message);
                     alert(res.data.message);
@@ -165,9 +157,7 @@ class AdminCreateEvent extends Component {
                                         <div className="card">
                                             <div className="card-header">
                                                 <h4 className="card-title">Edit Event</h4>
-                                                {/* <p class="text-muted mb-0">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each
-                                        textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.
-                                    </p> */}
+                                                
                                             </div>
                                             {/*end card-header*/}
                                             <div className="card-body">
