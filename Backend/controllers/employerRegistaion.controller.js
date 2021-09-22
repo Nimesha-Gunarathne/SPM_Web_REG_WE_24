@@ -66,7 +66,6 @@ const EmployerControllers = {
         });
       }
 
-
       const newEmployer = {
         employer_name,
         email,
@@ -175,7 +174,6 @@ const EmployerControllers = {
 
   AproveEmployer: async (req, res) => {
     try {
-      //if (req.params && req.params.id) {
       const { isActive } = req.body;
       await Employer.findByIdAndUpdate(req.params.id, {
         isActive,
@@ -227,7 +225,6 @@ const EmployerControllers = {
           message: "Select only one",
         });
       }
-      // }
     } catch (err) {
       return res.status(500).json({
         code: messages.InternalCode,
@@ -428,7 +425,6 @@ const EmployerControllers = {
 
   getEmployerDetails: async (req, res) => {
     try {
-      //if (req.params && req.params.id) {
       const employer = await Employer.findById({ _id: req.employer.id }).select(
         "-password"
       );
@@ -440,7 +436,6 @@ const EmployerControllers = {
         data: employer,
         message: "Employer details recieved",
       });
-      // }
     } catch (err) {
       return res.status(500).json({
         code: messages.InternalCode,
@@ -474,7 +469,6 @@ const EmployerControllers = {
   getAllEmp: async (req, res) => {
     await Employer.find()
       .then((data) => {
-        // console.log("Len: ", data.length)
         const count = data.length;
         res.status(200).json({
           code: 200,
@@ -497,10 +491,6 @@ const EmployerControllers = {
           isOpen
 
         } = req.body;
-
-        // await Jobs.findByIdAndDelete(req.params.id, {
-        //   isOpen
-        // });
 
         const Job = await Employer.findByIdAndDelete(req.params.id);
 
