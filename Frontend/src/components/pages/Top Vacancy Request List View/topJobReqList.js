@@ -7,7 +7,7 @@ import Navbar from '../Adminnavibar';
 import Daybar from '../DayBar';
 
 
-class Admin_Employer_Request_List extends Component {
+class Admin_Employer_Request_TopList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,25 +22,25 @@ class Admin_Employer_Request_List extends Component {
     });
   }
 
-  onRemove(e,id){
+  onRemove(e, id) {
     axios
-    .delete(`${APIURL}/TopList/DeleteTopList/${id}`)
-    .then((res) => {
-      console.log("res", res);
-      if (res.data.code === 200) {
-        console.log("res.data.code", res.data.code);
+      .delete(`${APIURL}/TopList/DeleteTopList/${id}`)
+      .then((res) => {
+        console.log("res", res);
+        if (res.data.code === 200) {
+          console.log("res.data.code", res.data.code);
 
-        toast.error("TopList is Deleted!");
+          toast.error("TopList is Deleted!");
 
 
-        window.setTimeout(function () {
-          window.location.reload();
-        }, 1500);
-      } else {
-        toast.error(res.data.message);
+          window.setTimeout(function () {
+            window.location.reload();
+          }, 1500);
+        } else {
+          toast.error(res.data.message);
 
-      }
-    });
+        }
+      });
   }
 
   onChangeActiveStatus(e, id) {
@@ -59,14 +59,14 @@ class Admin_Employer_Request_List extends Component {
         if (res.data.code === 200) {
           toast.success(res.data.message);
           window.setTimeout(function () {
-                    window.location.reload();
-                  }, 1500);
+            window.location.reload();
+          }, 1500);
         } else {
           toast.error(res.data.message);
           // alert(res.data.message)
 
         }
-     
+
       });
   }
 
@@ -75,7 +75,7 @@ class Admin_Employer_Request_List extends Component {
       <div>
         <h1></h1>
         {/* Left Sidenav */}
-        <Navbar/>
+        <Navbar />
         <div className="page-wrapper" style={{ width: "1200px" }}>
           {/* Top Bar Start */}
 
@@ -94,33 +94,22 @@ class Admin_Employer_Request_List extends Component {
                           <li className="breadcrumb-item">
                             <a href="javascript:void(0);">Admin</a>
                           </li>
-                     
+
                           <li className="breadcrumb-item active">
-                          Top Vacancy Request List
+                            Top Vacancy Request List
                           </li>
                         </ol>
                       </div>
-                      {/*end col*/}
-                      <Daybar/>
-                      {/*end col*/}
+                      <Daybar />
                     </div>
-                    {/*end row*/}
                   </div>
-                  {/*end page-title-box*/}
                 </div>
-                {/*end col*/}
               </div>
-              {/*end row*/}
-              {/* end page title end breadcrumb */}
-              <div className="row"> 
+              <div className="row">
                 <div className="col-lg-12 col-sm-12">
-                  <div className="card" style={{marginTop:"40px"}}>
+                  <div className="card" style={{ marginTop: "40px" }}>
                     <div className="card-header">
-                      {/* <h4 class="card-title">Row Border Bottom Example</h4> */}
-                      {/* <p class="text-muted mb-0">DataTables has most features enabled by default, 
-                                            so all you need to do to use it with your own ables is to call the
-                                             construction function: <code>$().DataTable();</code> and border bottom.
-                                        </p> */}
+
                     </div>
                     {/*end card-header*/}
                     <div className="card-body table-responsive">
@@ -140,7 +129,7 @@ class Admin_Employer_Request_List extends Component {
                               <th>Vacancy Details</th>
                               <th>Company Name</th>
                               <th>Claosing Date</th>
-                          
+
                             </tr>
                           </thead>
                           <tbody>
@@ -171,34 +160,16 @@ class Admin_Employer_Request_List extends Component {
                                   </td>
                                   <td>
                                     <button href className="btn btn-danger"
-                                    onClick={(e) =>
+                                      onClick={(e) =>
                                         this.onRemove(e, item._id)
                                       }
-                                      >
+                                    >
                                       Reject
                                     </button>
                                   </td>
 
                                 </tr>
                               ))}
-
-
-
-                            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                           </tbody>
@@ -210,24 +181,15 @@ class Admin_Employer_Request_List extends Component {
               </div>
             </div>
             {/* container */}
-            <footer className="footer text-center text-sm-left">
-              {/* &copy; 2020 Dastyle <span class="d-none d-sm-inline-block float-right">Crafted with <i class="mdi mdi-heart text-danger"></i> by Mannatthemes</span> */}
+            <footer className="footer text-center text-sm-left">             
             </footer>
-            {/*end footer*/}
           </div>
-          {/* end page content */}
+      
         </div>
-        {/* end page-wrapper */}
-        {/* jQuery  */}
-        {/* App js */}
-        {/* jQuery  */}
-        {/* Required datatable js */}
-        {/* Buttons examples */}
-        {/* Responsive examples */}
-        {/* App js */}
+
       </div>
     );
   }
 }
 
-export default Admin_Employer_Request_List;
+export default Admin_Employer_Request_TopList;
