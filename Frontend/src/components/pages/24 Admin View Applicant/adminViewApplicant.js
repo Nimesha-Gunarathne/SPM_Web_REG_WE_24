@@ -22,29 +22,10 @@ class adminViewApplicant extends Component {
 
   onInfo(e, ApplicantID) {
 
-    // toast.error(ApplicantID);
     localStorage.removeItem("GetAppliedJobsADMIN");
     localStorage.setItem("GetAppliedJobsADMIN",ApplicantID)
 
     window.location = "/AdminViewApplicantInfo"
-    // axios
-    //   .delete(`${APIURL}/applicantReg/DeleteAllApplicant/${ApplicantID}`)
-    //   .then((res) => {
-    //     console.log("res", res);
-    //     if (res.data.code === 200) {
-    //       console.log("res.data.code", res.data.code);
-
-    //       toast.success("Applicant is Deleted!");
-
-
-    //       window.setTimeout(function () {
-    //         window.location.reload();
-    //       }, 2500);
-    //     } else {
-    //       toast.error(res.data.message);
-
-    //     }
-    //   });
   }
 
   onDelete(e, ApplicantID) {
@@ -67,7 +48,6 @@ class adminViewApplicant extends Component {
         }
       });
   }
-
 
 
   componentDidMount() {
@@ -139,10 +119,6 @@ class adminViewApplicant extends Component {
                           <tbody>
 
 
-
-
-
-
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
 
 
@@ -162,12 +138,6 @@ class adminViewApplicant extends Component {
                               </tr>
 
                             ))}
-
-
-
-
-
-
 
 
                           </tbody>
@@ -191,8 +161,6 @@ class adminViewApplicant extends Component {
           </div>
 
         </div>
-
-
 
       </div>
     );

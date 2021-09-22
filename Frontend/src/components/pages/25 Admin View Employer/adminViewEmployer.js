@@ -22,29 +22,10 @@ class adminViewApplicant extends Component {
 
   onInfo(e, ApplicantID) {
 
-    // toast.error(ApplicantID);
     localStorage.removeItem("GetAddedAllJobsADMIN");
     localStorage.setItem("GetAddedAllJobsADMIN", ApplicantID)
 
     window.location = "/AdminViewEmployerInfo"
-    // axios
-    //   .delete(`${APIURL}/applicantReg/DeleteAllApplicant/${ApplicantID}`)
-    //   .then((res) => {
-    //     console.log("res", res);
-    //     if (res.data.code === 200) {
-    //       console.log("res.data.code", res.data.code);
-
-    //       toast.success("Applicant is Deleted!");
-
-
-    //       window.setTimeout(function () {
-    //         window.location.reload();
-    //       }, 2500);
-    //     } else {
-    //       toast.error(res.data.message);
-
-    //     }
-    //   });
   }
 
   onDelete(e, EmpID) {
@@ -119,8 +100,6 @@ class adminViewApplicant extends Component {
                 <div className="col-12">
                   <div className="card">
                     <div className="card-header">
-                      {/* <h4 class="card-title">Job Requests</h4>
-                                <p class="text-muted mb-0">Add toolbar column with edit and delete buttons.</p> */}
                     </div>
                     {/*end card-header*/}
                     <div className="card-body">
@@ -138,11 +117,6 @@ class adminViewApplicant extends Component {
                             </tr>
                           </thead>
                           <tbody>
-
-
-
-
-
 
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
 
@@ -180,18 +154,10 @@ class adminViewApplicant extends Component {
 
                             ))}
 
-
-
-
-
-
-
-
                           </tbody>
                         </table>
                       </div>
                       <span className="float-right">
-                        {/* <button id="but_add" class="btn btn-danger">Add New Row</button> */}
                       </span>
 
                     </div>
@@ -208,7 +174,6 @@ class adminViewApplicant extends Component {
           </div>
 
         </div>
-
 
 
       </div>
