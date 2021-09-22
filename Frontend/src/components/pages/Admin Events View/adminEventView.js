@@ -47,25 +47,16 @@ class AdminEventView extends Component {
     ) {
 
         e.preventDefault();
-
-
     }
 
 
     componentDidMount() {
 
-
         axios.get(`${APIURL}/Events/getAllEvents`)
-
             .then(response => {
-
                 this.setState({ Jobs: response.data.data });
-
                 console.log("response ", response.data.data);
-
-
             })
-
 
     }
 
@@ -89,7 +80,6 @@ class AdminEventView extends Component {
                                                 <h4 className="page-title">Events</h4>
                                                 <ol className="breadcrumb">
                                                     <li className="breadcrumb-item"><a href="javascript:void(0);">Job Bank</a></li>
-                                                    {/* <li class="breadcrumb-item"><a href="javascript:void(0);">Projects</a></li> */}
                                                     <li className="breadcrumb-item active">events</li>
                                                 </ol>
                                             </div>
@@ -123,12 +113,6 @@ class AdminEventView extends Component {
                                 {/*end col*/}
                             </div>
                             {/*end row*/}
-
-
-
-
-
-
 
                             {/* <div className="row"> */}
 
@@ -172,20 +156,6 @@ class AdminEventView extends Component {
                                                 {/*end task-box*/}
                                                 <br />
                                                 <div className="button-items" style={{ width: "500px", marginLeft: "280px", marginTop: "-50px" }}>
-                                                    {/* <button type="button" className="btn btn-primary waves-effect waves-light btn-block"
-                                                        onClick={e => this.applyJob
-                                                            (
-                                                                e,
-                                                                item._id,
-                                                                item.closing_date,
-                                                                item.createdAt,
-                                                                item.employerID,
-                                                                item.employerName,
-                                                                item.job_category,
-                                                                item.job_description,
-                                                                item.job_title,
-                                                                item.job_type
-                                                            )}><i className="mdi mdi-check-all mr-2" />View</button> */}
 
                                                 </div>
                                             </div>
