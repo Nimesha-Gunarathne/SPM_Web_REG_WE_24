@@ -6,10 +6,7 @@ import { APIURL } from "../../../components/API/environment";
 import Navbar from '../Adminnavibar';
 import Daybar from '../DayBar';
 
-
 const UserID = localStorage.getItem("LocalUserID");
-
-
 
 class StudentJobList extends Component {
 
@@ -30,7 +27,6 @@ class StudentJobList extends Component {
             SProfile_status: "Student",
             searchVal: "",
             currentDate: date
-
         }
     }
 
@@ -68,12 +64,9 @@ class StudentJobList extends Component {
         localStorage.setItem("ViewedJobjob_title", job_title)
         localStorage.setItem("ViewedJobjob_type", job_type)
 
-
         window.location = "/ApplicantViewVacancy"
 
-
     }
-
 
     componentDidMount() {
 
@@ -114,7 +107,6 @@ class StudentJobList extends Component {
                                                 <h4 className="page-title">Top Companies</h4>
                                                 <ol className="breadcrumb">
                                                     <li className="breadcrumb-item"><a href="javascript:void(0);">Job Bank</a></li>
-                                                    {/* <li class="breadcrumb-item"><a href="javascript:void(0);">Projects</a></li> */}
                                                     <li className="breadcrumb-item active">Top Companies</li>
                                                 </ol>
                                             </div>
@@ -152,8 +144,6 @@ class StudentJobList extends Component {
                                                         onChange={this.search}
                                                         type="text" id="example-input1-group2" className="form-control form-control-sm" placeholder="Search" />
 
-
-
                                                     <span className="input-group-append">
                                                         <button type="button" className="btn btn-primary btn-sm"><i className="fas fa-search" /></button>
                                                     </span>
@@ -166,13 +156,6 @@ class StudentJobList extends Component {
                                 {/*end col*/}
                             </div>
                             {/*end row*/}
-
-
-
-
-
-
-
                             <h1 className="page-title">Top Companies</h1>
 
 
@@ -215,22 +198,18 @@ class StudentJobList extends Component {
                                                 </div>
                                                 <div className="d-flex justify-content-between" style={{ marginTop: "60px" }}>
                                                     <h6 className="font-weight-semibold">Email : <span className="text-muted font-weight-normal"> {item.email}</span></h6>
-                                                    {/* <h6 className="font-weight-semibold">Deadline : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6> */}
-                                                </div>
+                                                     </div>
                                                 <div className="d-flex justify-content-between" style={{ marginTop: "0" }}>
                                                     <h6 className="font-weight-semibold">Contact : <span className="text-muted font-weight-normal"> {item.mobile}</span></h6>
-                                                    {/* <h6 className="font-weight-semibold">Deadline : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6> */}
-                                                </div>
+                                                    </div>
                                                 <div className="d-flex justify-content-between" style={{ marginTop: "0" }}>
                                                     <h6 className="font-weight-semibold">Web Link: <span className="text-muted font-weight-normal"> {item.weblink}</span></h6>
-                                                    {/* <h6 className="font-weight-semibold">Deadline : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6> */}
-                                                </div>
+                                                     </div>
                                                 {/*end task-box*/}
                                                 <br />
                                                 <div className="button-items">
                                                     {item.isOpen == 1 && (
                                                         <>
-
                                                             <button className="btn btn-danger waves-effect waves-light btn-block" disabled
                                                             >Closed</button>
 
@@ -270,23 +249,7 @@ class StudentJobList extends Component {
 
                             </div>
 
-
-
-
-
-
-
-
-
-
-
                             <div className="row">
-
-                                {/*end col*/}
-
-                                {/*end col*/}
-
-                                {/*end col*/}
                             </div>
                             {/*end row*/}
                         </div>{/* container */}
