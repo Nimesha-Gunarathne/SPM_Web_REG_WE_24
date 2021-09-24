@@ -141,12 +141,7 @@ class Admin_Employer_Request_TopList extends Component {
                                   <td>{item.employerName}</td>
                                   <td>{item.closing_date}</td>
                                   <td>
-                                    {/* <button
-                                      href="clerk-student-student-pofile.html"
-                                      className="btn btn-success"
-                                    >
-                                      View
-                                    </button> */}
+                               
                                   </td>
                                   <td>
                                     <button
@@ -170,8 +165,6 @@ class Admin_Employer_Request_TopList extends Component {
 
                                 </tr>
                               ))}
-
-
                           </tbody>
                         </table>
                       </div>
