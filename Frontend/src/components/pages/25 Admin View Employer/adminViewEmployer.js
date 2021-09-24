@@ -49,8 +49,6 @@ class adminViewApplicant extends Component {
       });
   }
 
-
-
   componentDidMount() {
 
     axios.get(`${APIURL}/Employer/getAllEmp`)
@@ -80,7 +78,6 @@ class adminViewApplicant extends Component {
                         <h4 className="page-title">All Employer</h4>
                         <ol className="breadcrumb">
                           <li className="breadcrumb-item"><a href="javascript:void(0);">JobBank</a></li>
-                          {/* <li class="breadcrumb-item"><a href="javascript:void(0);">pages</a></li> */}
                           <li className="breadcrumb-item active">Employer</li>
                         </ol>
                       </div>
@@ -103,7 +100,6 @@ class adminViewApplicant extends Component {
                     </div>
                     {/*end card-header*/}
                     <div className="card-body">
-                      {/* <button class="btn  btn-primary mb-3" id="submit_data">Submit</button> */}
                       <div className="table-responsive">
                         <table className="table  table-bordered">
                           <thead>
@@ -119,9 +115,6 @@ class adminViewApplicant extends Component {
                           <tbody>
 
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
-
-
-
                               <tr>
                                 <td>{item.employer_name}</td>
                                 <td>{item.email}</td>

@@ -15,7 +15,6 @@ class AdminViewVacancy extends Component {
     this.onDelete = this.onDelete.bind(this);
     this.state = {
       Jobs: [],
-
     }
   }
 
@@ -26,26 +25,19 @@ class AdminViewVacancy extends Component {
             console.log("res", res);
             if (res.data.code === 200) {
                 console.log("res.data.code", res.data.code);
-
-                toast.success("Vacancy is Deleted!");
-
-
+                toast.success("Vacancy is Deleted Successfully!");
                 window.setTimeout(function () {
                     window.location.reload();
                 }, 2500);
             } else {
                 toast.error(res.data.message);
-
             }
         });
 }
 
   componentDidMount() {
-
     axios.get(`${APIURL}/vacancy/getAllJobs/`)
-
       .then(response => {
-
         console.log(" All jobs ", response.data.data);
         this.setState({ Jobs: response.data.data });
       })
@@ -55,7 +47,6 @@ class AdminViewVacancy extends Component {
     return (
       <div>
         <Navbar />
-
         <div className="page-wrapper">
           {/* Page Content*/}
           <div className="page-content">
@@ -69,7 +60,6 @@ class AdminViewVacancy extends Component {
                         <h4 className="page-title">All Vacancies</h4>
                         <ol className="breadcrumb">
                           <li className="breadcrumb-item"><a href="javascript:void(0);">JobBank</a></li>
-                          {/* <li class="breadcrumb-item"><a href="javascript:void(0);">pages</a></li> */}
                           <li className="breadcrumb-item active">Vacancies</li>
                         </ol>
                       </div>
@@ -89,12 +79,9 @@ class AdminViewVacancy extends Component {
                 <div className="col-12">
                   <div className="card">
                     <div className="card-header">
-                      {/* <h4 class="card-title">Job Requests</h4>
-                                <p class="text-muted mb-0">Add toolbar column with edit and delete buttons.</p> */}
                     </div>
                     {/*end card-header*/}
                     <div className="card-body">
-                      {/* <button class="btn  btn-primary mb-3" id="submit_data">Submit</button> */}
                       <div className="table-responsive">
                         <table className="table  table-bordered">
                           <thead>
@@ -108,11 +95,7 @@ class AdminViewVacancy extends Component {
                             </tr>
                           </thead>
                           <tbody>
-
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
-
-
-
                               <tr>
                                 <td>{item.employerName}</td>
                                 <td>{item.job_title}</td>
@@ -120,20 +103,15 @@ class AdminViewVacancy extends Component {
                                 <td>{item.closing_date}</td>
                                 <td className="text-center">
                                   <div className="button-items">
-
                                     {item.isOpen == 0 && (
                                       <>
-
                                         <span className=" badge badge-soft-primary">OPEN</span>
-
                                       </>
                                     )}
 
                                     {item.isOpen == 1 && (
                                       <>
-
                                         <span className=" badge badge-soft-danger">ClOSE</span>
-
                                       </>
                                     )}
 
@@ -144,7 +122,6 @@ class AdminViewVacancy extends Component {
                                   onClick={e => this.onDelete(e, item._id)}>Remove</button>
                                 </td>
                               </tr>
-
                             ))}
 
 
@@ -152,7 +129,6 @@ class AdminViewVacancy extends Component {
                         </table>
                       </div>
                       <span className="float-right">
-                        {/* <button id="but_add" class="btn btn-danger">Add New Row</button> */}
                       </span>
                       {/*end table*/}
                     </div>
@@ -164,8 +140,6 @@ class AdminViewVacancy extends Component {
               {/* end row */}
             </div>{/* container */}
             <footer className="footer text-center text-sm-left">
-              {/* &copy; 2020 Dastyle <span class="d-none d-sm-inline-block float-right">Crafted with <i
-                        class="mdi mdi-heart text-danger"></i> by Mannatthemes</span> */}
             </footer>
             {/*end footer*/}
           </div>
@@ -174,8 +148,6 @@ class AdminViewVacancy extends Component {
         {/* end page-wrapper */}
         {/* jQuery  */}
         {/* App js */}
-
-
       </div>
     );
   }

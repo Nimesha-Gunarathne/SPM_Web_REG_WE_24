@@ -126,7 +126,7 @@ const TopListController = {
       DeleteByID: async (req, res) => {
         try {
           if (req.params && req.params.id) {
-            console.log("Stage 01");
+            console.log("Stage 01: delete bu ID");
             const {
               isOpen
     

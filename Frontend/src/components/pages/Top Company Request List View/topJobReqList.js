@@ -63,7 +63,6 @@ class Admin_Employer_Request_List extends Component {
                   }, 1500);
         } else {
           toast.error(res.data.message);
-          // alert(res.data.message)
 
         }
      
@@ -77,10 +76,6 @@ class Admin_Employer_Request_List extends Component {
         {/* Left Sidenav */}
         <Navbar/>
         <div className="page-wrapper" style={{ width: "1200px" }}>
-          {/* Top Bar Start */}
-
-          {/* Top Bar End */}
-          {/* Page Content*/}
           <div className="page-content">
             <div className="container-fluid">
               {/* Page-Title */}
@@ -116,11 +111,6 @@ class Admin_Employer_Request_List extends Component {
                 <div className="col-lg-12 col-sm-12">
                   <div className="card" style={{marginTop:"40px"}}>
                     <div className="card-header">
-                      {/* <h4 class="card-title">Row Border Bottom Example</h4> */}
-                      {/* <p class="text-muted mb-0">DataTables has most features enabled by default, 
-                                            so all you need to do to use it with your own ables is to call the
-                                             construction function: <code>$().DataTable();</code> and border bottom.
-                                        </p> */}
                     </div>
                     {/*end card-header*/}
                     <div className="card-body table-responsive">
@@ -156,12 +146,6 @@ class Admin_Employer_Request_List extends Component {
                                   <td>{item.mobile}</td>
 
                                   <td>
-                                    {/* <button
-                                      href="clerk-student-student-pofile.html"
-                                      className="btn btn-success"
-                                    >
-                                      View
-                                    </button> */}
                                   </td>
                                   <td>
                                     <button
@@ -186,25 +170,6 @@ class Admin_Employer_Request_List extends Component {
                                 </tr>
                               ))}
 
-
-
-                            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                           </tbody>
                         </table>
                       </div>
@@ -215,20 +180,11 @@ class Admin_Employer_Request_List extends Component {
             </div>
             {/* container */}
             <footer className="footer text-center text-sm-left">
-              {/* &copy; 2020 Dastyle <span class="d-none d-sm-inline-block float-right">Crafted with <i class="mdi mdi-heart text-danger"></i> by Mannatthemes</span> */}
-            </footer>
+              </footer>
             {/*end footer*/}
           </div>
           {/* end page content */}
         </div>
-        {/* end page-wrapper */}
-        {/* jQuery  */}
-        {/* App js */}
-        {/* jQuery  */}
-        {/* Required datatable js */}
-        {/* Buttons examples */}
-        {/* Responsive examples */}
-        {/* App js */}
       </div>
     );
   }
