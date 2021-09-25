@@ -24,11 +24,8 @@ class AdminDashboard extends Component {
                         </ol>
                       </div>
                     </div>
-                    {/*end row*/}
                   </div>
-                  {/*end page-title-box*/}
                 </div>
-                {/*end col*/}
               </div>
               <div className="row gutters-sm mt-3">
                 <div className="col-md-4 mb-3">
@@ -65,7 +62,7 @@ class AdminDashboard extends Component {
                           <h6 className="mb-0">Email</h6>
                         </div>
                         <div className="col-sm-9 text-secondary">
-                        JobBank.Admin.Nimesha@gmail.com
+                        jobbank.admin.nimesha@gmail.com
                         </div>
                       </div>
                       <hr />
@@ -105,24 +102,17 @@ class AdminDashboard extends Component {
                       <hr />
                     </div>
                   </div>
-                  {/* <div className="col-sm-12 mb-3">
-                    
-                  </div> */}
                 </div>
               </div>
-            </div>{/* container */}
+            </div>
             <footer className="footer text-center text-sm-left">
               © 2021 JobBank 
             </footer>
-            {/*end footer*/}
           </div>
-          {/* end page content */}
         </div>
-        {/* end page-wrapper */}
       </div>
             </>
         );
-
     }
 }
 

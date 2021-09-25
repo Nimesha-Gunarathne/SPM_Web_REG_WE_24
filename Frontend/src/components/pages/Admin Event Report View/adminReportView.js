@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import { APIURL } from "../../API/environment";
-// import TableRawItem from './TableRawItem';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import Navbar from '../Adminnavibar';
@@ -36,13 +35,11 @@ export default class AllItems extends Component {
     componentDidMount() {
 
       axios.get(`${APIURL}/Events/getAllEvents`)
-
             .then(response => {
 
                 this.setState({ Jobs: response.data.data });
                 console.log(" data getAppliedJob", this.state.Jobs);
                 this.setState({ applicantName: this.state.Jobs.Applicant_Name });
-
             })
     }
 
@@ -57,11 +54,9 @@ export default class AllItems extends Component {
                     <h3 style={{ 'textAlign': 'center' }}>
                         Event Report
                     </h3>
-
                     <h3 style={{ 'textAlign': 'center' }}>
                         {this.state.applicantName}
                     </h3>
-
                     <br></br>
                     <table className="table table-striped" id="addSupplier-viewtable" style={{ 'fontSize': '14px', 'padding': '8px', border: '0.5px solid black' }}>
                         <thead>
@@ -79,16 +74,12 @@ export default class AllItems extends Component {
                                     <td>{item.eventTitle}</td>
                                     <td>{item.companyName}</td>
                                     <td>{item.eventType}</td>
-                                    <td>{item.closingDate}</td>
-                        
-                                    
+                                    <td>{item.closingDate}</td>                                                       
                                 </tr>
-
                             ))}
 
                         </thead>
-                        <tbody>
-                        
+                        <tbody>                       
                         </tbody>
                     </table>
                 </div>
