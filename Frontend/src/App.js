@@ -40,15 +40,6 @@ import AdminEventReportView from "./components/pages/Admin Event Report View/adm
 
 
 
-
-
-
-
-
-
-
-
-
 import ApplicantViewVacancy from "./components/pages/View Job Vacancy Details/viewVacancy";
 import ApplyForJobForm from "./components/pages/Appling Vacancies Form/applyForVacancie";
 import EmployerRegistationRequestList from "./components/pages/Emp Registaion Req/adminEmpReqList";
