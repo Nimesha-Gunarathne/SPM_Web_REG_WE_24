@@ -64,7 +64,6 @@ const JobsController = {
   getAllJobs: async (req, res) => {
     await Jobs.find()
       .then((data) => {
-        // console.log("Len: ", data.length)
         const count = data.length;
         res.status(200).json({
           code: 200,
@@ -209,10 +208,6 @@ const JobsController = {
 
         } = req.body;
 
-        // await Jobs.findByIdAndDelete(req.params.id, {
-        //   isOpen
-        // });
-
         const Job = await Jobs.findByIdAndDelete(req.params.id);
 
         return res.status(200).json({
@@ -255,8 +250,6 @@ const JobsController = {
       });
     }
   },
-
-
 }
 
 module.exports = JobsController;

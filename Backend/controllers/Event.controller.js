@@ -108,7 +108,7 @@ const JobsController = {
     UpdateEventDetailsByEventID: async (req, res) => {
       try {
         if (req.params && req.params.id) {
-          console.log("Stage 01");
+          console.log("Stage 01: update event details");
           const {
             eventTitle,
             companyName,

@@ -6,8 +6,6 @@ import { toast } from "react-toastify";
 import Navbar from '../Adminnavibar';
 import Daybar from '../DayBar';
 
-
-
 class adminViewApplicant extends Component {
 
   constructor(props) {
@@ -35,27 +33,20 @@ class adminViewApplicant extends Component {
         console.log("res", res);
         if (res.data.code === 200) {
           console.log("res.data.code", res.data.code);
-
           toast.success("Applicant is Deleted!");
-
-
           window.setTimeout(function () {
             window.location.reload();
           }, 2500);
         } else {
           toast.error(res.data.message);
-
         }
       });
   }
 
 
   componentDidMount() {
-
     axios.get(`${APIURL}/applicantReg/getAllApplicant`)
-
       .then(response => {
-
         console.log(" All Applicant ", response.data.data);
         this.setState({ Jobs: response.data.data });
       })
@@ -79,7 +70,6 @@ class adminViewApplicant extends Component {
                         <h4 className="page-title">All Applicants</h4>
                         <ol className="breadcrumb">
                           <li className="breadcrumb-item"><a href="javascript:void(0);">JobBank</a></li>
-                          {/* <li class="breadcrumb-item"><a href="javascript:void(0);">pages</a></li> */}
                           <li className="breadcrumb-item active">Applicants</li>
                         </ol>
                       </div>
@@ -99,12 +89,9 @@ class adminViewApplicant extends Component {
                 <div className="col-12">
                   <div className="card">
                     <div className="card-header">
-                      {/* <h4 class="card-title">Job Requests</h4>
-                                <p class="text-muted mb-0">Add toolbar column with edit and delete buttons.</p> */}
                     </div>
                     {/*end card-header*/}
                     <div className="card-body">
-                      {/* <button class="btn  btn-primary mb-3" id="submit_data">Submit</button> */}
                       <div className="table-responsive">
                         <table className="table  table-bordered">
                           <thead>
@@ -117,12 +104,7 @@ class adminViewApplicant extends Component {
                             </tr>
                           </thead>
                           <tbody>
-
-
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
-
-
-
                               <tr>
                                 <td>{item.firstName}</td>
                                 <td>{item.email}</td>
@@ -136,32 +118,22 @@ class adminViewApplicant extends Component {
                                     onClick={e => this.onDelete(e, item._id)}>Remove</button>
                                 </td>
                               </tr>
-
                             ))}
-
-
                           </tbody>
                         </table>
                       </div>
                       <span className="float-right">
-                        {/* <button id="but_add" class="btn btn-danger">Add New Row</button> */}
                       </span>
-      
                     </div>
-            
                   </div>
             
                 </div> 
               </div>
-
             </div>
             <footer className="footer text-center text-sm-left">
             </footer>
-
           </div>
-
         </div>
-
       </div>
     );
   }

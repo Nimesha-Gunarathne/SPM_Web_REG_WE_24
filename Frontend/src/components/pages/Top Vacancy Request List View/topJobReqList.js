@@ -63,7 +63,6 @@ class Admin_Employer_Request_TopList extends Component {
           }, 1500);
         } else {
           toast.error(res.data.message);
-          // alert(res.data.message)
 
         }
 

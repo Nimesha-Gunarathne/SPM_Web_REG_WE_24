@@ -7,7 +7,6 @@ import Navbar from '../Adminnavibar';
 import Daybar from '../DayBar';
 
 const UserID = localStorage.getItem("GetAppliedJobsADMIN");
-// const UserID = "60f9393bf9010e001577b6ea";
 
 class StudentJobList extends Component {
 
@@ -18,7 +17,6 @@ class StudentJobList extends Component {
 
     this.state = {
       Jobs: [],
-
     }
   }
 
@@ -54,7 +52,6 @@ class StudentJobList extends Component {
     window.location.href = "/Contract";
 
     localStorage.setItem("employerName", JobData.employerName)
-
   }
 
   componentDidMount() {
@@ -86,7 +83,6 @@ class StudentJobList extends Component {
                         <h4 className="page-title">Apply Jobs</h4>
                         <ol className="breadcrumb">
                           <li className="breadcrumb-item"><a href="javascript:void(0);">JobBank</a></li>
-                          {/* <li class="breadcrumb-item"><a href="javascript:void(0);">pages</a></li> */}
                           <li className="breadcrumb-item active">Apply Jobs</li>
                         </ol>
                       </div>
@@ -106,12 +102,9 @@ class StudentJobList extends Component {
                 <div className="col-12">
                   <div className="card">
                     <div className="card-header">
-                      {/* <h4 class="card-title">Job Requests</h4>
-                                <p class="text-muted mb-0">Add toolbar column with edit and delete buttons.</p> */}
                     </div>
                     {/*end card-header*/}
                     <div className="card-body">
-                      {/* <button class="btn  btn-primary mb-3" id="submit_data">Submit</button> */}
                       <div className="table-responsive">
                         <table className="table  table-bordered">
                           <thead>
@@ -125,12 +118,7 @@ class StudentJobList extends Component {
                             </tr>
                           </thead>
                           <tbody>
-
-
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
-
-
-
                               <tr>
                                 <td>{item.job_title}</td>
                                 <td>{item.JobemployerName}</td>
@@ -142,31 +130,24 @@ class StudentJobList extends Component {
 
                                     {item.IsApprove == 0 && (
                                       <>
-
                                         <span className=" badge badge-soft-warning">Pending</span>
-
                                       </>
                                     )}
 
                                     {item.IsApprove == 2 && (
                                       <>
-
                                         <span className=" badge badge-soft-danger">Reject</span>
-
                                       </>
                                     )}
 
                                     {item.IsApprove == 1 && (
                                       <>
-
                                         <span className=" badge badge-soft-success">Selected</span>
-
                                       </>
                                     )}
                                   </div>
                                 </td>
                               </tr>
-
                             ))}
 
 
@@ -174,7 +155,6 @@ class StudentJobList extends Component {
                         </table>
                       </div>
                       <span className="float-right">
-                        {/* <button id="but_add" class="btn btn-danger">Add New Row</button> */}
                       </span>
                       {/*end table*/}
                     </div>
@@ -191,11 +171,6 @@ class StudentJobList extends Component {
           </div>
           {/* end page content */}
         </div>
-        {/* end page-wrapper */}
-        {/* jQuery  */}
-        {/* App js */}
-
-
       </div>
     );
   }
