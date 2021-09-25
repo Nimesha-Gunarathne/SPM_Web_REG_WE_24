@@ -8,8 +8,6 @@ import Daybar from '../DayBar';
 
 const UserID = localStorage.getItem("LocalUserID");
 
-
-
 class AdminEventView extends Component {
 
     constructor(props) {
@@ -17,20 +15,17 @@ class AdminEventView extends Component {
         this.applyJob = this.applyJob.bind(this);
         this.navigateWithID = this.navigateWithID.bind(this);
 
-
         this.state = {
             Jobs: [],
             AppliedJobs: [],
             ApproveStatus: "Approved",
             SProfile_status: "Student"
-
         }
     }
 
     navigateWithID(e, eventId) {
         window.localStorage.removeItem("EventID");
         localStorage.setItem("EventID", eventId)
-
         window.location.href = "/AdminEditEvent";
     }
 
@@ -45,10 +40,8 @@ class AdminEventView extends Component {
         job_title,
         job_type
     ) {
-
         e.preventDefault();
     }
-
 
     componentDidMount() {
 
@@ -57,7 +50,6 @@ class AdminEventView extends Component {
                 this.setState({ Jobs: response.data.data });
                 console.log("response ", response.data.data);
             })
-
     }
 
     render() {
@@ -65,13 +57,9 @@ class AdminEventView extends Component {
             <div>
                 <Navbar />
                 <div className="page-wrapper">
-                    {/* Top Bar Start */}
 
-                    {/* Top Bar End */}
-                    {/* Page Content*/}
                     <div className="page-content">
                         <div className="container-fluid">
-                            {/* Page-Title */}
                             <div className="row">
                                 <div className="col-sm-12">
                                     <div className="page-title-box">
@@ -83,21 +71,13 @@ class AdminEventView extends Component {
                                                     <li className="breadcrumb-item active">events</li>
                                                 </ol>
                                             </div>
-                                            {/*end col*/}
                                             <Daybar />
-                                            {/*end col*/}
                                         </div>
-                                        {/*end row*/}
                                     </div>
-                                    {/*end page-title-box*/}
                                 </div>
-                                {/*end col*/}
                             </div>
-                            {/*end row*/}
-                            {/* end page title end breadcrumb */}
                             <div className="row">
 
-                                {/*end col*/}
                                 <div className="col-lg-6 text-right">
                                     <div className="text-right">
                                         <ul className="list-inline">
@@ -110,11 +90,7 @@ class AdminEventView extends Component {
                                         </ul>
                                     </div>
                                 </div>
-                                {/*end col*/}
                             </div>
-                            {/*end row*/}
-
-                            {/* <div className="row"> */}
 
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
                                 <div className="row">
@@ -130,7 +106,6 @@ class AdminEventView extends Component {
                                                             style={{ marginLeft: "1000px", marginTop: "-30px" }}
                                                             onClick={e => this.navigateWithID(e, item._id)}>Edit</button>
                                                     </div>
-                                                    {/*end media-body*/}
                                                 </div>
                                                 <hr className="hr-dashed" style={{ marginTop: "-5px" }} />
 
@@ -141,61 +116,30 @@ class AdminEventView extends Component {
                                                             <p className="mb-0 font-weight-semibold">Event Description</p>
                                                         </div>
                                                     </div>
-                                                    {/*end col*/}
-
-                                                    {/*end col*/}
                                                 </div>
-                                                {/*end row*/}
                                                 <div style={{ marginTop: "-15px", height: "90px" }}>
                                                     <p className="text-muted mt-4 mb-1">
                                                         {item.shortDescription}
                                                     </p>
-
                                                 </div>
-
-                                                {/*end task-box*/}
                                                 <br />
                                                 <div className="button-items" style={{ width: "500px", marginLeft: "280px", marginTop: "-50px" }}>
 
                                                 </div>
                                             </div>
-                                            {/*end card-body*/}
                                         </div>
-                                        {/*end card*/}
                                     </div>
                                 </div>
                             ))}
 
-
-
-
-
-
-
-
-
-
-
-
-
                             <div className="row">
-
-                                {/*end col*/}
-
-                                {/*end col*/}
-
-                                {/*end col*/}
                             </div>
-                            {/*end row*/}
-                        </div>{/* container */}
+                        </div>
                         <footer className="footer text-center text-sm-left">
                             © 2021
                         </footer>
-                        {/*end footer*/}
                     </div>
-                    {/* end page content */}
                 </div>
-                {/* end page-wrapper */}
             </div>
         );
     }

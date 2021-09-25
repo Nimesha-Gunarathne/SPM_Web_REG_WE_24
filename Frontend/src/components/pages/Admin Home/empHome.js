@@ -6,7 +6,6 @@ import { APIURL } from "../../../components/API/environment";
 import Navbar from '../Adminnavibar';
 import Daybar from '../DayBar';
 
-
 const UserID = localStorage.getItem("LocalUserID");
 
 class EmpHome extends Component {
@@ -19,7 +18,6 @@ class EmpHome extends Component {
         var today = new Date(),
             date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
-
         this.state = {
             Jobs: [],
             ApprovedTopList: [],
@@ -28,7 +26,6 @@ class EmpHome extends Component {
             SProfile_status: "Student",
             searchVal: "",
             currentDate: date
-
         }
     }
 
@@ -41,7 +38,6 @@ class EmpHome extends Component {
                 this.setState({ Jobs: response.data.data });
                 console.log("All jobs response ", response.data.data);
             })
-
 
         axios.get(`${APIURL}/TopList/getApproedAllTopList`)
 
@@ -64,13 +60,8 @@ class EmpHome extends Component {
                 <Navbar />
 
                 <div className="page-wrapper">
-                    {/* Top Bar Start */}
-
-                    {/* Top Bar End */}
-                    {/* Page Content*/}
                     <div className="page-content">
                         <div className="container-fluid">
-                            {/* Page-Title */}
                             <div className="row">
                                 <div className="col-sm-12">
                                     <div className="page-title-box">
@@ -82,18 +73,11 @@ class EmpHome extends Component {
                                                     <li className="breadcrumb-item active">Admin Home</li>
                                                 </ol>
                                             </div>
-                                            {/*end col*/}
                                             <Daybar />
-                                            {/*end col*/}
                                         </div>
-                                        {/*end row*/}
                                     </div>
-                                    {/*end page-title-box*/}
                                 </div>
-                                {/*end col*/}
                             </div>
-                            {/*end row*/}
-                            {/* end page title end breadcrumb */}
                             <div className="row">
                                 <div className="col-lg-6">
                                     <ul className="list-inline">
@@ -102,7 +86,6 @@ class EmpHome extends Component {
                                         </li>
                                     </ul>
                                 </div>
-                                {/*end col*/}
                                 <div className="col-lg-6 text-right">
                                     <div className="text-right">
                                         <ul className="list-inline">
@@ -116,8 +99,6 @@ class EmpHome extends Component {
                                                         onChange={this.search}
                                                         type="text" id="example-input1-group2" className="form-control form-control-sm" placeholder="Search" />
 
-
-
                                                     <span className="input-group-append">
                                                         <button type="button" className="btn btn-primary btn-sm"><i className="fas fa-search" /></button>
                                                     </span>
@@ -127,9 +108,7 @@ class EmpHome extends Component {
                                         </ul>
                                     </div>
                                 </div>
-                                {/*end col*/}
                             </div>
-                            {/*end row*/}
 
                             <h1 className="page-title">Top Vacancies</h1>
 
@@ -155,36 +134,13 @@ class EmpHome extends Component {
                                                     </div>
                                                     <div className="col-auto align-self-center">
                                                     </div>
-
                                                 </div>
-
-                                            </div>
-                                            
+                                            </div>                                           
                                         </div>
-                                        {/*end card*/}
                                     </div>
 
                                 ))}
                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                             <div className="row" style={{ marginTop: "40px" }}>
 
@@ -200,7 +156,6 @@ class EmpHome extends Component {
                                                         <p className="text-muted  mb-0 font-13"><span className="text-dark">Employer:
                                                         </span>{item.employerName}</p>
                                                     </div>
-                                                    {/*end media-body*/}
                                                 </div>
                                                 <hr className="hr-dashed" />
 
@@ -211,11 +166,7 @@ class EmpHome extends Component {
                                                             <p className="mb-0 font-weight-semibold">Job Description</p>
                                                         </div>
                                                     </div>
-                                                    {/*end col*/}
-
-                                                    {/*end col*/}
                                                 </div>
-                                                {/*end row*/}
                                                 <div style={{ marginTop: "-10px", height: "90px" }}>
                                                     <p className="text-muted mt-4 mb-1">
                                                         {item.job_description}
@@ -223,10 +174,8 @@ class EmpHome extends Component {
 
                                                 </div>
                                                 <div className="d-flex justify-content-between" style={{ marginTop: "60px" }}>
-                                                    <h6 className="font-weight-semibold">Closing Date : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6>
-                                                    {/* <h6 className="font-weight-semibold">Deadline : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6> */}
+                                                    <h6 className="font-weight-semibold">Closing Date : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6>                                            
                                                 </div>
-                                                {/*end task-box*/}
                                                 <br />
                                                 <div className="button-items">
                                                     {item.isOpen == 1 && (
@@ -240,53 +189,28 @@ class EmpHome extends Component {
 
                                                     {item.isOpen == 0 && (
                                                         <>
-
                                                             <button className="btn btn-success waves-effect waves-light btn-block" disabled
                                                             >Open</button>
 
                                                         </>
                                                     )}
-
-
                                                 </div>
                                             </div>
-                                            {/*end card-body*/}
                                         </div>
-                                        {/*end card*/}
                                     </div>
 
                                 ))}
 
                             </div>
 
-
-
-
-
-
-
-
-
-
-
                             <div className="row">
-
-                                {/*end col*/}
-
-                                {/*end col*/}
-
-                                {/*end col*/}
                             </div>
-                            {/*end row*/}
-                        </div>{/* container */}
+                        </div>
                         <footer className="footer text-center text-sm-left">
                             © 2021
                         </footer>
-                        {/*end footer*/}
                     </div>
-                    {/* end page content */}
                 </div>
-                {/* end page-wrapper */}
             </div>
         );
     }
