@@ -119,16 +119,12 @@ class AdminCreateEvent extends Component {
                 <div>
                    <Navbar/>
                     <div className="page-wrapper">
-                        {/* Top Bar Start */}
                         <div className="topbar">
 
                         </div>
-                        {/* Top Bar End */}
-                        {/* Page Content*/}
                         <div className="page-content" style={{ width: "1250px" }}>
 
                             <div className="container-fluid">
-                                {/* Page-Title */}
                                 <div className="row">
                                     <div className="col-sm-17">
                                         <div className="page-title-box">
@@ -143,15 +139,10 @@ class AdminCreateEvent extends Component {
                                                 </div>
 
                                             </div>
-                                            {/*end row*/}
                                         </div>
-                                        {/*end page-title-box*/}
                                     </div>
                                
-                                    {/*end col*/}
                                 </div>
-                                {/*end row*/}
-                                {/* end page title end breadcrumb */}
                                 <div className="row" style={{ marginTop: "60px" }}>
                                     <div className="col-lg-12">
                                         <div className="card">
@@ -159,7 +150,6 @@ class AdminCreateEvent extends Component {
                                                 <h4 className="card-title">Edit Event</h4>
                                                 
                                             </div>
-                                            {/*end card-header*/}
                                             <div className="card-body">
                                                 <div className="row">
                                                     <div className="col-lg-12">
@@ -256,19 +246,13 @@ class AdminCreateEvent extends Component {
                                                     <a href="emp-job-list.html" type="button" className="btn btn-outline-danger waves-effect float-left">Delete</a>
                                                 </div>
                                             </div>
-                                            {/*end card-body*/}
                                         </div>
-                                        {/*end card*/}
                                     </div>
-                                    {/*end col*/}
                                 </div>
-                                {/*end row*/}
                                 <footer className="footer text-center text-sm-left">
                                     © 2021 JobBank
                                 </footer>
-                                {/*end footer*/}
                             </div>
-                            {/* end page content */}
                         </div>
                     </div></div>
             </>

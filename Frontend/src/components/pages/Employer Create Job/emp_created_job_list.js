@@ -25,7 +25,6 @@ class EmployerCreatedJobList extends Component {
   }
 
   onApplicant(e, jobsId) {
-    // toast.success(jobsId)
     window.localStorage.removeItem("employerApplicationJobID");
     localStorage.setItem("employerApplicationJobID", jobsId)
 
@@ -113,16 +112,7 @@ class EmployerCreatedJobList extends Component {
                             </tr>
                           </thead>
                           <tbody>
-
-
-
-
-
-
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
-
-
-
                               <tr>
                                 <td>{item.job_title}</td>
                                 <td>{item.job_description}</td>
@@ -137,12 +127,9 @@ class EmployerCreatedJobList extends Component {
                                     <button type="button" className="btn btn-success waves-effect waves-light"
                                       onClick={e => this.onApplicant(e, item._id)}>Applications</button>
 
-
                                     {item.IsApprove == 2 && (
                                       <>
-
                                         <span className=" badge badge-soft-danger">Reject</span>
-
                                       </>
                                     )}
 
@@ -158,13 +145,6 @@ class EmployerCreatedJobList extends Component {
                               </tr>
 
                             ))}
-
-
-
-
-
-
-
 
                           </tbody>
                         </table>
@@ -192,7 +172,6 @@ class EmployerCreatedJobList extends Component {
         {/* end page-wrapper */}
         {/* jQuery  */}
         {/* App js */}
-
 
       </div>
     );

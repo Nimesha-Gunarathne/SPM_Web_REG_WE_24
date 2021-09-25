@@ -6,10 +6,7 @@ import { APIURL } from "../../../components/API/environment";
 import Navbar from '../Employernavibar';
 import Daybar from '../DayBar';
 
-
 const UserID = localStorage.getItem("LocalUserID");
-
-
 
 class EmpHome extends Component {
 
@@ -33,9 +30,6 @@ class EmpHome extends Component {
 
         }
     }
-
-
-
 
     componentDidMount() {
 
@@ -137,12 +131,6 @@ class EmpHome extends Component {
                             </div>
                             {/*end row*/}
 
-
-
-
-
-
-
                             <h1 className="page-title">Top Vacancies</h1>
 
                             <div className="row justify-content-center" style={{ marginTop: "40px" }}>
@@ -181,25 +169,6 @@ class EmpHome extends Component {
                                 ))}
                             </div>
                             {/* <hr className="hr-dashed" style={{height:"20px"}}/> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                             <div className="row" style={{ marginTop: "40px" }}>
 
@@ -273,16 +242,6 @@ class EmpHome extends Component {
                                 ))}
 
                             </div>
-
-
-
-
-
-
-
-
-
-
 
                             <div className="row">
 
