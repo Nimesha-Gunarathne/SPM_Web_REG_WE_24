@@ -164,6 +164,7 @@ class Admin_Employer_Request_TopList extends Component {
 
                                 </tr>
                               ))}
+
                           </tbody>
                         </table>
                       </div>
