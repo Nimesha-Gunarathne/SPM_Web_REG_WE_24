@@ -153,21 +153,6 @@ class Admin_Employer_Request_List extends Component {
 
                                 </tr>
                               ))}
-
-
-
-                  
-
-
-
-
-
-
-
-
-
-
-
                           </tbody>
                         </table>
                       </div>

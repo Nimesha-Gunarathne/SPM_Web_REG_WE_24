@@ -39,9 +39,6 @@ const JobType= [
 
 ];
 
-
-
-
 class EmployerCreateJob extends Component {
 
     constructor(props) {
@@ -164,9 +161,6 @@ class EmployerCreateJob extends Component {
                                         <div className="card">
                                             <div className="card-header">
                                                 <h4 className="card-title">New Job</h4>
-                                                {/* <p class="text-muted mb-0">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each
-                                        textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.
-                                    </p> */}
                                             </div>
                                             {/*end card-header*/}
                                             <div className="card-body">
@@ -196,11 +190,6 @@ class EmployerCreateJob extends Component {
                                                         <div className="form-group row" style={{ marginTop: "40px" }}>
                                                             <label htmlFor="example-tel-input" className="col-sm-2 col-form-label text-right">Job Type</label>
                                                             <div className="col-sm-4">
-                                                                {/* <input className="form-control" type="text" placeholder="Job Category is..." id="example-tel-input"
-                                                                    name="job_category"
-                                                                    value={this.state.job_category}
-                                                                    onChange={this.onChange}
-                                                                    required /> */}
 
                                                                 <Select
                                                                     placeholder="Select Job Type"
@@ -210,11 +199,6 @@ class EmployerCreateJob extends Component {
                                                             </div>
                                                             <label htmlFor="example-tel-input" className="col-sm-2 col-form-label text-right">Job Category</label>
                                                             <div className="col-sm-4">
-                                                                {/* <input className="form-control" type="text" placeholder="Job Type is..."
-                                                                    name="job_type"
-                                                                    value={this.state.job_type}
-                                                                    onChange={this.onChange}
-                                                                    required /> */}
 
                                                                 <Select
                                                                     placeholder="Select Job Category"
