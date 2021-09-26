@@ -107,10 +107,7 @@ class StudentJobList extends Component {
                 <Navbar />
 
                 <div className="page-wrapper">
-                    {/* Top Bar Start */}
-
-                    {/* Top Bar End */}
-                    {/* Page Content*/}
+                  
                     <div className="page-content">
                         <div className="container-fluid">
                             {/* Page-Title */}
@@ -126,18 +123,17 @@ class StudentJobList extends Component {
                                                     <li className="breadcrumb-item active">Applicant Home</li>
                                                 </ol>
                                             </div>
-                                            {/*end col*/}
+                                           
                                             <Daybar />
-                                            {/*end col*/}
+                                           
                                         </div>
-                                        {/*end row*/}
+                                       
                                     </div>
-                                    {/*end page-title-box*/}
+                                   
                                 </div>
-                                {/*end col*/}
+                               
                             </div>
-                            {/*end row*/}
-                            {/* end page title end breadcrumb */}
+                           
                             <div className="row">
                                 <div className="col-lg-6">
                                     <ul className="list-inline">
@@ -146,7 +142,7 @@ class StudentJobList extends Component {
                                         </li>
                                     </ul>
                                 </div>
-                                {/*end col*/}
+                       
                                 <div className="col-lg-6 text-right">
                                     <div className="text-right">
                                         <ul className="list-inline">

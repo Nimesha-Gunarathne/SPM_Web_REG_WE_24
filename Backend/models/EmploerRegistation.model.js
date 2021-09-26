@@ -15,8 +15,6 @@ const EmployerSchema = new mongoose.Schema(
     accountStatus:{type: String, requried: true,trim: true},
 
     isActive: {type: Number,default: 3,},
-
-
   },
   {
     timestamps: true,

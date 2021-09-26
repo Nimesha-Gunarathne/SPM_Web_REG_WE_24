@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const JobsSchema = new mongoose.Schema(
   {
+	
     job_title: { type: String, trim: true, requried: true },
     job_description: { type: String, trim: true, requried: true },
     job_category: { type: String, trim: true, requried: true },
