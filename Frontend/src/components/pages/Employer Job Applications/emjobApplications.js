@@ -19,11 +19,14 @@ class EmjobApplications extends Component {
         this.onShortList = this.onShortList.bind(this);
         this.onReject = this.onReject.bind(this);
         this.viewFile = this.viewFile.bind(this);
+        this.onSearch = this.onSearch.bind(this);
+        this.onChange = this.onChange.bind(this);
         this.state = {
             Jobs: [],
             AppliedJobs: [],
             ApproveStatus: "Approved",
-            SProfile_status: "Student"
+            SProfile_status: "Student",
+            searchname:""
 
         }
     }
@@ -133,6 +136,25 @@ class EmjobApplications extends Component {
             })
     }
 
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
+        console.log("jobs", this.state.searchname)
+      }
+
+    onSearch(event) {
+        event.preventDefault();
+        const name = this.state.searchname;
+        console.log("name", name)
+    
+        axios.get(`${APIURL}/Applicant/searchJob/${name}`)
+    
+        .then(response => {
+
+            this.setState({ Jobs: response.data.data });
+            console.log("response ", response.data.data);
+        })
+    
+      }
     render() {
         return (
             <div>
@@ -164,6 +186,27 @@ class EmjobApplications extends Component {
                                             {/*end col*/}
                                         </div>
                                         {/*end row*/}
+                                        <div className="col-lg-6 text-right" style={{marginLeft:"600px"}}>
+                                            <div className="text-right">
+                                                <ul className="list-inline">
+                                                    <li className="list-inline-item">
+                                                        <div className="input-group">
+                                                            <input
+                                                                name="searchname"
+                                                                value={this.state.searchname}
+                                                                onChange={this.onChange}
+                                                                type="text" id="example-input1-group2" className="form-control form-control-sm" placeholder="Search Applicant Name" />
+
+                                                            <span className="input-group-append">
+                                                                <button type="button" className="btn btn-primary btn-sm" onClick={this.onSearch} ><i className="fas fa-search" /></button>
+                                                            </span>
+                                                        </div>
+                                                    </li>
+
+
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                     {/*end page-title-box*/}
                                 </div>
