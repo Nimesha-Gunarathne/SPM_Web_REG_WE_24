@@ -250,6 +250,25 @@ const JobsController = {
       });
     }
   },
+
+  SearchJobDetail: async (req, res) => {
+    console.log("req.params.id", req.params.id);
+
+    id = req.params.id;
+
+    console.log("id", id);
+
+    if (id) {
+      await Jobs
+        .find({ job_title: id })
+
+        .then((data) => {
+          res.status(200).send({ data: data });
+        });
+      console.log("S3");
+
+    }
+  },
 }
 
 module.exports = JobsController;

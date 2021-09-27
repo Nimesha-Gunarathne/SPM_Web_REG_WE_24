@@ -16,7 +16,8 @@ class StudentJobList extends Component {
     constructor(props) {
         super(props);
         this.applyJob = this.applyJob.bind(this);
-        this.search = this.search.bind(this);
+        this.onSearch = this.onSearch.bind(this);
+        this.onChange = this.onChange.bind(this);        
 
         var today = new Date(),
             date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
@@ -29,7 +30,8 @@ class StudentJobList extends Component {
             ApproveStatus: "Approved",
             SProfile_status: "Student",
             searchVal: "",
-            currentDate: date
+            currentDate: date,
+            searchname:""
 
         }
     }
@@ -94,12 +96,24 @@ class StudentJobList extends Component {
             })
     }
 
-    search(e, key) {
-
+    onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
-        console.log("this.state.searchVal is ", this.state.searchVal);
+        console.log("jobs", this.state.searchname)
+      }
 
-    }
+    onSearch(event) {
+        event.preventDefault();
+        const name = this.state.searchname;
+        console.log("name", name)
+    
+        axios.get(`${APIURL}/vacancy/Searchjob/${name}`)
+    
+        .then(response => {
+            this.setState({ Jobs: response.data.data });
+            console.log("All jobs response ", response.data.data);
+        })
+    
+      }
 
     render() {
         return (
@@ -144,13 +158,13 @@ class StudentJobList extends Component {
                                             <li className="list-inline-item">
                                                 <div className="input-group">
                                                     <input
-                                                        name="searchVal"
-                                                        value={this.state.searchVal}
-                                                        onChange={this.search}
-                                                        type="text" id="example-input1-group2" className="form-control form-control-sm" placeholder="Search" />
+                                                         name="searchname"
+                                                         value={this.state.searchname}
+                                                         onChange={this.onChange} 
+                                                        type="text" id="example-input1-group2" className="form-control form-control-sm" placeholder="Search Job Name" />
 
                                                     <span className="input-group-append">
-                                                        <button type="button" className="btn btn-primary btn-sm"><i className="fas fa-search" /></button>
+                                                        <button type="button" className="btn btn-primary btn-sm" onClick={this.onSearch} ><i className="fas fa-search" /></button>
                                                     </span>
                                                 </div>
                                             </li>

@@ -20,6 +20,7 @@ routes.get("/approvedApplication", ApplicantRoutes.getApproedAllApplications);
 routes.get("/rejectedApplication", ApplicantRoutes.getRejectedAllApplications);
 
 routes.delete("/deleteappliedJob/:id",ApplicantRoutes.DeleteByID);
+
 routes.get("/searchJob/:id",ApplicantRoutes.SearchJobDetail);
 
 
