@@ -13,6 +13,9 @@ class AdminViewVacancy extends Component {
   constructor(props) {
     super(props);
     this.onDelete = this.onDelete.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onSearch = this.onSearch.bind(this);
+
     this.state = {
       Jobs: [],
     }
@@ -43,6 +46,24 @@ class AdminViewVacancy extends Component {
       })
   }
 
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+    console.log("search", this.state.searchname)
+  }
+  onSearch(event) {
+    event.preventDefault();
+    const name = this.state.searchname;
+    console.log("name", name)
+
+    axios.get(`${APIURL}/vacancy/Searchjob/${name}`)
+
+    .then(response => {
+      console.log(" All jobs ", response.data.data);
+      this.setState({ Jobs: response.data.data });
+    })
+
+  }
+
   render() {
     return (
       <div>
@@ -65,9 +86,31 @@ class AdminViewVacancy extends Component {
                       </div>
                       {/*end col*/}
                       <Daybar />
+                      
                       {/*end col*/}
                     </div>
                     {/*end row*/}
+                    <div className="col-lg-6 text-right" style={{marginLeft:"600px"}}>
+                                    <div className="text-right">
+                                        <ul className="list-inline">
+                                            <li className="list-inline-item">
+                                                <div className="input-group">
+                                                    <input
+                                                         name="searchname"
+                                                         value={this.state.searchname}
+                                                         onChange={this.onChange} 
+                                                        type="text" id="example-input1-group2" className="form-control form-control-sm" placeholder="Search Vacancy Name" />
+
+                                                    <span className="input-group-append">
+                                                        <button type="button" className="btn btn-primary btn-sm" onClick={this.onSearch} ><i className="fas fa-search" /></button>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                         
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
                   </div>
                   {/*end page-title-box*/}
                 </div>
