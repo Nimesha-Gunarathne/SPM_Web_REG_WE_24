@@ -244,6 +244,26 @@ const ApplicantAppliedJobsControllers = {
       });
   },
 
+  SearchJobDetail: async (req, res) => {
+    console.log("req.params.id", req.params.id);
+
+    id = req.params.id;
+
+    console.log("id", id);
+
+    if (id) {
+      await applicantAppliedJobsModel
+        .find({ Applicant_Name: id })
+
+        .then((data) => {
+          res.status(200).send({ data: data });
+        });
+      console.log("S3");
+
+    }
+  },
+
+
 
   viewPDF: async (req, res) => {
     console.log(req.params.id);

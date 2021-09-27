@@ -50,8 +50,6 @@ class EmployerCreateJob extends Component {
         this.onReOpen = this.onReOpen.bind(this);
         this.onDelete = this.onDelete.bind(this);
 
-
-
     }
 
     onDelete() {
@@ -404,10 +402,6 @@ class EmployerCreateJob extends Component {
 
                                                         </>
                                                     )}
-
-
-                                                    {/* <button className="btn btn-outline-warning waves-effect waves-light float-left" style={{ marginLeft: "300px" }} >Close/ReOpen Vacancy</button> */}
-
 
                                                 </div>
                                             </div>

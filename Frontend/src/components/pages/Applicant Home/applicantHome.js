@@ -123,15 +123,10 @@ class StudentJobList extends Component {
                                                     <li className="breadcrumb-item active">Applicant Home</li>
                                                 </ol>
                                             </div>
-                                           
                                             <Daybar />
-                                           
                                         </div>
-                                       
                                     </div>
-                                   
                                 </div>
-                               
                             </div>
                            
                             <div className="row">
@@ -148,15 +143,11 @@ class StudentJobList extends Component {
                                         <ul className="list-inline">
                                             <li className="list-inline-item">
                                                 <div className="input-group">
-
-
                                                     <input
                                                         name="searchVal"
                                                         value={this.state.searchVal}
                                                         onChange={this.search}
                                                         type="text" id="example-input1-group2" className="form-control form-control-sm" placeholder="Search" />
-
-
 
                                                     <span className="input-group-append">
                                                         <button type="button" className="btn btn-primary btn-sm"><i className="fas fa-search" /></button>
@@ -168,15 +159,8 @@ class StudentJobList extends Component {
                                         </ul>
                                     </div>
                                 </div>
-                                {/*end col*/}
+                 
                             </div>
-                            {/*end row*/}
-
-
-
-
-
-
 
                             <h1 className="page-title">Top Vacancies</h1>
 
@@ -215,26 +199,6 @@ class StudentJobList extends Component {
 
                                 ))}
                             </div>
-                            {/* <hr className="hr-dashed" style={{height:"20px"}}/> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                             <div className="row" style={{ marginTop: "40px" }}>
 
@@ -321,34 +285,18 @@ class StudentJobList extends Component {
 
                             </div>
 
-
-
-
-
-
-
-
-
-
-
-                            <div className="row">
-
-                                {/*end col*/}
-
-                                {/*end col*/}
-
-                                {/*end col*/}
+                            <div className="row">              
                             </div>
                             {/*end row*/}
                         </div>{/* container */}
                         <footer className="footer text-center text-sm-left">
                             © 2021
                         </footer>
-                        {/*end footer*/}
+     
                     </div>
-                    {/* end page content */}
+
                 </div>
-                {/* end page-wrapper */}
+                
             </div>
         );
     }
