@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../API/environment";

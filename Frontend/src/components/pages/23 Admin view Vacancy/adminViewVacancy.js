@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
 import { APIURL } from "../../API/environment";
 import { toast } from "react-toastify";
@@ -21,22 +20,22 @@ class AdminViewVacancy extends Component {
     }
   }
 
-  onDelete(e,jobID) {
+  onDelete(e, jobID) {
     axios
-        .delete(`${APIURL}/vacancy/deletejob/${jobID}`)
-        .then((res) => {
-            console.log("res", res);
-            if (res.data.code === 200) {
-                console.log("res.data.code", res.data.code);
-                toast.success("Vacancy is Deleted Successfully!");
-                window.setTimeout(function () {
-                    window.location.reload();
-                }, 2500);
-            } else {
-                toast.error(res.data.message);
-            }
-        });
-}
+      .delete(`${APIURL}/vacancy/deletejob/${jobID}`)
+      .then((res) => {
+        console.log("res", res);
+        if (res.data.code === 200) {
+          console.log("res.data.code", res.data.code);
+          toast.success("Vacancy is Deleted Successfully!");
+          window.setTimeout(function () {
+            window.location.reload();
+          }, 2500);
+        } else {
+          toast.error(res.data.message);
+        }
+      });
+  }
 
   componentDidMount() {
     axios.get(`${APIURL}/vacancy/getAllJobs/`)
@@ -57,10 +56,10 @@ class AdminViewVacancy extends Component {
 
     axios.get(`${APIURL}/vacancy/Searchjob/${name}`)
 
-    .then(response => {
-      console.log(" All jobs ", response.data.data);
-      this.setState({ Jobs: response.data.data });
-    })
+      .then(response => {
+        console.log(" All jobs ", response.data.data);
+        this.setState({ Jobs: response.data.data });
+      })
 
   }
 
@@ -86,31 +85,31 @@ class AdminViewVacancy extends Component {
                       </div>
                       {/*end col*/}
                       <Daybar />
-                      
+
                       {/*end col*/}
                     </div>
                     {/*end row*/}
-                    <div className="col-lg-6 text-right" style={{marginLeft:"600px"}}>
-                                    <div className="text-right">
-                                        <ul className="list-inline">
-                                            <li className="list-inline-item">
-                                                <div className="input-group">
-                                                    <input
-                                                         name="searchname"
-                                                         value={this.state.searchname}
-                                                         onChange={this.onChange} 
-                                                        type="text" id="example-input1-group2" className="form-control form-control-sm" placeholder="Search Vacancy Name" />
+                    <div className="col-lg-6 text-right" style={{ marginLeft: "600px" }}>
+                      <div className="text-right">
+                        <ul className="list-inline">
+                          <li className="list-inline-item">
+                            <div className="input-group">
+                              <input
+                                name="searchname"
+                                value={this.state.searchname}
+                                onChange={this.onChange}
+                                type="text" id="example-input1-group2" className="form-control form-control-sm" placeholder="Search Vacancy Name" />
 
-                                                    <span className="input-group-append">
-                                                        <button type="button" className="btn btn-primary btn-sm" onClick={this.onSearch} ><i className="fas fa-search" /></button>
-                                                    </span>
-                                                </div>
-                                            </li>
-                                         
-                                            
-                                        </ul>
-                                    </div>
-                                </div>
+                              <span className="input-group-append">
+                                <button type="button" className="btn btn-primary btn-sm" onClick={this.onSearch} ><i className="fas fa-search" /></button>
+                              </span>
+                            </div>
+                          </li>
+
+
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                   {/*end page-title-box*/}
                 </div>
@@ -161,8 +160,8 @@ class AdminViewVacancy extends Component {
                                   </div>
                                 </td>
                                 <td>
-                                  <button type="button" className="btn btn-danger waves-effect waves-light" style={{marginLeft:"40px"}}
-                                  onClick={e => this.onDelete(e, item._id)}>Remove</button>
+                                  <button type="button" className="btn btn-danger waves-effect waves-light" style={{ marginLeft: "40px" }}
+                                    onClick={e => this.onDelete(e, item._id)}>Remove</button>
                                 </td>
                               </tr>
                             ))}
@@ -189,8 +188,6 @@ class AdminViewVacancy extends Component {
           {/* end page content */}
         </div>
         {/* end page-wrapper */}
-        {/* jQuery  */}
-        {/* App js */}
       </div>
     );
   }

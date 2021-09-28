@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
-import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Navbar from '../Adminnavibar';
 import Daybar from '../DayBar';
@@ -58,7 +56,6 @@ class EmpHome extends Component {
         return (
             <div>
                 <Navbar />
-
                 <div className="page-wrapper">
                     <div className="page-content">
                         <div className="container-fluid">
@@ -98,7 +95,6 @@ class EmpHome extends Component {
                                                         value={this.state.searchVal}
                                                         onChange={this.search}
                                                         type="text" id="example-input1-group2" className="form-control form-control-sm" placeholder="Search" />
-
                                                     <span className="input-group-append">
                                                         <button type="button" className="btn btn-primary btn-sm"><i className="fas fa-search" /></button>
                                                     </span>
@@ -125,10 +121,8 @@ class EmpHome extends Component {
                                                         <h3 className="my-2"></h3>
                                                         <p className="mb-0 text-truncate text-muted">
                                                             <span className="text-success">
-
                                                                 Closing Date
                                                             </span>
-
                                                         </p>
                                                         {item.closing_date}
                                                     </div>
@@ -180,10 +174,8 @@ class EmpHome extends Component {
                                                 <div className="button-items">
                                                     {item.isOpen == 1 && (
                                                         <>
-
                                                             <button className="btn btn-danger waves-effect waves-light btn-block" disabled
                                                             >Closed</button>
-
                                                         </>
                                                     )}
 
@@ -191,23 +183,20 @@ class EmpHome extends Component {
                                                         <>
                                                             <button className="btn btn-success waves-effect waves-light btn-block" disabled
                                                             >Open</button>
-
                                                         </>
                                                     )}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 ))}
-
                             </div>
 
                             <div className="row">
                             </div>
                         </div>
                         <footer className="footer text-center text-sm-left">
-                            © 2021
+                            © 2021 JobBank
                         </footer>
                     </div>
                 </div>

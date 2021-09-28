@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
 import { APIURL } from "../../API/environment";
 import { toast } from "react-toastify";
@@ -12,17 +11,14 @@ class adminViewApplicant extends Component {
     super(props);
     this.onDelete = this.onDelete.bind(this);
     this.onInfo = this.onInfo.bind(this);
-
     this.state = {
       Jobs: [],
     }
   }
 
   onInfo(e, ApplicantID) {
-
     localStorage.removeItem("GetAppliedJobsADMIN");
-    localStorage.setItem("GetAppliedJobsADMIN",ApplicantID)
-
+    localStorage.setItem("GetAppliedJobsADMIN", ApplicantID)
     window.location = "/AdminViewApplicantInfo"
   }
 
@@ -33,7 +29,7 @@ class adminViewApplicant extends Component {
         console.log("res", res);
         if (res.data.code === 200) {
           console.log("res.data.code", res.data.code);
-          toast.success("Applicant is Deleted!");
+          toast.error("Applicant is Deleted!");
           window.setTimeout(function () {
             window.location.reload();
           }, 2500);
@@ -42,7 +38,6 @@ class adminViewApplicant extends Component {
         }
       });
   }
-
 
   componentDidMount() {
     axios.get(`${APIURL}/applicantReg/getAllApplicant`)
@@ -126,8 +121,7 @@ class adminViewApplicant extends Component {
                       </span>
                     </div>
                   </div>
-            
-                </div> 
+                </div>
               </div>
             </div>
             <footer className="footer text-center text-sm-left">

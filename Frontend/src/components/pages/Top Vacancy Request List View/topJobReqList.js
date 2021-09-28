@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../API/environment";
@@ -32,7 +31,6 @@ class Admin_Employer_Request_TopList extends Component {
 
           toast.error("TopList is Deleted!");
 
-
           window.setTimeout(function () {
             window.location.reload();
           }, 1500);
@@ -63,9 +61,7 @@ class Admin_Employer_Request_TopList extends Component {
           }, 1500);
         } else {
           toast.error(res.data.message);
-
         }
-
       });
   }
 
@@ -108,7 +104,6 @@ class Admin_Employer_Request_TopList extends Component {
                 <div className="col-lg-12 col-sm-12">
                   <div className="card" style={{ marginTop: "40px" }}>
                     <div className="card-header">
-
                     </div>
                     {/*end card-header*/}
                     <div className="card-body table-responsive">
@@ -127,8 +122,7 @@ class Admin_Employer_Request_TopList extends Component {
                               <th>Vacancy Name</th>
                               <th>Vacancy Details</th>
                               <th>Company Name</th>
-                              <th>Claosing Date</th>
-
+                              <th>Closing Date</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -176,10 +170,8 @@ class Admin_Employer_Request_TopList extends Component {
             {/* container */}
             <footer className="footer text-center text-sm-left">             
             </footer>
-          </div>
-      
+          </div>      
         </div>
-
       </div>
     );
   }

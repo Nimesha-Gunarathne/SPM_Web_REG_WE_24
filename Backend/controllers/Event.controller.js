@@ -150,6 +150,35 @@ const JobsController = {
         });
       }
     },
+
+    DeleteByID: async (req, res) => {
+      try {
+        if (req.params && req.params.id) {
+          console.log("Stage 01");
+          const {
+            isOpen
+  
+          } = req.body;
+  
+          const Job = await Event.findByIdAndDelete(req.params.id);
+  
+          return res.status(200).json({
+            code: messages.SuccessCode,
+            success: messages.Success,
+            status: messages.SuccessStatus,
+            data: Job,
+            message: "Event is deleted!",
+          });
+        }
+      } catch (err) {
+        return res.status(500).json({
+          code: messages.InternalCode,
+          success: messages.NotSuccess,
+          status: messages.InternalStatus,
+          message: err.message,
+        });
+      }
+    },
 }
 
 module.exports = JobsController;

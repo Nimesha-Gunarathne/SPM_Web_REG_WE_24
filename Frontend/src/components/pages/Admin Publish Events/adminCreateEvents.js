@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Select from "react-select";
 import Navbar from '../Adminnavibar';
-import Daybar from '../DayBar';
 
 const initialState = {
     eventTitle: "",
@@ -23,7 +21,6 @@ const EventTypes = [
     { value: "Conferences", label: "Conferences" },
     { value: "A seminar ", label: "A seminar " },
     { value: "Networking sessions", label: "Networking sessions" },
-
 ];
 
 class AdminCreateEvent extends Component {
@@ -34,7 +31,6 @@ class AdminCreateEvent extends Component {
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onEventTypesOptionSelected = this.onEventTypesOptionSelected.bind(this);
-
     }
 
     onChange(e) {
@@ -60,7 +56,6 @@ class AdminCreateEvent extends Component {
         };
 
         console.log("Event Details : ", EventDetails);
-
         axios
             .post(`${APIURL}/Events/create-event`, EventDetails)
             .then((res) => {
@@ -68,7 +63,6 @@ class AdminCreateEvent extends Component {
                 if (res.data.code === 200) {
                     console.log("res.data.code", res.data.code);
                     alert(res.data.message);
-
                     window.location.reload();
 
                 } else {
@@ -84,7 +78,7 @@ class AdminCreateEvent extends Component {
         return (
             <>
                 <div>
-                    <Navbar/>
+                    <Navbar />
                     <div className="page-wrapper">
                         <div className="topbar">
 
@@ -104,17 +98,17 @@ class AdminCreateEvent extends Component {
                                                         <li className="breadcrumb-item active">New Event</li>
                                                     </ol>
                                                 </div>
-                                            </div>    
-                                        </div>                   
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                         
+
                                 <div className="row" style={{ marginTop: "60px" }}>
                                     <div className="col-lg-12">
                                         <div className="card">
                                             <div className="card-header">
                                                 <h4 className="card-title">New Event</h4>
-                                                
+
                                             </div>
                                             <div className="card-body">
                                                 <div className="row">
@@ -144,7 +138,7 @@ class AdminCreateEvent extends Component {
                                                         <div className="form-group row" style={{ marginTop: "40px" }}>
                                                             <label htmlFor="example-email-input" className="col-sm-2 col-form-label text-right">Short Description</label>
                                                             <div className="col-sm-10">
-                                                                <textarea id="textarea" className="form-control" maxLength={225} rows={3} placeholder="This textarea has a limit of 225 chars."
+                                                                <textarea id="textarea" className="form-control" maxLength={225} rows={3} placeholder="Enter event description here.."
                                                                     name="shortDescription"
                                                                     value={this.state.shortDescription}
                                                                     onChange={this.onChange} />
@@ -168,9 +162,8 @@ class AdminCreateEvent extends Component {
                                                             <label htmlFor="example-tel-input" className="col-sm-2 col-form-label text-right">Event Type</label>
                                                             <div className="col-sm-4">
 
-
                                                                 <Select
-                                                                    placeholder="Select Job Category"
+                                                                    placeholder="Select Event Type"
                                                                     options={EventTypes}
                                                                     onChange={this.onEventTypesOptionSelected}
                                                                 />
@@ -206,7 +199,7 @@ class AdminCreateEvent extends Component {
                                                 </div>
                                                 <div className="button-items">
                                                     <button className="btn btn-outline-success waves-effect waves-light float-right" onClick={this.onSubmit}>Create</button>
-                                                    <a href="emp-job-list.html" type="button" className="btn btn-outline-warning waves-effect float-left">Cancel</a>
+                                                    <a href="#" type="button" className="btn btn-outline-warning waves-effect float-left">Cancel</a>
                                                 </div>
                                             </div>
                                         </div>
