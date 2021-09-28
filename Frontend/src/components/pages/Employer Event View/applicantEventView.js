@@ -1,16 +1,10 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
-import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Navbar from '../Employernavibar';
 import Daybar from '../DayBar';
 
-
-
 const UserID = localStorage.getItem("LocalUserID");
-
-
 
 class ApplicantEventView extends Component {
 
@@ -22,25 +16,17 @@ class ApplicantEventView extends Component {
             AppliedJobs: [],
             ApproveStatus: "Approved",
             SProfile_status: "Student"
-
         }
     }
 
     componentDidMount() {
-
-
         axios.get(`${APIURL}/Events/getAllEvents`)
-
             .then(response => {
 
                 this.setState({ Jobs: response.data.data });
 
                 console.log("response ", response.data.data);
-
-
             })
-
-
     }
 
     render() {
@@ -49,13 +35,11 @@ class ApplicantEventView extends Component {
                 <Navbar />
                 <div className="page-wrapper">
                     {/* Top Bar Start */}
-
                     {/* Top Bar End */}
                     {/* Page Content*/}
                     <div className="page-content">
                         <div className="container-fluid">
                             {/* Page-Title */}
-                     
                             <div className="row">
                                 <div className="col-sm-12">
                                     <div className="page-title-box">
@@ -64,12 +48,11 @@ class ApplicantEventView extends Component {
                                                 <h4 className="page-title">Events</h4>
                                                 <ol className="breadcrumb">
                                                     <li className="breadcrumb-item"><a href="javascript:void(0);">Job Bank</a></li>
-                                                    {/* <li class="breadcrumb-item"><a href="javascript:void(0);">Projects</a></li> */}
-                                                    <li className="breadcrumb-item active">events list</li>
+                                                    <li className="breadcrumb-item active">Events List</li>
                                                 </ol>
                                             </div>
                                             {/*end col*/}
-                                            <Daybar/>
+                                            <Daybar />
                                             {/*end col*/}
                                         </div>
                                         {/*end row*/}
@@ -86,22 +69,13 @@ class ApplicantEventView extends Component {
                                 <div className="col-lg-6 text-right">
                                     <div className="text-right">
                                         <ul className="list-inline">
-                                       
+
                                         </ul>
                                     </div>
                                 </div>
                                 {/*end col*/}
                             </div>
                             {/*end row*/}
-
-
-
-
-
-
-
-                            {/* <div className="row"> */}
-
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
                                 <div className="row">
                                     <div className="col-lg-4" key={index} >
@@ -111,8 +85,6 @@ class ApplicantEventView extends Component {
                                                     <img src="assets/images/widgets/project2.jpg" alt="" className="thumb-md rounded-circle" />
                                                     <div className="media-body align-self-center text-truncate ml-3">
                                                         <h4 className="m-0 font-weight-semibold text-dark font-16">{item.eventTitle}</h4>
-
-                                                        
                                                     </div>
                                                     {/*end media-body*/}
                                                 </div>
@@ -134,12 +106,9 @@ class ApplicantEventView extends Component {
                                                     <p className="text-muted mt-4 mb-1">
                                                         {item.shortDescription}
                                                     </p>
-
                                                 </div>
-
                                                 {/*end task-box*/}
                                                 <br />
-                                    
                                             </div>
                                             {/*end card-body*/}
                                         </div>
@@ -147,7 +116,6 @@ class ApplicantEventView extends Component {
                                     </div>
                                 </div>
                             ))}
-
                             <div className="row">
 
                                 {/*end col*/}

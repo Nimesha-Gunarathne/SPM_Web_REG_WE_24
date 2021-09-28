@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import Navbar from '../Employernavibar';
-import Daybar from '../DayBar';
 import axios from "axios";
 import { APIURL } from "../../API/environment";
 import { toast } from "react-toastify";
+import Daybar from '../DayBar';
 
 const initialState = {
   ID: "",
@@ -51,9 +50,6 @@ class EmployerDashboard extends Component {
         if (res.data.code === 200) {
           console.log("res.data.code", res.data.code);
           toast.success("Your TopList Request Added!");
-          // window.setTimeout(function () {
-          //   window.location.reload();
-          // }, 1000);
         } else {
           toast.error(res.data.message);
 
@@ -82,10 +78,6 @@ class EmployerDashboard extends Component {
         this.setState({ mobile: this.state.employer.mobileNumber });
         this.setState({ weblink: this.state.employer.weblink });
         this.setState({ ID: this.state.employer._id });
-
-
-
-
       })
   }
 
@@ -109,6 +101,9 @@ class EmployerDashboard extends Component {
                           </ol>
                         </div>
                       </div>
+                      <div style={{ marginLeft: "1130px" }}>
+                        <Daybar />
+                      </div>
                       {/*end row*/}
                     </div>
                     {/*end page-title-box*/}
@@ -123,10 +118,8 @@ class EmployerDashboard extends Component {
                           <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} />
                           <div className="mt-3">
                             <h4>{this.state.EmpName}</h4>
-                            <p className="text-secondary mb-1"> Employer</p>
-                            <p className="text-muted font-size-sm">Full Stack Developer</p>
-                            {/* <button class="btn btn-primary">Follow</button>
-                            <button class="btn btn-outline-primary">Message</button> */}
+                            <p className="text-secondary mb-1"> {this.state.weblink}</p>
+                            <p className="text-muted font-size-sm">{this.state.des}</p>
                           </div>
                         </div>
                       </div>
@@ -174,7 +167,7 @@ class EmployerDashboard extends Component {
                         <hr />
                         <div className="row">
                           <div className="col-sm-3">
-                            <h6 className="mb-0">Discription</h6>
+                            <h6 className="mb-0">Description</h6>
                           </div>
                           <div className="col-sm-9 text-secondary">
                             {this.state.des}
@@ -183,7 +176,7 @@ class EmployerDashboard extends Component {
                         <hr />
                         <div className="row">
                           <div className="col-sm-3">
-                            <h6 className="mb-0">Web Lisnk</h6>
+                            <h6 className="mb-0">Web Link</h6>
                           </div>
                           <div className="col-sm-9 text-secondary">
                             {this.state.weblink}
@@ -200,21 +193,16 @@ class EmployerDashboard extends Component {
                         </div>
                         <hr />
                         <a href="emp-job-list.html" type="button" className="btn btn-outline-success waves-effect float-left" style={{ marginLeft: "280px" }}
-                          onClick={this.onRequestTopList}>Request TopList</a>
-                        {/* <div class="row">
-                          <div class="col-sm-12">
-                            <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
-                          </div>
-                        </div> */}
+                          onClick={this.onRequestTopList}>Request Top List</a>
                       </div>
                     </div>
-
+                    <br></br>
+                    <br></br>
                   </div>
                   <a href="/OpenVacanciesList" type="button" className="btn btn-outline-primary waves-effect float-left" style={{ marginLeft: "280px" }}
-                   >Open Vacancies</a>
+                  >Open Vacancies</a>
                   <a href="/CloseVacanciesList" type="button" className="btn btn-outline-danger waves-effect float-left" style={{ marginLeft: "280px" }}
-                    >Closed Vacancies</a>
-               
+                  >Closed Vacancies</a>
                 </div>
               </div>{/* container */}
               <footer className="footer text-center text-sm-left">

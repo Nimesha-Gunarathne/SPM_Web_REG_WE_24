@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
 import { APIURL } from "../../API/environment";
-import { toast } from "react-toastify";
 import Navbar from '../Employernavibar';
 import Daybar from '../DayBar';
 
 
 const EmployerID = localStorage.getItem("LocalEmployerID");
-// const UserID = "60f9393bf9010e001577b6ea";
 
 class EmployerCreatedJobList extends Component {
 
@@ -58,7 +55,6 @@ class EmployerCreatedJobList extends Component {
           {/* Top Bar Start */}
           <div className="topbar">
             {/* Navbar */}
-
             {/* end navbar*/}
           </div>
           {/* Top Bar End */}
@@ -71,11 +67,11 @@ class EmployerCreatedJobList extends Component {
                   <div className="page-title-box">
                     <div className="row">
                       <div className="col">
-                        <h4 className="page-title">Apply Jobs</h4>
+                        <h4 className="page-title">All Vacancies</h4>
                         <ol className="breadcrumb">
                           <li className="breadcrumb-item"><a href="javascript:void(0);">JobBank</a></li>
-                          {/* <li class="breadcrumb-item"><a href="javascript:void(0);">pages</a></li> */}
-                          <li className="breadcrumb-item active">Apply Jobs</li>
+                          <li className="breadcrumb-item"><a href="javascript:void(0);">Vacancies</a></li>
+                          <li className="breadcrumb-item active">All Vacancies</li>
                         </ol>
                       </div>
                       {/*end col*/}
@@ -94,21 +90,17 @@ class EmployerCreatedJobList extends Component {
                 <div className="col-12">
                   <div className="card">
                     <div className="card-header">
-                      {/* <h4 class="card-title">Job Requests</h4>
-                                <p class="text-muted mb-0">Add toolbar column with edit and delete buttons.</p> */}
                     </div>
                     {/*end card-header*/}
                     <div className="card-body">
-                      {/* <button class="btn  btn-primary mb-3" id="submit_data">Submit</button> */}
                       <div className="table-responsive">
                         <table className="table  table-bordered">
                           <thead>
                             <tr>
-                              <th>Job</th>
+                              <th>Vacancy</th>
                               <th>Description</th>
                               <th>Deadline</th>
                               <th className="text-center">Controllers</th>
-                              {/* <th></th> */}
                             </tr>
                           </thead>
                           <tbody>
@@ -119,8 +111,6 @@ class EmployerCreatedJobList extends Component {
                                 <td>{item.closing_date}</td>
                                 <td className="text-center">
                                   <div className="button-items">
-
-
                                     <button type="button" className="btn btn-warning waves-effect waves-light"
                                       onClick={e => this.navigateWithID(e, item._id)}>Edit</button>
 
@@ -135,22 +125,18 @@ class EmployerCreatedJobList extends Component {
 
                                     {item.IsApprove == 1 && (
                                       <>
-
                                         <span className=" badge badge-soft-success">Selected</span>
-
                                       </>
                                     )}
                                   </div>
                                 </td>
                               </tr>
-
                             ))}
 
                           </tbody>
                         </table>
                       </div>
                       <span className="float-right">
-                        {/* <button id="but_add" class="btn btn-danger">Add New Row</button> */}
                       </span>
                       {/*end table*/}
                     </div>
@@ -162,8 +148,6 @@ class EmployerCreatedJobList extends Component {
               {/* end row */}
             </div>{/* container */}
             <footer className="footer text-center text-sm-left">
-              {/* &copy; 2020 Dastyle <span class="d-none d-sm-inline-block float-right">Crafted with <i
-                        class="mdi mdi-heart text-danger"></i> by Mannatthemes</span> */}
             </footer>
             {/*end footer*/}
           </div>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
@@ -7,10 +6,8 @@ import Select from "react-select";
 import Navbar from '../Employernavibar';
 import Daybar from '../DayBar';
 
-
-
-const EID =localStorage.getItem("LocalEmployerID")
-const EName =localStorage.getItem("LocalEmployerName")
+const EID = localStorage.getItem("LocalEmployerID")
+const EName = localStorage.getItem("LocalEmployerName")
 
 
 const initialState = {
@@ -30,7 +27,7 @@ const JobCategoryies = [
 
 ];
 
-const JobType= [
+const JobType = [
     { value: "Human Resources Managment", label: "Human Resources Managment" },
     { value: "Information Technology", label: "Information Technology" },
     { value: "Accounting and Finance", label: "Accounting and Finance" },
@@ -58,57 +55,57 @@ class EmployerCreateJob extends Component {
 
     onJobCategoryiesOptionSelected(e) {
         this.state.job_category = e.label;
-      }
-      onJobTypeOptionSelected(e) {
+    }
+    onJobTypeOptionSelected(e) {
         this.state.job_type = e.label;
-      }
+    }
 
     onSubmit(event) {
         event.preventDefault();
 
-		var todayDate = new Date();
+        var todayDate = new Date();
         var dd = String(todayDate.getDate()).padStart(2, '0');
         var mm = String(todayDate.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = todayDate.getFullYear();
 
         todayDate = yyyy + '/' + mm + '/' + dd;
 
-        var date2Updated = this.state.closing_date.substr(0,10).replace(/-/g,'/');
-		
-		if (this.state.job_type != '' && this.state.job_category != '') {
-			if (todayDate < date2Updated) {
-				let JobDetails = {
-					job_title: this.state.job_title,
-					job_description: this.state.job_description,
-					job_category: this.state.job_category,
-					job_type: this.state.job_type,
-					closing_date: this.state.closing_date,
-					employerID: this.state.employerID,
-					employerName: this.state.employerName,
-					isOpen:0
-				};
+        var date2Updated = this.state.closing_date.substr(0, 10).replace(/-/g, '/');
 
-				console.log("Job Details : ", JobDetails);
+        if (this.state.job_type != '' && this.state.job_category != '') {
+            if (todayDate < date2Updated) {
+                let JobDetails = {
+                    job_title: this.state.job_title,
+                    job_description: this.state.job_description,
+                    job_category: this.state.job_category,
+                    job_type: this.state.job_type,
+                    closing_date: this.state.closing_date,
+                    employerID: this.state.employerID,
+                    employerName: this.state.employerName,
+                    isOpen: 0
+                };
 
-				axios
-					.post(`${APIURL}/vacancy/create-jobs`, JobDetails)
-					.then((res) => {
-						console.log("res", res);
-						if (res.data.code === 200) {
-							console.log("res.data.code", res.data.code);
-							toast.success(res.data.message);
+                console.log("Job Details : ", JobDetails);
 
-							window.setTimeout(function () {
-								window.location.reload()
-							}, 1500);
+                axios
+                    .post(`${APIURL}/vacancy/create-jobs`, JobDetails)
+                    .then((res) => {
+                        console.log("res", res);
+                        if (res.data.code === 200) {
+                            console.log("res.data.code", res.data.code);
+                            toast.success(res.data.message);
 
-						} else {
-							toast.error(res.data.message);
+                            window.setTimeout(function () {
+                                window.location.reload()
+                            }, 1500);
 
-						}
-					});
-			}
-			else{
+                        } else {
+                            toast.error(res.data.message);
+
+                        }
+                    });
+            }
+            else {
                 alert("Please enter a future date as the closing date.")
             }
         }
@@ -122,7 +119,7 @@ class EmployerCreateJob extends Component {
         return (
             <>
                 <div>
-                   <Navbar/>
+                    <Navbar />
                     <div className="page-wrapper">
                         {/* Top Bar Start */}
                         <div className="topbar">
@@ -142,11 +139,15 @@ class EmployerCreateJob extends Component {
                                                     <h4 className="page-title">Add New Vacancy</h4>
                                                     <ol className="breadcrumb">
                                                         <li className="breadcrumb-item"><a href="javascript:void(0);">Job Bank</a></li>
-                                                        <li className="breadcrumb-item"><a href="javascript:void(0);">Jobs</a></li>
-                                                        <li className="breadcrumb-item active">New Jobs</li>
+                                                        <li className="breadcrumb-item"><a href="javascript:void(0);">Vacancies</a></li>
+                                                        <li className="breadcrumb-item active">New Vacancy</li>
                                                     </ol>
                                                 </div>
-
+                                                {/*end col*/}
+                                                <div style={{marginLeft:"810px" }}>
+                                                <Daybar />
+                                                </div>
+                                                {/*end col*/}
                                             </div>
                                             {/*end row*/}
                                         </div>
@@ -156,11 +157,11 @@ class EmployerCreateJob extends Component {
                                 </div>
                                 {/*end row*/}
                                 {/* end page title end breadcrumb */}
-                                <div className="row" style={{ marginTop: "60px" }}>
+                                <div className="row" style={{ marginTop: "60px"}}>
                                     <div className="col-lg-12">
                                         <div className="card">
                                             <div className="card-header">
-                                                <h4 className="card-title">New Job</h4>
+                                                <h4 className="card-title">New Vacancy</h4>
                                             </div>
                                             {/*end card-header*/}
                                             <div className="card-body">
@@ -183,7 +184,7 @@ class EmployerCreateJob extends Component {
                                                                     name="job_description"
                                                                     value={this.state.job_description}
                                                                     onChange={this.onChange}
-																	required />
+                                                                    required />
 
                                                             </div>
                                                         </div>
@@ -226,7 +227,7 @@ class EmployerCreateJob extends Component {
                                                 </div>
                                                 <div className="button-items">
                                                     <button className="btn btn-outline-success waves-effect waves-light float-right" onClick={this.onSubmit}>Create</button>
-                                                    <a href="emp-job-list.html" type="button" className="btn btn-outline-warning waves-effect float-left">Cancel</a>
+                                                    <a href="/employerCreateJob" type="button" className="btn btn-outline-warning waves-effect float-left">Cancel</a>
                                                 </div>
                                             </div>
                                             {/*end card-body*/}

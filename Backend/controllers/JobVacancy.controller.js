@@ -61,6 +61,7 @@ const JobsController = {
     }
   },
 
+  /**Retrive all jobs in the db */
   getAllJobs: async (req, res) => {
     await Jobs.find()
       .then((data) => {
@@ -78,6 +79,7 @@ const JobsController = {
       });
   },
 
+  /**Retrive job details in the db to the given job id*/
   getJobDetailsByJobId: async (req, res) => {
     try {
       if (req.params && req.params.id) {
@@ -98,9 +100,10 @@ const JobsController = {
         status: messages.InternalStatus,
         message: err.message,
       });
-    } 
+    }
   },
 
+  /**Retrive all jobs in the db for the given user*/
   getJobDetailsByEmployerId: async (req, res) => {
     try {
       if (req.params && req.params.id) {
@@ -124,6 +127,7 @@ const JobsController = {
     }
   },
 
+    /**Update job details for the given job */
   UpdateJobsDetailsByJobID: async (req, res) => {
     try {
       if (req.params && req.params.id) {
@@ -165,6 +169,7 @@ const JobsController = {
     }
   },
 
+    /**Re Open a given job*/
   ReopenrouteByJobID: async (req, res) => {
     try {
       if (req.params && req.params.id) {
@@ -198,7 +203,9 @@ const JobsController = {
     }
   },
 
-
+  /**
+   * Deletes a job
+   */
   DeleteByID: async (req, res) => {
     try {
       if (req.params && req.params.id) {
@@ -228,6 +235,9 @@ const JobsController = {
     }
   },
 
+  /**
+   * Retrive job details by the given name
+   */
   getJobDetailsByJobName: async (req, res) => {
     try {
       if (req.params && req.params.id) {
@@ -251,6 +261,7 @@ const JobsController = {
     }
   },
 
+    /**Search for the job name*/
   SearchJobDetail: async (req, res) => {
     console.log("req.params.id", req.params.id);
 

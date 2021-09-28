@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
@@ -62,9 +61,8 @@ class EmployerCreateJob extends Component {
 
                     toast.success("Your Vacancy is Deleted!");
 
-
                     window.setTimeout(function () {
-                        window.location= "/EmployerCreatedJobList"
+                        window.location = "/EmployerCreatedJobList"
                     }, 2500);
                 } else {
                     toast.error(res.data.message);
@@ -91,7 +89,6 @@ class EmployerCreateJob extends Component {
 
                     toast.success("Your Vacancy is Closed!");
 
-
                     window.setTimeout(function () {
                         window.location.reload();
                     }, 2500);
@@ -117,15 +114,14 @@ class EmployerCreateJob extends Component {
                 console.log("res", res);
                 if (res.data.code === 200) {
                     console.log("res.data.code", res.data.code);
-                    toast.success("Reopen Process successfully completed");
 
+                    toast.success("Reopen Process successfully completed");
 
                     window.setTimeout(function () {
                         window.location.reload();
                     }, 2500);
                 } else {
                     toast.error(res.data.message);
-
                 }
             });
     }
@@ -206,47 +202,46 @@ class EmployerCreateJob extends Component {
 
     onUpdate(event) {
         event.preventDefault();
-		
-		var todayDate = new Date();
+
+        var todayDate = new Date();
         var dd = String(todayDate.getDate()).padStart(2, '0');
         var mm = String(todayDate.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = todayDate.getFullYear();
 
         todayDate = yyyy + '/' + mm + '/' + dd;
 
-        var date2Updated = this.state.closing_date.substr(0,10).replace(/-/g,'/');
+        var date2Updated = this.state.closing_date.substr(0, 10).replace(/-/g, '/');
 
         if (todayDate < date2Updated) {
-			let JobDetails = {
-				job_title: this.state.job_title,
-				job_description: this.state.job_description,
-				job_category: this.state.job_category,
-				job_type: this.state.job_type,
-				closing_date: this.state.closing_date
-			};
+            let JobDetails = {
+                job_title: this.state.job_title,
+                job_description: this.state.job_description,
+                job_category: this.state.job_category,
+                job_type: this.state.job_type,
+                closing_date: this.state.closing_date
+            };
 
-			console.log("Job Details : ", JobDetails);
+            console.log("Job Details : ", JobDetails);
 
-			axios
-				.put(`${APIURL}/vacancy/UpdateCreatedJobDetails/${JOBId}`, JobDetails)
-				.then((res) => {
-					console.log("res", res);
-					if (res.data.code === 200) {
-						console.log("res.data.code", res.data.code);
+            axios
+                .put(`${APIURL}/vacancy/UpdateCreatedJobDetails/${JOBId}`, JobDetails)
+                .then((res) => {
+                    console.log("res", res);
+                    if (res.data.code === 200) {
+                        console.log("res.data.code", res.data.code);
 
-						toast.success(res.data.message);
-						window.setTimeout(function () {
-							window.location.reload()
-						}, 1000);
+                        toast.success(res.data.message);
+                        window.setTimeout(function () {
+                            window.location.reload()
+                        }, 1000);
 
-					} else {
-						toast.error(res.data.message);
+                    } else {
+                        toast.error(res.data.message);
 
-
-					}
-				});
-		}
-		else {
+                    }
+                });
+        }
+        else {
             alert("Please enter a future date as the closing date.")
         }
 
@@ -295,9 +290,6 @@ class EmployerCreateJob extends Component {
                                         <div className="card">
                                             <div className="card-header">
                                                 <h4 className="card-title">Edit Job</h4>
-                                                {/* <p class="text-muted mb-0">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each
-                                        textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.
-                                    </p> */}
                                             </div>
                                             {/*end card-header*/}
                                             <div className="card-body">
@@ -326,11 +318,6 @@ class EmployerCreateJob extends Component {
                                                         <div className="form-group row" style={{ marginTop: "40px" }}>
                                                             <label htmlFor="example-tel-input" className="col-sm-2 col-form-label text-right">Job Category</label>
                                                             <div className="col-sm-4">
-                                                                {/* <input className="form-control" type="text" placeholder="Job Category is..." id="example-tel-input"
-                                                                    name="job_category"
-                                                                    value={this.state.job_category}
-                                                                    onChange={this.onChange}
-                                                                    required /> */}
 
                                                                 <Select
                                                                     placeholder="Select Job Category"
@@ -340,11 +327,6 @@ class EmployerCreateJob extends Component {
                                                             </div>
                                                             <label htmlFor="example-tel-input" className="col-sm-2 col-form-label text-right">Job Type</label>
                                                             <div className="col-sm-4">
-                                                                {/* <input className="form-control" type="text" placeholder="Job Type is..."
-                                                                    name="job_type"
-                                                                    value={this.state.job_type}
-                                                                    onChange={this.onChange}
-                                                                    required /> */}
 
                                                                 <Select
                                                                     placeholder="Select Job Type"
@@ -381,9 +363,6 @@ class EmployerCreateJob extends Component {
                                                                 onClick={this.onClose}>Close</button>
                                                             <button className="btn btn-outline-primary waves-effect waves-light float-left" style={{ marginLeft: "50px" }}
                                                                 onClick={this.onRequestTopList}>Request Top List</button>
-
-                                                            {/* <a href="emp-job-list.html" type="button" className="btn btn-outline-danger waves-effect float-left" style={{ marginLeft: "50px" }}
-                                                                onClick={this.onDelete}>Delete</a> */}
 
                                                             <button className="btn btn-outline-danger waves-effect waves-light float-left" style={{ marginLeft: "50px" }}
                                                                 onClick={this.onDelete}>Delete</button>
