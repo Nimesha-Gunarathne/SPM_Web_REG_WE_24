@@ -1,24 +1,16 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
-import axios from "axios";
-import { toast } from "react-toastify";
-
 
 class NavBar extends Component {
-
-
 
     render() {
         return (
             <div>
-
                 <div className="left-sidenav">
                     <div style={{ width: "250px", height: "130px" }}>
                         {/* LOGO */}
                         <div className="brand">
                             <a href="crm-index.html" className="logo">
                                 <span>
-
                                     <img src="assets/images/logo2.png" alt="logo-large" className="logo-sm"
                                         style={{ width: "140px", height: "140px", marginTop: "20px" }} />
                                 </span>
@@ -52,7 +44,7 @@ class NavBar extends Component {
                                 <a href="/AdminEventView"><i data-feather="grid" className="align-self-center fas fa-calendar-week " style={{ color: "white" }} /><span>Events</span><span className="menu-arrow"></span></a>
                                 <ul className="nav-second-level" aria-expanded="false">
                                     <li className="nav-item"><a className="nav-link" href="/AdminPublishEvent"><i className="align-self-center fas fa-plus" style={{ color: "white" }} />Add Event</a></li>
-                                    
+
                                 </ul>
                             </li>
                             <li>
@@ -60,14 +52,7 @@ class NavBar extends Component {
                                 <ul className="nav-second-level" aria-expanded="false">
                                     <li className="nav-item"><a className="nav-link" href="/employerTopCompanyReqList"><i className="align-self-center far fa-building" style={{ color: "white" }} />Company Request</a></li>
                                     <li className="nav-item"><a className="nav-link" href="/employerTopVacancyReqList"><i className="align-self-center fas fa-user-md" style={{ color: "white" }} />Vacancy Request</a></li>
-
                                 </ul>
-                            </li>
-
-                            <li>
-                            </li>
-
-                            <li>
                             </li>
                             <li>
                                 <a href="/login" style={{ marginTop: "140px" }}><i data-feather="layers" class="align-self-center fas fa-sign-out-alt" style={{ color: "white" }}></i><span>Log out</span></a>

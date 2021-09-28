@@ -1,15 +1,12 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
 import { APIURL } from "../../API/environment";
-import { toast } from "react-toastify";
 import Navbar from '../Adminnavibar';
 import Daybar from '../DayBar';
 
 const UserID = localStorage.getItem("GetAppliedJobsADMIN");
 
 class StudentJobList extends Component {
-
   constructor(props) {
     super(props);
     this.applyJob = this.applyJob.bind(this);
@@ -30,7 +27,6 @@ class StudentJobList extends Component {
   applyJob(e, CID, CName, DDate, JTitle, JID, JDec, SDate) {
 
     e.preventDefault();
-
 
     let JobData = {
 
@@ -68,14 +64,14 @@ class StudentJobList extends Component {
   render() {
     return (
       <div>
-       <Navbar/>
-        
+        <Navbar />
+
         <div className="page-wrapper">
           {/* Page Content*/}
           <div className="page-content">
             <div className="container-fluid">
               {/* Page-Title */}
-              <div className="row" style={{width:"1200px"}}>
+              <div className="row" style={{ width: "1200px" }}>
                 <div className="col-sm-12">
                   <div className="page-title-box">
                     <div className="row">
@@ -87,7 +83,7 @@ class StudentJobList extends Component {
                         </ol>
                       </div>
                       {/*end col*/}
-                     <Daybar/>
+                      <Daybar />
                       {/*end col*/}
                     </div>
                     {/*end row*/}
@@ -109,12 +105,11 @@ class StudentJobList extends Component {
                         <table className="table  table-bordered">
                           <thead>
                             <tr>
-                              <th>Job</th>
+                              <th>Vacancy</th>
                               <th>Company</th>
                               <th>Description</th>
-                              <th>Deadline</th>
+                              <th>Cloasing Date</th>
                               <th className="text-center">Status</th>
-                              {/* <th></th> */}
                             </tr>
                           </thead>
                           <tbody>

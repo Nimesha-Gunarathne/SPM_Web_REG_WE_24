@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from "axios";
 import { APIURL } from "../../API/environment";
 import jsPDF from 'jspdf';
@@ -12,7 +11,7 @@ export default class AllItems extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { items: [],Jobs:[],applicantName:"" };
+        this.state = { items: [], Jobs: [], applicantName: "" };
     }
 
     printDocument() {
@@ -34,7 +33,7 @@ export default class AllItems extends Component {
 
     componentDidMount() {
 
-      axios.get(`${APIURL}/Events/getAllEvents`)
+        axios.get(`${APIURL}/Events/getAllEvents`)
             .then(response => {
 
                 this.setState({ Jobs: response.data.data });
@@ -46,11 +45,11 @@ export default class AllItems extends Component {
     render() {
         return (
             <div>
-                <Navbar/>
+                <Navbar />
 
-                <button onClick={this.printDocument} style={{ marginTop: "10px", borderRadius: "5px", height: "1cm", marginLeft: "350px" }}  className="btn btn-success btn-sm">Generate PDF</button>
+                <button onClick={this.printDocument} style={{ marginTop: "10px", borderRadius: "5px", height: "1cm", marginLeft: "350px" }} className="btn btn-success btn-sm">Generate PDF</button>
 
-                <div id="viewtable" style={{marginLeft:"300px"}}>
+                <div id="viewtable" style={{ marginLeft: "300px" }}>
                     <h3 style={{ 'textAlign': 'center' }}>
                         Event Report
                     </h3>
@@ -66,7 +65,7 @@ export default class AllItems extends Component {
                                 <th>Company Name</th>
                                 <th>Event Type</th>
                                 <th>Closing Date</th>
-                             
+
                             </tr>
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
 
@@ -74,12 +73,12 @@ export default class AllItems extends Component {
                                     <td>{item.eventTitle}</td>
                                     <td>{item.companyName}</td>
                                     <td>{item.eventType}</td>
-                                    <td>{item.closingDate}</td>                                                       
+                                    <td>{item.closingDate}</td>
                                 </tr>
                             ))}
 
                         </thead>
-                        <tbody>                       
+                        <tbody>
                         </tbody>
                     </table>
                 </div>

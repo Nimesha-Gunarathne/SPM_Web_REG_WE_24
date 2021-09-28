@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
-import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Navbar from '../Adminnavibar';
 import Daybar from '../DayBar';
@@ -30,15 +28,7 @@ class AdminEventView extends Component {
     }
 
     applyJob(e,
-        _id,
-        closing_date,
-        createdAt,
-        employerID,
-        employerName,
-        job_category,
-        job_description,
-        job_title,
-        job_type
+        _id
     ) {
         e.preventDefault();
     }
@@ -81,8 +71,6 @@ class AdminEventView extends Component {
                                 <div className="col-lg-6 text-right">
                                     <div className="text-right">
                                         <ul className="list-inline">
-
-
                                             <li className="list-inline-item">
                                                 <a href="/AdminEventReportView"> <button type="button" className="btn btn-success btn-sm" style={{ marginLeft: "1050px" }}>Genarate Report</button>
                                                 </a>
@@ -136,7 +124,7 @@ class AdminEventView extends Component {
                             </div>
                         </div>
                         <footer className="footer text-center text-sm-left">
-                            © 2021
+                            © 2021 JobBank
                         </footer>
                     </div>
                 </div>

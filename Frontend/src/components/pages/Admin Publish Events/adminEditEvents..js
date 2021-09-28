@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Select from "react-select";
 import Navbar from '../Adminnavibar';
-import Daybar from '../DayBar';
 
 const initialState = {
     eventTitle: "",
@@ -15,8 +13,8 @@ const initialState = {
     closingDate: "",
     eventType: "",
     startingDate: "",
-    CreatedBy:"ADMIN",
-    jobID:""
+    CreatedBy: "ADMIN",
+    jobID: ""
 };
 
 const EventTypes = [
@@ -24,7 +22,6 @@ const EventTypes = [
     { value: "Conferences", label: "Conferences" },
     { value: "A seminar ", label: "A seminar " },
     { value: "Networking sessions", label: "Networking sessions" },
-
 ];
 
 
@@ -34,24 +31,39 @@ class AdminCreateEvent extends Component {
 
     constructor(props) {
         super(props);
-        this.state =  {
+        this.state = {
             initialState,
-            events:[]
-          };
+            events: []
+        };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onEventTypesOptionSelected = this.onEventTypesOptionSelected.bind(this);
+        this.onDelete = this.onDelete.bind(this);
+    }
+
+    onDelete() {
+
+        const EventID = this.state.jobID
+        axios.delete(`${APIURL}/Events/delete-event/${EventID}`)
+            .then((res) => {
+                console.log("res", res);
+                if (res.data.code === 200) {
+                    console.log("res.data.code", res.data.code);
+                    alert(res.data.message);
+                    window.location = ("/AdminEventView")
+                } else {
+                    toast.error(res.data.message);
+                    alert(res.data.message);
+                }
+            });
 
     }
 
     componentDidMount() {
 
-
         axios.get(`${APIURL}/Events/getEventByid/${EventId}`)
-
             .then(response => {
-   
-                this.setState({ events: response.data.data }); 
+                this.setState({ events: response.data.data });
                 console.log("response ", response.data.data);
 
                 this.setState({ eventTitle: this.state.events.eventTitle });
@@ -63,7 +75,7 @@ class AdminCreateEvent extends Component {
                 this.setState({ startingDate: this.state.events.startingDate });
                 this.setState({ closingDate: this.state.events.closingDate });
 
-                this.setState({ jobID: this.state.events._id});
+                this.setState({ jobID: this.state.events._id });
 
             })
 
@@ -75,20 +87,20 @@ class AdminCreateEvent extends Component {
 
     onEventTypesOptionSelected(e) {
         this.state.eventType = e.label;
-      }
+    }
 
     onSubmit(event) {
         event.preventDefault();
 
         let EventDetails = {
-            eventTitle:this.state.eventTitle,
-            companyName:this.state.companyName,
-            shortDescription:this.state.shortDescription,
+            eventTitle: this.state.eventTitle,
+            companyName: this.state.companyName,
+            shortDescription: this.state.shortDescription,
             location: this.state.location,
             closingDate: this.state.closingDate,
             eventType: this.state.eventType,
-            startingDate:this.state.startingDate,
-            CreatedBy:this.state.CreatedBy,
+            startingDate: this.state.startingDate,
+            CreatedBy: this.state.CreatedBy,
         };
 
         console.log("Event Details : ", EventDetails);
@@ -108,16 +120,14 @@ class AdminCreateEvent extends Component {
 
                 }
             });
-            console.log("OUT");
-
-
+        console.log("OUT");
     }
 
     render() {
         return (
             <>
                 <div>
-                   <Navbar/>
+                    <Navbar />
                     <div className="page-wrapper">
                         <div className="topbar">
 
@@ -141,14 +151,14 @@ class AdminCreateEvent extends Component {
                                             </div>
                                         </div>
                                     </div>
-                               
+
                                 </div>
                                 <div className="row" style={{ marginTop: "60px" }}>
                                     <div className="col-lg-12">
                                         <div className="card">
                                             <div className="card-header">
                                                 <h4 className="card-title">Edit Event</h4>
-                                                
+
                                             </div>
                                             <div className="card-body">
                                                 <div className="row">
@@ -186,7 +196,6 @@ class AdminCreateEvent extends Component {
                                                             </div>
                                                         </div>
 
-
                                                         <div className="form-group row">
                                                             <label htmlFor="example-text-input" className="col-sm-2 col-form-label text-right">Company Location</label>
                                                             <div className="col-sm-10">
@@ -201,7 +210,6 @@ class AdminCreateEvent extends Component {
                                                         <div className="form-group row" style={{ marginTop: "40px" }}>
                                                             <label htmlFor="example-tel-input" className="col-sm-2 col-form-label text-right">Event Type</label>
                                                             <div className="col-sm-4">
-                                                               
 
                                                                 <Select
                                                                     placeholder="Select Event Type"
@@ -209,7 +217,6 @@ class AdminCreateEvent extends Component {
                                                                     onChange={this.onEventTypesOptionSelected}
                                                                 />
                                                             </div>
-                                                            
                                                         </div>
 
                                                         <div className="form-group row" style={{ marginTop: "40px" }}>
@@ -220,7 +227,7 @@ class AdminCreateEvent extends Component {
                                                                     value={this.state.startingDate}
                                                                     onChange={this.onChange}
                                                                     required />
-                                                                    <label htmlFor="example-number-input" className="col-sm-12 col-form-label text-right">{this.state.startingDate}</label>
+                                                                <label htmlFor="example-number-input" className="col-sm-12 col-form-label text-right">{this.state.startingDate}</label>
                                                             </div>
 
                                                         </div>
@@ -232,8 +239,7 @@ class AdminCreateEvent extends Component {
                                                                     value={this.state.closingDate}
                                                                     onChange={this.onChange}
                                                                     required />
-                                                                    <label htmlFor="example-number-input" className="col-sm-12 col-form-label text-right">{this.state.closingDate}</label>
-
+                                                                <label htmlFor="example-number-input" className="col-sm-12 col-form-label text-right">{this.state.closingDate}</label>
                                                             </div>
 
                                                         </div>
@@ -243,7 +249,7 @@ class AdminCreateEvent extends Component {
                                                 </div>
                                                 <div className="button-items">
                                                     <button className="btn btn-outline-success waves-effect waves-light float-right" onClick={this.onSubmit}>Update</button>
-                                                    <a href="emp-job-list.html" type="button" className="btn btn-outline-danger waves-effect float-left">Delete</a>
+                                                    <button className="btn btn-outline-danger waves-effect waves-light float-left" onClick={this.onDelete}>Delete</button>
                                                 </div>
                                             </div>
                                         </div>

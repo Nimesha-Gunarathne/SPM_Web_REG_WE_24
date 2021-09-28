@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
 import { APIURL } from "../../API/environment";
 import { toast } from "react-toastify";
 import Navbar from '../Adminnavibar';
 import Daybar from '../DayBar';
-
-
 
 class adminViewApplicant extends Component {
 
@@ -14,17 +11,14 @@ class adminViewApplicant extends Component {
     super(props);
     this.onDelete = this.onDelete.bind(this);
     this.onInfo = this.onInfo.bind(this);
-
     this.state = {
       Jobs: [],
     }
   }
 
   onInfo(e, ApplicantID) {
-
     localStorage.removeItem("GetAddedAllJobsADMIN");
     localStorage.setItem("GetAddedAllJobsADMIN", ApplicantID)
-
     window.location = "/AdminViewEmployerInfo"
   }
 
@@ -35,26 +29,19 @@ class adminViewApplicant extends Component {
         console.log("res", res);
         if (res.data.code === 200) {
           console.log("res.data.code", res.data.code);
-
-          toast.success("Employer is Deleted!");
-
-
+          toast.error("Employer is Deleted!");
           window.setTimeout(function () {
             window.location.reload();
           }, 2500);
         } else {
           toast.error(res.data.message);
-
         }
       });
   }
 
   componentDidMount() {
-
     axios.get(`${APIURL}/Employer/getAllEmp`)
-
       .then(response => {
-
         console.log(" All Employer ", response.data.data);
         this.setState({ Jobs: response.data.data });
       })
@@ -64,7 +51,6 @@ class adminViewApplicant extends Component {
     return (
       <div>
         <Navbar />
-
         <div className="page-wrapper">
           {/* Page Content*/}
           <div className="page-content">
@@ -75,10 +61,10 @@ class adminViewApplicant extends Component {
                   <div className="page-title-box">
                     <div className="row">
                       <div className="col">
-                        <h4 className="page-title">All Employer</h4>
+                        <h4 className="page-title">All Employers</h4>
                         <ol className="breadcrumb">
                           <li className="breadcrumb-item"><a href="javascript:void(0);">JobBank</a></li>
-                          <li className="breadcrumb-item active">Employer</li>
+                          <li className="breadcrumb-item active">Employers</li>
                         </ol>
                       </div>
                       {/*end col*/}
@@ -123,17 +109,13 @@ class adminViewApplicant extends Component {
 
                                 {item.isActive == 1 && (
                                   <>
-
-                                    <span className=" badge badge-soft-success" style={{marginTop:"20px",marginLeft:"40px"}}>Active</span>
-
+                                    <span className=" badge badge-soft-success" style={{ marginTop: "20px", marginLeft: "40px" }}>Active</span>
                                   </>
                                 )}
 
                                 {item.isActive == 3 && (
                                   <>
-
-                                    <span className=" badge badge-soft-warning" style={{marginTop:"20px",marginLeft:"35px"}}>Pending</span>
-
+                                    <span className=" badge badge-soft-warning" style={{ marginTop: "20px", marginLeft: "35px" }}>Pending</span>
                                   </>
                                 )}
 
@@ -144,7 +126,6 @@ class adminViewApplicant extends Component {
                                     onClick={e => this.onDelete(e, item._id)}>Remove</button>
                                 </td>
                               </tr>
-
                             ))}
 
                           </tbody>
@@ -152,23 +133,15 @@ class adminViewApplicant extends Component {
                       </div>
                       <span className="float-right">
                       </span>
-
                     </div>
-
                   </div>
-
                 </div>
               </div>
-
             </div>
             <footer className="footer text-center text-sm-left">
             </footer>
-
           </div>
-
         </div>
-
-
       </div>
     );
   }
