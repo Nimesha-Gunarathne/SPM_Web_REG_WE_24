@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
 import { APIURL } from "../../API/environment";
-import { toast } from "react-toastify";
 import Navbar from '../Employernavibar';
 import Daybar from '../DayBar';
 
 
 const EmployerID = localStorage.getItem("LocalEmployerID");
-// const UserID = "60f9393bf9010e001577b6ea";
 
 class CloseVacancies extends Component {
 
@@ -25,7 +22,6 @@ class CloseVacancies extends Component {
   }
 
   onApplicant(e, jobsId) {
-    // toast.success(jobsId)
     window.localStorage.removeItem("employerApplicationJobID");
     localStorage.setItem("employerApplicationJobID", jobsId)
 
@@ -76,7 +72,7 @@ class CloseVacancies extends Component {
                         <ol className="breadcrumb">
                           <li className="breadcrumb-item"><a href="javascript:void(0);">JobBank</a></li>
                           {/* <li class="breadcrumb-item"><a href="javascript:void(0);">pages</a></li> */}
-                          <li className="breadcrumb-item active">Closed Vacancies</li>
+                          <li className="breadcrumb-item active">Closed Vacancy List</li>
                         </ol>
                       </div>
                       {/*end col*/}
@@ -95,67 +91,42 @@ class CloseVacancies extends Component {
                 <div className="col-12">
                   <div className="card">
                     <div className="card-header">
-                      {/* <h4 class="card-title">Job Requests</h4>
-                                <p class="text-muted mb-0">Add toolbar column with edit and delete buttons.</p> */}
                     </div>
                     {/*end card-header*/}
                     <div className="card-body">
-                      {/* <button class="btn  btn-primary mb-3" id="submit_data">Submit</button> */}
                       <div className="table-responsive">
                         <table className="table  table-bordered">
                           <thead>
                             <tr>
-                              <th>Job</th>
+                              <th>Vacancy</th>
                               <th>Description</th>
                               <th>Deadline</th>
                               <th className="text-center">Controllers</th>
-                              {/* <th></th> */}
                             </tr>
                           </thead>
                           <tbody>
-
-
-
-
-
-
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
                               <>
                                 {item.isOpen == 1 && (
-
                                   <tr>
                                     <td>{item.job_title}</td>
                                     <td>{item.job_description}</td>
                                     <td>{item.closing_date}</td>
                                     <td className="text-center">
                                       <div className="button-items">
-
-
-
                                         <a href="/EmployerCreatedJobList"><button type="button" className="btn btn-primary waves-effect waves-light"
-                                          onClick={e => this.onApplicant(e, item._id)}>Modify & View Applications</button></a>
-
-
+                                          onClick={e => this.onApplicant(e, item._id)}>View Vacancy</button></a>
                                       </div>
                                     </td>
                                   </tr>
-
                                 )}
                               </>
                             ))}
-
-
-
-
-
-
-
 
                           </tbody>
                         </table>
                       </div>
                       <span className="float-right">
-                        {/* <button id="but_add" class="btn btn-danger">Add New Row</button> */}
                       </span>
                       {/*end table*/}
                     </div>
@@ -167,8 +138,6 @@ class CloseVacancies extends Component {
               {/* end row */}
             </div>{/* container */}
             <footer className="footer text-center text-sm-left">
-              {/* &copy; 2020 Dastyle <span class="d-none d-sm-inline-block float-right">Crafted with <i
-                        class="mdi mdi-heart text-danger"></i> by Mannatthemes</span> */}
             </footer>
             {/*end footer*/}
           </div>
@@ -177,7 +146,6 @@ class CloseVacancies extends Component {
         {/* end page-wrapper */}
         {/* jQuery  */}
         {/* App js */}
-
 
       </div>
     );

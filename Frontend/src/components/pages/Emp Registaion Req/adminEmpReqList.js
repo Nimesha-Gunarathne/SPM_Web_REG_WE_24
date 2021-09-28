@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../API/environment";
 import Navbar from '../Adminnavibar';
 import Daybar from '../DayBar';
-
 
 class Admin_Employer_Request_List extends Component {
   constructor(props) {
@@ -88,11 +86,6 @@ class Admin_Employer_Request_List extends Component {
                 <div className="col-lg-12 col-sm-12">
                   <div className="card">
                     <div className="card-header">
-                      {/* <h4 class="card-title">Row Border Bottom Example</h4> */}
-                      {/* <p class="text-muted mb-0">DataTables has most features enabled by default, 
-                                            so all you need to do to use it with your own ables is to call the
-                                             construction function: <code>$().DataTable();</code> and border bottom.
-                                        </p> */}
                     </div>
                     {/*end card-header*/}
                     <div className="card-body table-responsive">
@@ -125,7 +118,6 @@ class Admin_Employer_Request_List extends Component {
                                   <td>{item.location}</td>
                                   <td>
                                     <button
-                                 
                                       href="clerk-student-student-pofile.html"
                                       className="btn btn-success"
                                     >
@@ -150,7 +142,6 @@ class Admin_Employer_Request_List extends Component {
                                       Reject
                                     </button>
                                   </td>
-
                                 </tr>
                               ))}
                           </tbody>
@@ -163,7 +154,6 @@ class Admin_Employer_Request_List extends Component {
             </div>
             {/* container */}
             <footer className="footer text-center text-sm-left">
-              {/* &copy; 2020 Dastyle <span class="d-none d-sm-inline-block float-right">Crafted with <i class="mdi mdi-heart text-danger"></i> by Mannatthemes</span> */}
             </footer>
             {/*end footer*/}
           </div>
@@ -172,10 +162,6 @@ class Admin_Employer_Request_List extends Component {
         {/* end page-wrapper */}
         {/* jQuery  */}
         {/* App js */}
-        {/* jQuery  */}
-        {/* Required datatable js */}
-        {/* Buttons examples */}
-        {/* Responsive examples */}
         {/* App js */}
       </div>
     );

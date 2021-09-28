@@ -16,7 +16,6 @@ function ActivationEmail() {
           })
           .then((res) => {
             console.log(res);
-            // this.props.history.push("/employeeRegister");
             alert("Your Email Verified")
             toast.success(res.data.message);
             window.setTimeout(function () {
@@ -27,7 +26,6 @@ function ActivationEmail() {
             console.log(err);
           });
       } catch (err) {
-        //toast.error(err.response, data.message);
       }
     }
   });

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
-import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Navbar from '../Employernavibar';
 import Daybar from '../DayBar';
@@ -12,12 +10,9 @@ class EmpHome extends Component {
 
     constructor(props) {
         super(props);
-
         this.search = this.search.bind(this);
-
         var today = new Date(),
             date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-
 
         this.state = {
             Jobs: [],
@@ -32,7 +27,6 @@ class EmpHome extends Component {
     }
 
     componentDidMount() {
-
 
         axios.get(`${APIURL}/vacancy/getAllJobs`)
 
@@ -78,8 +72,7 @@ class EmpHome extends Component {
                                                 <h4 className="page-title">Employer Home</h4>
                                                 <ol className="breadcrumb">
                                                     <li className="breadcrumb-item"><a href="javascript:void(0);">Job Bank</a></li>
-                                                    {/* <li class="breadcrumb-item"><a href="javascript:void(0);">Projects</a></li> */}
-                                                    <li className="breadcrumb-item active">Emp Home </li>
+                                                    <li className="breadcrumb-item active">Home </li>
                                                 </ol>
                                             </div>
                                             {/*end col*/}
@@ -103,31 +96,7 @@ class EmpHome extends Component {
                                     </ul>
                                 </div>
                                 {/*end col*/}
-                                <div className="col-lg-6 text-right">
-                                    <div className="text-right">
-                                        <ul className="list-inline">
-                                            <li className="list-inline-item">
-                                                <div className="input-group">
 
-
-                                                    <input
-                                                        name="searchVal"
-                                                        value={this.state.searchVal}
-                                                        onChange={this.search}
-                                                        type="text" id="example-input1-group2" className="form-control form-control-sm" placeholder="Search" />
-
-
-
-                                                    <span className="input-group-append">
-                                                        <button type="button" className="btn btn-primary btn-sm"><i className="fas fa-search" /></button>
-                                                    </span>
-                                                </div>
-                                            </li>
-                                           
-                                        </ul>
-                                    </div>
-                                </div>
-                                {/*end col*/}
                             </div>
                             {/*end row*/}
 
@@ -160,15 +129,12 @@ class EmpHome extends Component {
 
                                             </div>
                                             {/*end card-body*/}
-                                            {/* <button type="button" className="btn btn-primary waves-effect waves-light btn-block"><i className="mdi mdi-check-all mr-2" />View</button> */}
-
                                         </div>
                                         {/*end card*/}
                                     </div>
 
                                 ))}
                             </div>
-                            {/* <hr className="hr-dashed" style={{height:"20px"}}/> */}
 
                             <div className="row" style={{ marginTop: "40px" }}>
 
@@ -208,48 +174,33 @@ class EmpHome extends Component {
                                                 </div>
                                                 <div className="d-flex justify-content-between" style={{ marginTop: "60px" }}>
                                                     <h6 className="font-weight-semibold">Closing Date : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6>
-                                                    {/* <h6 className="font-weight-semibold">Deadline : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6> */}
                                                 </div>
                                                 {/*end task-box*/}
                                                 <br />
                                                 <div className="button-items">
                                                     {item.isOpen == 1 && (
                                                         <>
-
                                                             <button className="btn btn-danger waves-effect waves-light btn-block" disabled
                                                             >Closed</button>
-
                                                         </>
                                                     )}
 
                                                     {item.isOpen == 0 && (
                                                         <>
-
                                                             <button className="btn btn-success waves-effect waves-light btn-block" disabled
                                                             >Open</button>
-
                                                         </>
                                                     )}
-
-
                                                 </div>
                                             </div>
                                             {/*end card-body*/}
                                         </div>
                                         {/*end card*/}
                                     </div>
-
                                 ))}
-
                             </div>
 
                             <div className="row">
-
-                                {/*end col*/}
-
-                                {/*end col*/}
-
-                                {/*end col*/}
                             </div>
                             {/*end row*/}
                         </div>{/* container */}

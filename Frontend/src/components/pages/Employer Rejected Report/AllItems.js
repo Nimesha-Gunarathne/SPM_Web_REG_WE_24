@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from "axios";
 import { APIURL } from "../../API/environment";
-// import TableRawItem from './TableRawItem';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import Navbar from '../Employernavibar';
@@ -13,7 +11,7 @@ export default class AllItems extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { items: [],Jobs:[],applicantName:"" };
+        this.state = { items: [], Jobs: [], applicantName: "" };
     }
 
     printDocument() {
@@ -49,15 +47,14 @@ export default class AllItems extends Component {
     render() {
         return (
             <div>
-                <Navbar/>
+                <Navbar />
 
-                <button onClick={this.printDocument} style={{ marginTop: "10px", borderRadius: "5px", height: "1cm", marginLeft: "350px" }}  className="btn btn-success btn-sm">Generate PDF</button>
+                <button onClick={this.printDocument} style={{ marginTop: "10px", borderRadius: "5px", height: "1cm", marginLeft: "350px" }} className="btn btn-success btn-sm">Generate PDF</button>
 
-                <div id="viewtable" style={{marginLeft:"300px"}}>
+                <div id="viewtable" style={{ marginLeft: "300px" }}>
                     <h3 style={{ 'textAlign': 'center' }}>
                         Rejected Applications
                     </h3>
-
 
                     <h3 style={{ 'textAlign': 'center' }}>
                         {this.state.applicantName}
@@ -74,22 +71,18 @@ export default class AllItems extends Component {
                                 <th>Deadline</th>
                             </tr>
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
-
-
-
                                 <tr>
                                     <td>{item.job_title}</td>
                                     <td>{item.JobemployerName}</td>
                                     <td>{item.job_description}</td>
                                     <td>{item.Jobclosing_date}</td>
-                                    
-                                </tr>
 
+                                </tr>
                             ))}
 
                         </thead>
                         <tbody>
-                        
+
                         </tbody>
                     </table>
                 </div>

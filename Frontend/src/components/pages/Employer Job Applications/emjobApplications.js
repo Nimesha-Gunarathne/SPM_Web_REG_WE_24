@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
@@ -7,8 +6,6 @@ import Navbar from '../Employernavibar';
 import Daybar from '../DayBar';
 
 const JobID = localStorage.getItem("employerApplicationJobID");
-
-
 
 class EmjobApplications extends Component {
 
@@ -26,7 +23,7 @@ class EmjobApplications extends Component {
             AppliedJobs: [],
             ApproveStatus: "Approved",
             SProfile_status: "Student",
-            searchname:""
+            searchname: ""
 
         }
     }
@@ -48,8 +45,6 @@ class EmjobApplications extends Component {
                     alert(error.message)
                 })
 
-
-
         } catch (error) {
             if (error.response && error.response.status === 400) {
                 toast.error(error.data.message);
@@ -57,9 +52,7 @@ class EmjobApplications extends Component {
         }
     }
 
-
     onShortList(event, ID) {
-
         event.preventDefault();
 
         let approve = {
@@ -77,7 +70,6 @@ class EmjobApplications extends Component {
 
                     toast.success("Approved the application");
 
-
                     window.setTimeout(function () {
                         window.location.reload();
                     }, 1500);
@@ -86,7 +78,6 @@ class EmjobApplications extends Component {
 
                 }
             });
-
     }
 
     onReject(event, ID) {
@@ -108,7 +99,6 @@ class EmjobApplications extends Component {
 
                     toast.error("Rejected the application");
 
-
                     window.setTimeout(function () {
                         window.location.reload();
                     }, 1500);
@@ -126,7 +116,6 @@ class EmjobApplications extends Component {
         window.location.href = "/AdminEditEvent";
     }
 
-
     componentDidMount() {
         axios.get(`${APIURL}/Applicant/getJobAppliedDetailsBYJOBID/${JobID}`)
             .then(response => {
@@ -139,28 +128,26 @@ class EmjobApplications extends Component {
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
         console.log("jobs", this.state.searchname)
-      }
+    }
 
     onSearch(event) {
         event.preventDefault();
         const name = this.state.searchname;
         console.log("name", name)
-    
-        axios.get(`${APIURL}/Applicant/searchJob/${name}`)
-    
-        .then(response => {
 
-            this.setState({ Jobs: response.data.data });
-            console.log("response ", response.data.data);
-        })
-    
-      }
+        axios.get(`${APIURL}/Applicant/searchJob/${name}`)
+
+            .then(response => {
+
+                this.setState({ Jobs: response.data.data });
+                console.log("response ", response.data.data);
+            })
+
+    }
     render() {
         return (
             <div>
                 <Navbar />
-
-
                 <div className="page-wrapper">
                     {/* Top Bar Start */}
 
@@ -177,7 +164,6 @@ class EmjobApplications extends Component {
                                                 <h4 className="page-title">Appications</h4>
                                                 <ol className="breadcrumb">
                                                     <li className="breadcrumb-item"><a href="javascript:void(0);">Job Bank</a></li>
-                                                    {/* <li class="breadcrumb-item"><a href="javascript:void(0);">Projects</a></li> */}
                                                     <li className="breadcrumb-item active">applications</li>
                                                 </ol>
                                             </div>
@@ -186,7 +172,7 @@ class EmjobApplications extends Component {
                                             {/*end col*/}
                                         </div>
                                         {/*end row*/}
-                                        <div className="col-lg-6 text-right" style={{marginLeft:"600px"}}>
+                                        <div className="col-lg-6 text-right" style={{ marginLeft: "600px" }}>
                                             <div className="text-right">
                                                 <ul className="list-inline">
                                                     <li className="list-inline-item">
@@ -196,7 +182,6 @@ class EmjobApplications extends Component {
                                                                 value={this.state.searchname}
                                                                 onChange={this.onChange}
                                                                 type="text" id="example-input1-group2" className="form-control form-control-sm" placeholder="Search Applicant Name" />
-
                                                             <span className="input-group-append">
                                                                 <button type="button" className="btn btn-primary btn-sm" onClick={this.onSearch} ><i className="fas fa-search" /></button>
                                                             </span>
@@ -231,14 +216,12 @@ class EmjobApplications extends Component {
                                         <div className="card" style={{ height: "250px", width: "1200px" }}>
                                             <div className="card-body">
                                                 <div className="media mb-3">
-                                                    {/* <img src="assets/images/widgets/project2.jpg" alt="" className="thumb-md rounded-circle" /> */}
                                                     <div className="media-body align-self-center text-truncate ml-3">
                                                         <h4 className="m-0 font-weight-semibold text-dark font-16">{item.Applicant_Name}</h4>
 
                                                     </div>
                                                     {/*end media-body*/}
                                                 </div>
-                                                {/* <hr className="hr-dashed" style={{marginTop:"-5px"}}/> */}
 
                                                 <div className="row" >
                                                     <div className="col">
@@ -256,7 +239,6 @@ class EmjobApplications extends Component {
                                                     <p className="text-muted mt-4 mb-1">
                                                         {item.Email}
                                                     </p>
-
                                                 </div>
 
                                                 <div className="row" >
@@ -321,22 +303,15 @@ class EmjobApplications extends Component {
                                                         <button type="button" className="btn btn-danger"
                                                             style={{ marginLeft: "600px", marginTop: "-60px" }}
                                                             onClick={e => this.onReject(e, item._id)}>Reject</button>
-                                                        {/* <span className=" badge badge-soft-success"
-                                                            style={{ marginLeft: "50px",marginTop:"-300" }}>Selected</span> */}
-
                                                     </>
                                                 )}
 
                                                 {item.IsApprove == 2 && (
                                                     <>
-
                                                         <span className=" badge badge-soft-danger"
                                                             style={{ marginLeft: "600px" }}>Rejected</span>
-
                                                     </>
                                                 )}
-
-
 
                                             </div>
                                             {/*end card-body*/}
@@ -349,8 +324,6 @@ class EmjobApplications extends Component {
                             ))}
 
                             <div className="row">
-
-
                             </div>
                             {/*end row*/}
                         </div>{/* container */}
