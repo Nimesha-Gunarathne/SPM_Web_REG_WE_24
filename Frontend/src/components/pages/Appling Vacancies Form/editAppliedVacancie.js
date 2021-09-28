@@ -23,10 +23,10 @@ class editApplyedVacancie extends Component {
 
     constructor(props) {
         super(props);
-        this.state =  {
+        this.state = {
             initialState,
-            jobs:[]
-          };
+            jobs: []
+        };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onJobCategoryiesOptionSelected = this.onJobCategoryiesOptionSelected.bind(this);
@@ -34,28 +34,25 @@ class editApplyedVacancie extends Component {
 
     }
 
-    
+
     componentDidMount() {
 
-        console.log("JobID",JOBId)
+        console.log("JobID", JOBId)
         axios.get(`${APIURL}/Applicant/getAppliedJobByJobID/${JOBId}`)
 
             .then(response => {
-   
-                this.setState({ jobs: response.data.data }); 
+
+                this.setState({ jobs: response.data.data });
                 console.log("response ", response.data.data);
 
                 this.setState({ Applicant_Name: this.state.jobs.Applicant_Name });
-                this.setState({ Email: this.state.jobs.Email});
+                this.setState({ Email: this.state.jobs.Email });
                 this.setState({ Contact_Number: this.state.jobs.Contact_Number });
 
-                this.setState({ Description: this.state.jobs.Description});
+                this.setState({ Description: this.state.jobs.Description });
                 this.setState({ CV_Link: this.state.jobs.CV_Link });
 
-                this.setState({ jobID: this.state.jobs._id});
-
-                
-
+                this.setState({ jobID: this.state.jobs._id });
             })
 
 
@@ -83,19 +80,6 @@ class editApplyedVacancie extends Component {
             Contact_Number: this.state.Contact_Number,
             Description: this.state.Description,
             CV_Link: this.state.CV_Link,
-
-            // JobId: localStorage.getItem("ViewedJobID"),
-            // Jobclosing_date:localStorage.getItem("ViewedJobclosing_date"),
-            // JobcreatedAt:localStorage.getItem("ViewedJobcreatedAt"),
-            // JobemployerID:localStorage.getItem("ViewedJobemployerID"),
-            // JobemployerName:localStorage.getItem("ViewedJobemployerName"),
-            // job_category:localStorage.getItem("ViewedJobjob_category"),
-            // job_description:localStorage.getItem("ViewedJobjob_description"),
-            // job_title:localStorage.getItem("ViewedJobjob_title"),
-            // job_type:localStorage.getItem("ViewedJobjob_type"),
-
-            // UserID:localStorage.getItem("LocalUserID"),
-            // IsApprove:0
         };
 
         console.log("Job Details : ", JobDetails);
@@ -110,11 +94,6 @@ class editApplyedVacancie extends Component {
                     console.log("res.data.code", res.data.code);
                     alert("Details are Updated!");
                     window.location.reload();
-                    // toast.success(res.data.message);
-                    // window.setTimeout(function () {
-                    //     window.location.href = "/applicantHome";
-                    // }, 400);
-                    //   window.location.href = "/login";
                 } else {
                     toast.error(res.data.message);
                     alert(res.data.message);
@@ -123,28 +102,20 @@ class editApplyedVacancie extends Component {
                 console.log("OUT");
 
             });
-
-            console.log("OUT2");
-
-
+        console.log("OUT2");
     }
 
     render() {
         return (
             <>
                 <div>
-                    <Navbar/>
+                    <Navbar />
                     <div className="page-wrapper">
-                        {/* Top Bar Start */}
                         <div className="topbar">
-
                         </div>
-                        {/* Top Bar End */}
-                        {/* Page Content*/}
                         <div className="page-content" style={{ width: "1250px" }}>
 
                             <div className="container-fluid">
-                                {/* Page-Title */}
                                 <div className="row">
                                     <div className="col-sm-17">
                                         <div className="page-title-box">
@@ -159,25 +130,15 @@ class editApplyedVacancie extends Component {
                                                 </div>
 
                                             </div>
-                                            {/*end row*/}
                                         </div>
-                                        {/*end page-title-box*/}
                                     </div>
-                                    {/*end col*/}
                                 </div>
-                                {/*end row*/}
-                                {/* end page title end breadcrumb */}
                                 <div className="row" style={{ marginTop: "60px" }}>
                                     <div className="col-lg-12">
                                         <div className="card">
                                             <div className="card-header">
                                                 <h4 className="card-title">{localStorage.getItem("ViewedJobjob_title")}</h4>
-
-                                                {/* <p class="text-muted mb-0">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each
-                                        textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.
-                                    </p> */}
                                             </div>
-                                            {/*end card-header*/}
                                             <div className="card-body">
                                                 <div className="row">
                                                     <div className="col-lg-12">
@@ -251,19 +212,13 @@ class editApplyedVacancie extends Component {
                                                     <button className="btn btn-outline-success waves-effect waves-light float-right" onClick={this.onSubmit}>Update Application</button>
                                                 </div>
                                             </div>
-                                            {/*end card-body*/}
                                         </div>
-                                        {/*end card*/}
                                     </div>
-                                    {/*end col*/}
                                 </div>
-                                {/*end row*/}
                                 <footer className="footer text-center text-sm-left">
                                     © 2021 JobBank
                                 </footer>
-                                {/*end footer*/}
                             </div>
-                            {/* end page content */}
                         </div>
                     </div></div>
             </>

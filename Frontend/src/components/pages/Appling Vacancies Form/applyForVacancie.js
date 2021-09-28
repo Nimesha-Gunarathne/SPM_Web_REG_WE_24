@@ -81,18 +81,15 @@ class ApplyForJobForm extends Component {
                 console.log("res", res);
                 if (res.status === 200) {
                     console.log("res.data.code", res.data.code);
-                    // alert("Job is Applied");
-
                     toast.success("You Have Successfully Applied For " + localStorage.getItem("ViewedJobjob_title"));
                     window.setTimeout(function () {
                         window.location.href = "/applicantHome";
                     }, 1200);
-                    //   window.location.href = "/login";
+
                 } else {
                     toast.error(res.data.message);
                 }
             });
-
     }
 
     render() {
@@ -101,16 +98,12 @@ class ApplyForJobForm extends Component {
                 <div>
                     <Navbar />
                     <div className="page-wrapper">
-                        {/* Top Bar Start */}
                         <div className="topbar">
-
                         </div>
-                        {/* Top Bar End */}
-                        {/* Page Content*/}
                         <div className="page-content" style={{ width: "1250px" }}>
 
                             <div className="container-fluid">
-                                {/* Page-Title */}
+
                                 <div className="row">
                                     <div className="col-sm-17">
                                         <div className="page-title-box">
@@ -125,25 +118,19 @@ class ApplyForJobForm extends Component {
                                                 </div>
 
                                             </div>
-                                            {/*end row*/}
+
                                         </div>
-                                        {/*end page-title-box*/}
+
                                     </div>
-                                    {/*end col*/}
+
                                 </div>
-                                {/*end row*/}
-                                {/* end page title end breadcrumb */}
                                 <div className="row" style={{ marginTop: "60px" }}>
                                     <div className="col-lg-12">
                                         <div className="card">
                                             <div className="card-header">
                                                 <h4 className="card-title">{localStorage.getItem("ViewedJobjob_title")}</h4>
-
-                                                {/* <p class="text-muted mb-0">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each
-                                        textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.
-                                    </p> */}
                                             </div>
-                                            {/*end card-header*/}
+
                                             <div className="card-body">
                                                 <div className="row">
                                                     <div className="col-lg-12">
@@ -208,8 +195,6 @@ class ApplyForJobForm extends Component {
 
 
                                                             </div>
-                                                            {/* <input type="file" onChange={this.CategoryImagehandleChange}
-                                                                style={{ marginLeft: "50px", marginTop: "10px" }} /> */}
                                                         </div>
 
 
@@ -221,19 +206,14 @@ class ApplyForJobForm extends Component {
                                                     <button className="btn btn-outline-success waves-effect waves-light float-right" onClick={this.onSubmit}>Submit Application</button>
                                                 </div>
                                             </div>
-                                            {/*end card-body*/}
                                         </div>
-                                        {/*end card*/}
                                     </div>
-                                    {/*end col*/}
                                 </div>
-                                {/*end row*/}
+
                                 <footer className="footer text-center text-sm-left">
                                     © 2021 JobBank
                                 </footer>
-                                {/*end footer*/}
                             </div>
-                            {/* end page content */}
                         </div>
                     </div></div>
             </>

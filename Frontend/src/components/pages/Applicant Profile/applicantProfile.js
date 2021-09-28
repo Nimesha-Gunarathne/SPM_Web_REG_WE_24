@@ -45,10 +45,6 @@ class ApplicantProfile extends Component {
         this.setState({ Field: this.state.applicant.Field });
         this.setState({ email: this.state.applicant.email });
         this.setState({ ID: this.state.applicant._id });
-
-
-
-
       })
   }
 
@@ -72,11 +68,8 @@ class ApplicantProfile extends Component {
                           </ol>
                         </div>
                       </div>
-                      {/*end row*/}
                     </div>
-                    {/*end page-title-box*/}
                   </div>
-                  {/*end col*/}
                 </div>
                 <div className="row gutters-sm mt-3">
                   <div className="col-md-4 mb-3">
@@ -87,8 +80,6 @@ class ApplicantProfile extends Component {
                           <div className="mt-3">
                             <h4>{this.state.firstName}</h4>
                             <p className="text-secondary mb-1"> Applicant</p>
-                            {/* <button class="btn btn-primary">Follow</button>
-                            <button class="btn btn-outline-primary">Message</button> */}
                           </div>
                         </div>
                       </div>
@@ -142,27 +133,16 @@ class ApplicantProfile extends Component {
                         <hr />
                         <a href="/ApplicantAppliedJobList" type="button" className="btn btn-outline-success waves-effect float-left" style={{ marginLeft: "280px" }}
                         >Applied vacancies</a>
-                        {/* <div class="row">
-                          <div class="col-sm-12">
-                            <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
-                          </div>
-                        </div> */}
                       </div>
                     </div>
-                    {/* <div className="col-sm-12 mb-3">
-                  
-                </div> */}
                   </div>
                 </div>
-              </div>{/* container */}
+              </div>
               <footer className="footer text-center text-sm-left">
                 © 2021 JobBank
               </footer>
-              {/*end footer*/}
             </div>
-            {/* end page content */}
           </div>
-          {/* end page-wrapper */}
         </div>
       </>
     );
