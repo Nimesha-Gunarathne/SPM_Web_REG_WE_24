@@ -81,25 +81,7 @@ class StudentJobList extends Component {
 
     console.log("JobData ", JobData)
     window.location.href = "/Contract";
-
-    // axios.post(`${APIURL}/student/JobApply`, JobData)
-    //     .then(response => {
-
-    //       toast.success("Your job applies!");
     localStorage.setItem("employerName", JobData.employerName)
-    //     //   window.setTimeout(function() {
-    //     //     window.location.href = "/Contract";
-    //     // }, 1500);
-
-    //       // alert('Your Job is Applied!');
-    //       // this.setState({
-    //       //     ButtonWord:"Applied"
-    //       // })
-    //     })
-    //     .catch(error => {
-    //       console.log(error.message)
-    //       alert(error.message);
-    //     })
 
   }
 
@@ -120,10 +102,10 @@ class StudentJobList extends Component {
         <Navbar />
 
         <div className="page-wrapper">
-          {/* Page Content*/}
+
           <div className="page-content">
             <div className="container-fluid">
-              {/* Page-Title */}
+
               <div className="row" style={{ width: "1200px" }}>
                 <div className="col-sm-12">
                   <div className="page-title-box">
@@ -132,24 +114,19 @@ class StudentJobList extends Component {
                         <h4 className="page-title">Applied Job List</h4>
                         <ol className="breadcrumb">
                           <li className="breadcrumb-item"><a href="javascript:void(0);">JobBank</a></li>
-                          {/* <li class="breadcrumb-item"><a href="javascript:void(0);">pages</a></li> */}
                           <li className="breadcrumb-item active">Apply Jobs</li>
                         </ol>
                       </div>
-                      {/*end col*/}
+
                       <Daybar />
-                      {/*end col*/}
+
                     </div>
-                    {/*end row*/}
                   </div>
 
-                  {/*end page-title-box*/}
-                </div>
-                {/*end col*/}
-              </div>
 
-              {/*end row*/}
-              {/* end page title end breadcrumb */}
+                </div>
+
+              </div>
               <div className="row">
                 <li className="list-inline-item">
                   <a href="/ApplicantReport"><button type="button" className="btn btn-success btn-sm" style={{ marginLeft: "1050px" }}
@@ -158,17 +135,9 @@ class StudentJobList extends Component {
                 <div className="col-12">
                   <div className="card">
                     <div className="card-header">
-                      {/* <h4 class="card-title">Job Requests</h4>
-                                <p class="text-muted mb-0">Add toolbar column with edit and delete buttons.</p> */}
                     </div>
-                    {/*end card-header*/}
                     <div className="card-body">
-                      {/* <button class="btn  btn-primary mb-3" id="submit_data">Submit</button> */}
                       <div className="table-responsive">
-
-
-
-
                         <div id="viewtable">
                           <h3 style={{ 'textAlign': 'center' }}>
                             Applied Job List
@@ -181,16 +150,10 @@ class StudentJobList extends Component {
                                 <th>Description</th>
                                 <th>Deadline</th>
                                 <th className="text-center">Status</th>
-                                {/* <th></th> */}
+
                               </tr>
                             </thead>
                             <tbody>
-
-
-
-
-
-
                               {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
 
 
@@ -202,23 +165,6 @@ class StudentJobList extends Component {
                                   <td>{item.Jobclosing_date}</td>
                                   <td className="text-center">
                                     <div className="button-items">
-
-
-                                      {/* {item.IsApprove == 1 && (
-
-                                      <a href="/Contract">
-                                        <button type="button"
-                                          className="btn btn-success waves-effect waves-light"
-                                          onClick={e => this.applyJob(e, item.employerID, item.employerName, item.Deadline_date, item.JobTitle, item._id, item.jobDescription,item.Start_date)}
-                                        >
-                                          Create Contract
-                                        </button>
-                                      </a>
-                                    )}
-
-                                      {item.IsApprove == 2 && (
-                                        <button type="button" className="btn btn-danger waves-effect waves-light">Delete</button>
-                                    )} */}
 
                                       {item.IsApprove == 0 && (
                                         <>
@@ -250,45 +196,25 @@ class StudentJobList extends Component {
                                     </div>
                                   </td>
                                 </tr>
-
                               ))}
-
-
-
-
-
-
-
 
                             </tbody>
                           </table>
                         </div>
                       </div>
                       <span className="float-right">
-                        {/* <button id="but_add" class="btn btn-danger">Add New Row</button> */}
+
                       </span>
-                      {/*end table*/}
                     </div>
-                    {/*end card-body*/}
                   </div>
-                  {/*end card*/}
-                </div> {/* end col */}
+                </div>
               </div>
-              {/* end row */}
-            </div>{/* container */}
+
+            </div>
             <footer className="footer text-center text-sm-left">
-              {/* &copy; 2020 Dastyle <span class="d-none d-sm-inline-block float-right">Crafted with <i
-                        class="mdi mdi-heart text-danger"></i> by Mannatthemes</span> */}
             </footer>
-            {/*end footer*/}
           </div>
-          {/* end page content */}
         </div>
-        {/* end page-wrapper */}
-        {/* jQuery  */}
-        {/* App js */}
-
-
       </div>
     );
   }

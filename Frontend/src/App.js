@@ -6,9 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import homeRegistation from "./components/pages/Registations/RegistationHome/registationHome";
 import studentRegister from "./components/pages/Registations/ApplicantRegistation/applicantRegistation";
 import employeRegister from "./components/pages/Registations/EmployerRegistation/employeeRegistation";
-
 import login from "./components/pages/Login/login";
-
 import applicantHome from "./components/pages/Applicant Home/applicantHome";
 import adminProfile from "./components/pages/Admin Profile/adminProfile";
 import employerDashboard from "./components/pages/Employer Dashboard/employerDashboard";
@@ -16,12 +14,9 @@ import employerCreateJob from "./components/pages/Employer Create Job/empCreateJ
 import employerEditJob from "./components/pages/Employer Create Job/empEditJob";
 import employerTopVacancyReqList from "./components/pages/Top Vacancy Request List View/topJobReqList";
 import employerTopCompanyReqList from "./components/pages/Top Company Request List View/topJobReqList";
-
 import TopCompantEmp from "./components/pages/Top Companies Employer/applicantHome";
 import TopCompantAdmin from "./components/pages/Top Companies Admin/applicantHome";
 import TopCompantApplicant from "./components/pages/Top Companies Applicant/applicantHome";
-
-
 import AdminViewVacancy from "./components/pages/23 Admin view Vacancy/adminViewVacancy";
 import AdminDashboard from "./components/pages/Admin Dashboard/AdminDashboard";
 import AdminViewApplicant from "./components/pages/24 Admin View Applicant/adminViewApplicant";
@@ -37,9 +32,6 @@ import CloseVacanciesList from "./components/pages/Closed Vacancies List/closeva
 import EmpShortListReport from "./components/pages/Employer ShortList Report/AllItems";
 import EmpRejectedListReport from "./components/pages/Employer Rejected Report/AllItems";
 import AdminEventReportView from "./components/pages/Admin Event Report View/adminReportView";
-
-
-
 import ApplicantViewVacancy from "./components/pages/View Job Vacancy Details/viewVacancy";
 import ApplyForJobForm from "./components/pages/Appling Vacancies Form/applyForVacancie";
 import EmployerRegistationRequestList from "./components/pages/Emp Registaion Req/adminEmpReqList";
@@ -81,10 +73,10 @@ function App() {
           <Route path="/" exact component={homeRegistation} />
           <Route path="/studentRegister" component={studentRegister} />
           <Route path="/employeRegister" component={employeRegister} />
-
-
           <Route path="/login" component={login} />
-{/* ADMIN */}
+          
+          
+          {/* ADMIN */}
           <Route path="/AdminPublishEvent" component={AdminPublishEvent} />
           <Route path="/AdminEventView" component={AdminEventView} />
           <Route path="/AdminEditEvent" component={AdminEditEvent} />
@@ -103,10 +95,7 @@ function App() {
           <Route path="/AdminHome" component={AdminHome} />
 
 
-
-
-
-{/* APPLICANT */}
+          {/* APPLICANT */}
           <Route path="/applicantHome" component={applicantHome} />
           <Route path="/ApplicantViewVacancy" component={ApplicantViewVacancy} />
           <Route path="/ApplyForJobForm" component={ApplyForJobForm} />
@@ -120,7 +109,7 @@ function App() {
 
 
 
-{/* EMPLOYER */}
+          {/* EMPLOYER */}
           <Route path="/employerDashboard" component={employerDashboard} />
           <Route path="/employerCreateJob" component={employerCreateJob} />
           <Route path="/EmployerCreatedJobList" component={EmployerCreatedJobList} />

@@ -9,15 +9,13 @@ import Daybar from '../DayBar';
 
 const UserID = localStorage.getItem("LocalUserID");
 
-
-
 class StudentJobList extends Component {
 
     constructor(props) {
         super(props);
         this.applyJob = this.applyJob.bind(this);
         this.onSearch = this.onSearch.bind(this);
-        this.onChange = this.onChange.bind(this);        
+        this.onChange = this.onChange.bind(this);
 
         var today = new Date(),
             date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
@@ -31,7 +29,7 @@ class StudentJobList extends Component {
             SProfile_status: "Student",
             searchVal: "",
             currentDate: date,
-            searchname:""
+            searchname: ""
 
         }
     }
@@ -99,21 +97,21 @@ class StudentJobList extends Component {
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
         console.log("jobs", this.state.searchname)
-      }
+    }
 
     onSearch(event) {
         event.preventDefault();
         const name = this.state.searchname;
         console.log("name", name)
-    
+
         axios.get(`${APIURL}/vacancy/Searchjob/${name}`)
-    
-        .then(response => {
-            this.setState({ Jobs: response.data.data });
-            console.log("All jobs response ", response.data.data);
-        })
-    
-      }
+
+            .then(response => {
+                this.setState({ Jobs: response.data.data });
+                console.log("All jobs response ", response.data.data);
+            })
+
+    }
 
     render() {
         return (
@@ -121,10 +119,9 @@ class StudentJobList extends Component {
                 <Navbar />
 
                 <div className="page-wrapper">
-                  
+
                     <div className="page-content">
                         <div className="container-fluid">
-                            {/* Page-Title */}
                             <div className="row">
                                 <div className="col-sm-12">
                                     <div className="page-title-box">
@@ -133,7 +130,6 @@ class StudentJobList extends Component {
                                                 <h4 className="page-title">Home</h4>
                                                 <ol className="breadcrumb">
                                                     <li className="breadcrumb-item"><a href="javascript:void(0);">Job Bank</a></li>
-                                                    {/* <li class="breadcrumb-item"><a href="javascript:void(0);">Projects</a></li> */}
                                                     <li className="breadcrumb-item active">Applicant Home</li>
                                                 </ol>
                                             </div>
@@ -142,7 +138,7 @@ class StudentJobList extends Component {
                                     </div>
                                 </div>
                             </div>
-                           
+
                             <div className="row">
                                 <div className="col-lg-6">
                                     <ul className="list-inline">
@@ -151,16 +147,16 @@ class StudentJobList extends Component {
                                         </li>
                                     </ul>
                                 </div>
-                       
+
                                 <div className="col-lg-6 text-right">
                                     <div className="text-right">
                                         <ul className="list-inline">
                                             <li className="list-inline-item">
                                                 <div className="input-group">
                                                     <input
-                                                         name="searchname"
-                                                         value={this.state.searchname}
-                                                         onChange={this.onChange} 
+                                                        name="searchname"
+                                                        value={this.state.searchname}
+                                                        onChange={this.onChange}
                                                         type="text" id="example-input1-group2" className="form-control form-control-sm" placeholder="Search Job Name" />
 
                                                     <span className="input-group-append">
@@ -168,12 +164,10 @@ class StudentJobList extends Component {
                                                     </span>
                                                 </div>
                                             </li>
-                                         
-                                            
                                         </ul>
                                     </div>
                                 </div>
-                 
+
                             </div>
 
                             <h1 className="page-title">Top Vacancies</h1>
@@ -200,17 +194,25 @@ class StudentJobList extends Component {
                                                     </div>
                                                     <div className="col-auto align-self-center">
                                                     </div>
-
                                                 </div>
-
                                             </div>
-                                            {/*end card-body*/}
-                                            <button type="button" className="btn btn-primary waves-effect waves-light btn-block"><i className="mdi mdi-check-all mr-2" />View</button>
-
+                                            {/* <button type="button" className="btn btn-primary waves-effect waves-light btn-block"><i className="mdi mdi-check-all mr-2" />View</button> */}
+                                            <button type="button" className="btn btn-primary waves-effect waves-light btn-block"
+                                                                onClick={e => this.applyJob
+                                                                    (
+                                                                        e,
+                                                                        item._id,
+                                                                        item.closing_date,
+                                                                        item.createdAt,
+                                                                        item.employerID,
+                                                                        item.employerName,
+                                                                        item.job_category,
+                                                                        item.job_description,
+                                                                        item.job_title,
+                                                                        item.job_type
+                                                                    )}><i className="mdi mdi-check-all mr-2" />View</button>
                                         </div>
-                                        {/*end card*/}
                                     </div>
-
                                 ))}
                             </div>
 
@@ -228,7 +230,7 @@ class StudentJobList extends Component {
                                                         <p className="text-muted  mb-0 font-13"><span className="text-dark">Employer:
                                                         </span>{item.employerName}</p>
                                                     </div>
-                                                    {/*end media-body*/}
+
                                                 </div>
                                                 <hr className="hr-dashed" />
 
@@ -239,11 +241,11 @@ class StudentJobList extends Component {
                                                             <p className="mb-0 font-weight-semibold">Job Description</p>
                                                         </div>
                                                     </div>
-                                                    {/*end col*/}
 
-                                                    {/*end col*/}
+
+
                                                 </div>
-                                                {/*end row*/}
+
                                                 <div style={{ marginTop: "-10px", height: "90px" }}>
                                                     <p className="text-muted mt-4 mb-1">
                                                         {item.job_description}
@@ -252,9 +254,9 @@ class StudentJobList extends Component {
                                                 </div>
                                                 <div className="d-flex justify-content-between" style={{ marginTop: "60px" }}>
                                                     <h6 className="font-weight-semibold">Closing Date : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6>
-                                                    {/* <h6 className="font-weight-semibold">Deadline : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6> */}
+
                                                 </div>
-                                                {/*end task-box*/}
+
                                                 <br />
                                                 <div className="button-items">
                                                     {item.isOpen == 1 && (
@@ -290,27 +292,22 @@ class StudentJobList extends Component {
 
                                                 </div>
                                             </div>
-                                            {/*end card-body*/}
+
                                         </div>
-                                        {/*end card*/}
+
                                     </div>
 
                                 ))}
 
                             </div>
-
-                            <div className="row">              
+                            <div className="row">
                             </div>
-                            {/*end row*/}
-                        </div>{/* container */}
+                        </div>
                         <footer className="footer text-center text-sm-left">
                             © 2021
                         </footer>
-     
                     </div>
-
                 </div>
-                
             </div>
         );
     }

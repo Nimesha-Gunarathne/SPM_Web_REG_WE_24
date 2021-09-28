@@ -5,10 +5,10 @@ import { APIURL } from "../../API/environment";
 import Navbar from '../Applicantnavibar';
 
 const _id = localStorage.getItem("ViewedJobID")
-const closing_date =localStorage.getItem("ViewedJobclosing_date")
+const closing_date = localStorage.getItem("ViewedJobclosing_date")
 const createdAt = localStorage.getItem("ViewedJobcreatedAt")
 const employerID = localStorage.getItem("ViewedJobemployerID")
-const employerName =localStorage.getItem("ViewedJobemployerName" )
+const employerName = localStorage.getItem("ViewedJobemployerName")
 const job_category = localStorage.getItem("ViewedJobjob_category")
 const job_description = localStorage.getItem("ViewedJobjob_description")
 const job_title = localStorage.getItem("ViewedJobjob_title")
@@ -19,14 +19,8 @@ class ViewVacancy extends Component {
         super(props);
         this.state = {
             viewedJobDetails: "",
-
         }
     }
-
-
-
-
-
     componentDidMount() {
 
         const ID = localStorage.getItem("ViewedJobID");
@@ -37,9 +31,6 @@ class ViewVacancy extends Component {
                 console.log("count ", response.data.data);
                 this.setState({ viewedJobDetails: response.data.data });
                 console.log("viewedJobDetails ", this.state.viewedJobDetails);
-
-
-
             });
     }
 
@@ -48,15 +39,10 @@ class ViewVacancy extends Component {
             <>
 
                 <div>
-                    <Navbar/>
+                    <Navbar />
                     <div className="page-wrapper">
-                        {/* Top Bar Start */}
-
-                        {/* Top Bar End */}
-                        {/* Page Content*/}
                         <div className="page-content">
                             <div className="container-fluid">
-                                {/* Page-Title */}
                                 <div className="row">
                                     <div className="col-sm-12">
                                         <div className="page-title-box">
@@ -70,21 +56,14 @@ class ViewVacancy extends Component {
                                                         <li className="breadcrumb-item active">Job</li>
                                                     </ol>
                                                 </div>
-
-                                                {/*end col*/}
                                             </div>
-                                            {/*end row*/}
                                         </div>
-                                        {/*end page-title-box*/}
                                     </div>
-                                    {/*end col*/}
                                 </div>
-                                {/*end row*/}
-                                {/* end page title end breadcrumb */}
-                                <div className="row" style={{width:"1200px"}}>
+                                <div className="row" style={{ width: "1200px" }}>
 
                                     <div className="col-lg-12">
-                                        <div className="card" style={{marginTop:"50px"}}>
+                                        <div className="card" style={{ marginTop: "50px" }}>
                                             <div className="card-header">
                                                 <h4 className="card-title">Job Bank</h4>
                                             </div>
@@ -96,24 +75,21 @@ class ViewVacancy extends Component {
                                                             <th />
                                                         </tr>
                                                     </thead>
-
                                                     <tbody >
-
-
                                                         <tr>
                                                             <td>
                                                                 <h6 className="card-subtitle mb-2 text-muted" >Job Title</h6>
                                                             </td>
                                                             <td>
-                                                                <p className="card-text" style={{marginTop:"-12px"}}>{job_title}</p>
+                                                                <p className="card-text" style={{ marginTop: "-12px" }}>{job_title}</p>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <h6 className="card-subtitle mb-2 text-muted" style={{marginTop:"12px"}}>Employer</h6>
+                                                                <h6 className="card-subtitle mb-2 text-muted" style={{ marginTop: "12px" }}>Employer</h6>
                                                             </td>
                                                             <td>
-                                                                <p className="card-text" style={{marginTop:"5px"}}>{employerName}</p>
+                                                                <p className="card-text" style={{ marginTop: "5px" }}>{employerName}</p>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -126,60 +102,51 @@ class ViewVacancy extends Component {
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <h6 className="card-subtitle mb-2 text-muted" style={{marginTop:"12px"}}>Job Category </h6>
+                                                                <h6 className="card-subtitle mb-2 text-muted" style={{ marginTop: "12px" }}>Job Category </h6>
                                                             </td>
                                                             <td>
-                                                                <p className="card-text" style={{marginTop:"5px"}}>{job_category}</p>
+                                                                <p className="card-text" style={{ marginTop: "5px" }}>{job_category}</p>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <h6 className="card-subtitle mb-2 text-muted" style={{marginTop:"12px"}}>Job Type </h6>
+                                                                <h6 className="card-subtitle mb-2 text-muted" style={{ marginTop: "12px" }}>Job Type </h6>
                                                             </td>
                                                             <td>
-                                                                <p className="card-text" style={{marginTop:"5px"}}>{job_type }</p>
+                                                                <p className="card-text" style={{ marginTop: "5px" }}>{job_type}</p>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <h6 className="card-subtitle mb-2 text-muted" style={{marginTop:"12px"}}>Closing Date </h6>
+                                                                <h6 className="card-subtitle mb-2 text-muted" style={{ marginTop: "12px" }}>Closing Date </h6>
                                                             </td>
                                                             <td>
-                                                                <p className="card-text" style={{marginTop:"5px"}}>{closing_date}</p>
+                                                                <p className="card-text" style={{ marginTop: "5px" }}>{closing_date}</p>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <h6 className="card-subtitle mb-2 text-muted" style={{marginTop:"12px"}}>Job Published</h6>
+                                                                <h6 className="card-subtitle mb-2 text-muted" style={{ marginTop: "12px" }}>Job Published</h6>
                                                             </td>
                                                             <td>
-                                                                <p className="card-text" style={{marginTop:"5px"}}>{createdAt}</p>
+                                                                <p className="card-text" style={{ marginTop: "5px" }}>{createdAt}</p>
                                                             </td>
                                                         </tr>
-                                            
+
                                                     </tbody>
-
-
-
-
                                                 </table>
                                                 <a href="/ApplyForJobForm" className="btn btn-success btn-block">Apply</a>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-
-                            </div>{/* container */}
+                            </div>
                             <footer className="footer text-center text-sm-left">
                                 © 2020 Job Bank
                             </footer>
-                            {/*end footer*/}
                         </div>
-                        {/* end page content */}
                     </div>
                 </div>
-
             </>
         );
     }
