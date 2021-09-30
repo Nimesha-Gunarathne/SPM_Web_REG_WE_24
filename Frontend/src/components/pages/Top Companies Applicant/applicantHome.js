@@ -1,15 +1,10 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
-import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Navbar from '../Applicantnavibar';
 import Daybar from '../DayBar';
 
-
 const UserID = localStorage.getItem("LocalUserID");
-
-
 
 class StudentJobList extends Component {
 
@@ -30,7 +25,6 @@ class StudentJobList extends Component {
             SProfile_status: "Student",
             searchVal: "",
             currentDate: date
-
         }
     }
 
@@ -68,18 +62,12 @@ class StudentJobList extends Component {
         localStorage.setItem("ViewedJobjob_title", job_title)
         localStorage.setItem("ViewedJobjob_type", job_type)
 
-
         window.location = "/ApplicantViewVacancy"
-
-
     }
 
 
     componentDidMount() {
-
-
         axios.get(`${APIURL}/EMPTopList/getApproedAllTopList`)
-
             .then(response => {
                 this.setState({ Jobs: response.data.data });
                 console.log("All getApproedAllTopList response ", response.data.data);
@@ -90,18 +78,13 @@ class StudentJobList extends Component {
 
         this.setState({ [e.target.name]: e.target.value });
         console.log("this.state.searchVal is ", this.state.searchVal);
-
     }
 
     render() {
         return (
             <div>
                 <Navbar />
-
                 <div className="page-wrapper">
-                    {/* Top Bar Start */}
-
-                    {/* Top Bar End */}
                     {/* Page Content*/}
                     <div className="page-content">
                         <div className="container-fluid">
@@ -111,11 +94,10 @@ class StudentJobList extends Component {
                                     <div className="page-title-box">
                                         <div className="row">
                                             <div className="col">
-                                                <h4 className="page-title">Job Market</h4>
+                                                <h4 className="page-title">Job Bank</h4>
                                                 <ol className="breadcrumb">
                                                     <li className="breadcrumb-item"><a href="javascript:void(0);">Job Bank</a></li>
-                                                    {/* <li class="breadcrumb-item"><a href="javascript:void(0);">Projects</a></li> */}
-                                                    <li className="breadcrumb-item active">Job Market</li>
+                                                    <li className="breadcrumb-item active">Top Companies</li>
                                                 </ol>
                                             </div>
                                             {/*end col*/}
@@ -134,52 +116,14 @@ class StudentJobList extends Component {
                                 <div className="col-lg-6">
                                     <ul className="list-inline">
                                         <li className="list-inline-item">
-                                            <h5 className="mt-0">Here the list of all Avalable Jobs for you. <span className="badge badge-pink"></span></h5>
+                                            <h5 className="mt-0">Here the list of all Top Companies. <span className="badge badge-pink"></span></h5>
                                         </li>
                                     </ul>
                                 </div>
-                                {/*end col*/}
-                                <div className="col-lg-6 text-right">
-                                    <div className="text-right">
-                                        <ul className="list-inline">
-                                            <li className="list-inline-item">
-                                                <div className="input-group">
-
-
-                                                    <input
-                                                        name="searchVal"
-                                                        value={this.state.searchVal}
-                                                        onChange={this.search}
-                                                        type="text" id="example-input1-group2" className="form-control form-control-sm" placeholder="Search" />
-
-
-
-                                                    <span className="input-group-append">
-                                                        <button type="button" className="btn btn-primary btn-sm"><i className="fas fa-search" /></button>
-                                                    </span>
-                                                </div>
-                                            </li>
-                                            <li className="list-inline-item">
-                                                <button type="button" className="btn btn-primary btn-sm"><i className="fas fa-filter" /></button>
-                                            </li>
-                                            <li className="list-inline-item">
-                                                <button type="button" className="btn btn-primary btn-sm">Add New Project</button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                {/*end col*/}
                             </div>
                             {/*end row*/}
 
-
-
-
-
-
-
                             <h1 className="page-title">Top Companies</h1>
-
 
                             <div className="row" style={{ marginTop: "40px" }}>
 
@@ -208,7 +152,6 @@ class StudentJobList extends Component {
                                                     </div>
                                                     {/*end col*/}
 
-                                                    {/*end col*/}
                                                 </div>
                                                 
                                                 {/*end row*/}
@@ -220,31 +163,25 @@ class StudentJobList extends Component {
                                                 </div>
                                                 <div className="d-flex justify-content-between" style={{ marginTop: "60px" }}>
                                                     <h6 className="font-weight-semibold">Email : <span className="text-muted font-weight-normal"> {item.email}</span></h6>
-                                                    {/* <h6 className="font-weight-semibold">Deadline : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6> */}
-                                                </div>
+                                                 </div>
                                                 <div className="d-flex justify-content-between" style={{ marginTop: "0" }}>
                                                     <h6 className="font-weight-semibold">Contact : <span className="text-muted font-weight-normal"> {item.mobile}</span></h6>
-                                                    {/* <h6 className="font-weight-semibold">Deadline : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6> */}
                                                 </div>
                                                 <div className="d-flex justify-content-between" style={{ marginTop: "0" }}>
                                                     <h6 className="font-weight-semibold">Web : <span className="text-muted font-weight-normal"> {item.weblink}</span></h6>
-                                                    {/* <h6 className="font-weight-semibold">Deadline : <span className="text-muted font-weight-normal"> {item.closing_date}</span></h6> */}
                                                 </div>
                                                 {/*end task-box*/}
                                                 <br />
                                                 <div className="button-items">
                                                     {item.isOpen == 1 && (
                                                         <>
-
                                                             <button className="btn btn-danger waves-effect waves-light btn-block" disabled
                                                             >Closed</button>
-
                                                         </>
                                                     )}
 
                                                     {item.isOpen == 0 && (
                                                         <>
-
                                                             <button type="button" className="btn btn-primary waves-effect waves-light btn-block"
                                                                 onClick={e => this.applyJob
                                                                     (
@@ -259,7 +196,6 @@ class StudentJobList extends Component {
                                                                         item.job_title,
                                                                         item.job_type
                                                                     )}><i className="mdi mdi-check-all mr-2" />View</button>
-
                                                         </>
                                                     )}
 
@@ -270,33 +206,15 @@ class StudentJobList extends Component {
                                         </div>
                                         {/*end card*/}
                                     </div>
-
                                 ))}
 
                             </div>
-
-
-
-
-
-
-
-
-
-
-
                             <div className="row">
-
-                                {/*end col*/}
-
-                                {/*end col*/}
-
-                                {/*end col*/}
                             </div>
                             {/*end row*/}
                         </div>{/* container */}
                         <footer className="footer text-center text-sm-left">
-                            © 2021
+                            © 2021 JobBank
                         </footer>
                         {/*end footer*/}
                     </div>

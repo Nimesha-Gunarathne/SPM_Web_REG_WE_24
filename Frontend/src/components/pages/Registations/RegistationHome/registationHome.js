@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from "react";
 import "./registationHome.css";
 import LogoImg from "./logo.png";
@@ -13,7 +12,7 @@ class RegistationHome extends Component {
               <img src={LogoImg} className="Logoimg" />
             </div>
             <div className="TopRow">
-              <a href="/login" className="btn-login mt-5 Loginbtn">
+              <a href="/login" className="btn-login mt-5 Loginbtn"  style = {{width: "100px"}}>
                 Login
               </a>
             </div>

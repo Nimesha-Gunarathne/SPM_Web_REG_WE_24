@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
@@ -23,8 +24,7 @@ class EmjobApplications extends Component {
             AppliedJobs: [],
             ApproveStatus: "Approved",
             SProfile_status: "Student",
-            searchname: ""
-
+            searchname:""
         }
     }
 
@@ -53,6 +53,7 @@ class EmjobApplications extends Component {
     }
 
     onShortList(event, ID) {
+
         event.preventDefault();
 
         let approve = {
@@ -70,41 +71,35 @@ class EmjobApplications extends Component {
 
                     toast.success("Approved the application");
 
+
                     window.setTimeout(function () {
                         window.location.reload();
                     }, 1500);
                 } else {
                     toast.error(res.data.message);
-
                 }
             });
     }
 
     onReject(event, ID) {
-
         event.preventDefault();
-
         let approve = {
             IsApprove: 2
         };
 
         console.log("reopen Details : ", approve);
-
         axios
             .put(`${APIURL}/Applicant/approveforjob/${ID}`, approve)
             .then((res) => {
                 console.log("res", res);
                 if (res.data.code === 200) {
                     console.log("res.data.code", res.data.code);
-
                     toast.error("Rejected the application");
-
                     window.setTimeout(function () {
                         window.location.reload();
                     }, 1500);
                 } else {
                     toast.error(res.data.message);
-
                 }
             });
 
@@ -128,30 +123,29 @@ class EmjobApplications extends Component {
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
         console.log("jobs", this.state.searchname)
-    }
+      }
 
     onSearch(event) {
         event.preventDefault();
         const name = this.state.searchname;
         console.log("name", name)
-
+    
         axios.get(`${APIURL}/Applicant/searchJob/${name}`)
+    
+        .then(response => {
 
-            .then(response => {
-
-                this.setState({ Jobs: response.data.data });
-                console.log("response ", response.data.data);
-            })
-
-    }
+            this.setState({ Jobs: response.data.data });
+            console.log("response ", response.data.data);
+        })
+    
+      }
     render() {
         return (
             <div>
                 <Navbar />
-                <div className="page-wrapper">
-                    {/* Top Bar Start */}
 
-                    {/* Top Bar End */}
+
+                <div className="page-wrapper">
                     {/* Page Content*/}
                     <div className="page-content">
                         <div className="container-fluid">
@@ -164,7 +158,7 @@ class EmjobApplications extends Component {
                                                 <h4 className="page-title">Appications</h4>
                                                 <ol className="breadcrumb">
                                                     <li className="breadcrumb-item"><a href="javascript:void(0);">Job Bank</a></li>
-                                                    <li className="breadcrumb-item active">applications</li>
+                                                    <li className="breadcrumb-item active">All Applications</li>
                                                 </ol>
                                             </div>
                                             {/*end col*/}
@@ -172,7 +166,7 @@ class EmjobApplications extends Component {
                                             {/*end col*/}
                                         </div>
                                         {/*end row*/}
-                                        <div className="col-lg-6 text-right" style={{ marginLeft: "600px" }}>
+                                        <div className="col-lg-6 text-right" style={{marginLeft:"600px"}}>
                                             <div className="text-right">
                                                 <ul className="list-inline">
                                                     <li className="list-inline-item">
@@ -182,6 +176,7 @@ class EmjobApplications extends Component {
                                                                 value={this.state.searchname}
                                                                 onChange={this.onChange}
                                                                 type="text" id="example-input1-group2" className="form-control form-control-sm" placeholder="Search Applicant Name" />
+
                                                             <span className="input-group-append">
                                                                 <button type="button" className="btn btn-primary btn-sm" onClick={this.onSearch} ><i className="fas fa-search" /></button>
                                                             </span>
@@ -208,7 +203,6 @@ class EmjobApplications extends Component {
                             <a href="/RejectedListView"> <button type="button" className="btn btn-danger"
                                 style={{ marginLeft: "300px" }}
                             >Rejected List</button>   </a>
-                            {/* <div className="row"> */}
 
                             {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
                                 <div className="row" style={{ marginTop: "10px" }}>
@@ -222,7 +216,6 @@ class EmjobApplications extends Component {
                                                     </div>
                                                     {/*end media-body*/}
                                                 </div>
-
                                                 <div className="row" >
                                                     <div className="col">
                                                         <div className="mt-3">
@@ -230,15 +223,13 @@ class EmjobApplications extends Component {
                                                             <p className="mb-0 font-weight-semibold">Email</p>
                                                         </div>
                                                     </div>
-                                                    {/*end col*/}
-
-                                                    {/*end col*/}
                                                 </div>
                                                 {/*end row*/}
                                                 <div style={{ marginTop: "-15px" }}>
                                                     <p className="text-muted mt-4 mb-1">
                                                         {item.Email}
                                                     </p>
+
                                                 </div>
 
                                                 <div className="row" >
@@ -312,23 +303,22 @@ class EmjobApplications extends Component {
                                                             style={{ marginLeft: "600px" }}>Rejected</span>
                                                     </>
                                                 )}
-
                                             </div>
                                             {/*end card-body*/}
                                         </div>
                                         {/*end card*/}
                                     </div>
-
                                 </div>
-
                             ))}
 
                             <div className="row">
+
+
                             </div>
                             {/*end row*/}
                         </div>{/* container */}
                         <footer className="footer text-center text-sm-left">
-                            © 2021
+                            © 2021 JobBank
                         </footer>
                         {/*end footer*/}
                     </div>

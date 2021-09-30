@@ -44,34 +44,53 @@ class AdminCreateEvent extends Component {
     onSubmit(event) {
         event.preventDefault();
 
-        let EventDetails = {
-            eventTitle: this.state.eventTitle,
-            companyName: this.state.companyName,
-            shortDescription: this.state.shortDescription,
-            location: this.state.location,
-            closingDate: this.state.closingDate,
-            eventType: this.state.eventType,
-            startingDate: this.state.startingDate,
-            CreatedBy: this.state.CreatedBy,
-        };
+        var todayDate = new Date();
+        var dd = String(todayDate.getDate()).padStart(2, '0');
+        var mm = String(todayDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = todayDate.getFullYear();
 
-        console.log("Event Details : ", EventDetails);
-        axios
-            .post(`${APIURL}/Events/create-event`, EventDetails)
-            .then((res) => {
-                console.log("res", res);
-                if (res.data.code === 200) {
-                    console.log("res.data.code", res.data.code);
-                    alert(res.data.message);
-                    window.location.reload();
+        todayDate = yyyy + '/' + mm + '/' + dd;
 
-                } else {
-                    toast.error(res.data.message);
-                    alert(res.data.message);
+        var date2Updated = this.state.closingDate.substr(0, 10).replace(/-/g, '/');
 
-                }
-            });
+        if (this.state.eventTitle != '' && this.state.companyName != ''  && this.state.shortDescription != '') {
+            if (todayDate < date2Updated) {
 
+                let EventDetails = {
+                    eventTitle: this.state.eventTitle,
+                    companyName: this.state.companyName,
+                    shortDescription: this.state.shortDescription,
+                    location: this.state.location,
+                    closingDate: this.state.closingDate,
+                    eventType: this.state.eventType,
+                    startingDate: this.state.startingDate,
+                    CreatedBy: this.state.CreatedBy,
+                };
+
+                console.log("Event Details : ", EventDetails);
+                axios
+                    .post(`${APIURL}/Events/create-event`, EventDetails)
+                    .then((res) => {
+                        console.log("res", res);
+                        if (res.data.code === 200) {
+                            console.log("res.data.code", res.data.code);
+                            alert(res.data.message);
+                            window.location.reload();
+
+                        } else {
+                            toast.error(res.data.message);
+                            alert(res.data.message);
+
+                        }
+                    });
+            }
+            else {
+                alert("Please enter a future date as the ending date.")
+            }
+        }
+        else {
+            alert("Please fill all the fields")
+        }
     }
 
     render() {
@@ -199,7 +218,7 @@ class AdminCreateEvent extends Component {
                                                 </div>
                                                 <div className="button-items">
                                                     <button className="btn btn-outline-success waves-effect waves-light float-right" onClick={this.onSubmit}>Create</button>
-                                                    <a href="#" type="button" className="btn btn-outline-warning waves-effect float-left">Cancel</a>
+                                                    <a href="/AdminPublishEvent" type="button" className="btn btn-outline-warning waves-effect float-left">Cancel</a>
                                                 </div>
                                             </div>
                                         </div>

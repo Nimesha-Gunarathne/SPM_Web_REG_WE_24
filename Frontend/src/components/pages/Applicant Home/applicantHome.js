@@ -1,16 +1,12 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
-import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Navbar from '../Applicantnavibar';
 import Daybar from '../DayBar';
 
-
 const UserID = localStorage.getItem("LocalUserID");
 
 class StudentJobList extends Component {
-
     constructor(props) {
         super(props);
         this.applyJob = this.applyJob.bind(this);
@@ -19,7 +15,6 @@ class StudentJobList extends Component {
 
         var today = new Date(),
             date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-
 
         this.state = {
             Jobs: [],
@@ -30,7 +25,6 @@ class StudentJobList extends Component {
             searchVal: "",
             currentDate: date,
             searchname: ""
-
         }
     }
 
@@ -68,15 +62,10 @@ class StudentJobList extends Component {
         localStorage.setItem("ViewedJobjob_title", job_title)
         localStorage.setItem("ViewedJobjob_type", job_type)
 
-
         window.location = "/ApplicantViewVacancy"
-
-
     }
 
-
     componentDidMount() {
-
 
         axios.get(`${APIURL}/vacancy/getAllJobs`)
 
@@ -84,7 +73,6 @@ class StudentJobList extends Component {
                 this.setState({ Jobs: response.data.data });
                 console.log("All jobs response ", response.data.data);
             })
-
 
         axios.get(`${APIURL}/TopList/getApproedAllTopList`)
 
@@ -196,7 +184,6 @@ class StudentJobList extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            {/* <button type="button" className="btn btn-primary waves-effect waves-light btn-block"><i className="mdi mdi-check-all mr-2" />View</button> */}
                                             <button type="button" className="btn btn-primary waves-effect waves-light btn-block"
                                                                 onClick={e => this.applyJob
                                                                     (
@@ -304,7 +291,7 @@ class StudentJobList extends Component {
                             </div>
                         </div>
                         <footer className="footer text-center text-sm-left">
-                            © 2021
+                            © 2021 JobBank
                         </footer>
                     </div>
                 </div>

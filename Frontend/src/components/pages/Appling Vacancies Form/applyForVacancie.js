@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
-import Select from "react-select";
 import Navbar from '../Applicantnavibar';
-
 
 const initialState = {
     Applicant_Name: "",
@@ -13,8 +10,6 @@ const initialState = {
     Contact_Number: "",
     Description: "",
     CV_Link: null
-
-
 };
 
 class ApplyForJobForm extends Component {
@@ -27,15 +22,12 @@ class ApplyForJobForm extends Component {
         this.onJobCategoryiesOptionSelected = this.onJobCategoryiesOptionSelected.bind(this);
         this.onJobTypeOptionSelected = this.onJobTypeOptionSelected.bind(this);
         this.CategoryImagehandleChange = this.CategoryImagehandleChange.bind(this);
-
-
     }
     CategoryImagehandleChange(event) {
         this.setState({
             CV_Link: URL.createObjectURL(event.target.files[0])
         })
     }
-
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
@@ -50,46 +42,50 @@ class ApplyForJobForm extends Component {
 
     onSubmit(event) {
         event.preventDefault();
+        if (this.state.Applicant_Name != '' && this.state.Email != '' && this.state.Contact_Number != '' && this.state.Description != '') {
+            let JobDetails = {
 
-        let JobDetails = {
+                Applicant_Name: this.state.Applicant_Name,
+                Email: this.state.Email,
+                Contact_Number: this.state.Contact_Number,
+                Description: this.state.Description,
+                CV_Link: this.state.CV_Link,
 
-            Applicant_Name: this.state.Applicant_Name,
-            Email: this.state.Email,
-            Contact_Number: this.state.Contact_Number,
-            Description: this.state.Description,
-            CV_Link: this.state.CV_Link,
+                JobId: localStorage.getItem("ViewedJobID"),
+                Jobclosing_date: localStorage.getItem("ViewedJobclosing_date"),
+                JobcreatedAt: localStorage.getItem("ViewedJobcreatedAt"),
+                JobemployerID: localStorage.getItem("ViewedJobemployerID"),
+                JobemployerName: localStorage.getItem("ViewedJobemployerName"),
+                job_category: localStorage.getItem("ViewedJobjob_category"),
+                job_description: localStorage.getItem("ViewedJobjob_description"),
+                job_title: localStorage.getItem("ViewedJobjob_title"),
+                job_type: localStorage.getItem("ViewedJobjob_type"),
 
-            JobId: localStorage.getItem("ViewedJobID"),
-            Jobclosing_date: localStorage.getItem("ViewedJobclosing_date"),
-            JobcreatedAt: localStorage.getItem("ViewedJobcreatedAt"),
-            JobemployerID: localStorage.getItem("ViewedJobemployerID"),
-            JobemployerName: localStorage.getItem("ViewedJobemployerName"),
-            job_category: localStorage.getItem("ViewedJobjob_category"),
-            job_description: localStorage.getItem("ViewedJobjob_description"),
-            job_title: localStorage.getItem("ViewedJobjob_title"),
-            job_type: localStorage.getItem("ViewedJobjob_type"),
+                UserID: localStorage.getItem("LocalUserID"),
+                IsApprove: 0
+            };
 
-            UserID: localStorage.getItem("LocalUserID"),
-            IsApprove: 0
-        };
+            console.log("Job Details : ", JobDetails);
 
-        console.log("Job Details : ", JobDetails);
+            axios
+                .post(`${APIURL}/Applicant/JobApply`, JobDetails)
+                .then((res) => {
+                    console.log("res", res);
+                    if (res.status === 200) {
+                        console.log("res.data.code", res.data.code);
+                        toast.success("You Have Successfully Applied For " + localStorage.getItem("ViewedJobjob_title"));
+                        window.setTimeout(function () {
+                            window.location.href = "/applicantHome";
+                        }, 1200);
 
-        axios
-            .post(`${APIURL}/Applicant/JobApply`, JobDetails)
-            .then((res) => {
-                console.log("res", res);
-                if (res.status === 200) {
-                    console.log("res.data.code", res.data.code);
-                    toast.success("You Have Successfully Applied For " + localStorage.getItem("ViewedJobjob_title"));
-                    window.setTimeout(function () {
-                        window.location.href = "/applicantHome";
-                    }, 1200);
-
-                } else {
-                    toast.error(res.data.message);
-                }
-            });
+                    } else {
+                        toast.error(res.data.message);
+                    }
+                });
+        }
+        else {
+            alert("Please fill all the fields")
+        }
     }
 
     render() {

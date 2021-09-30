@@ -27,7 +27,7 @@ class AdminViewVacancy extends Component {
         console.log("res", res);
         if (res.data.code === 200) {
           console.log("res.data.code", res.data.code);
-          toast.success("Vacancy is Deleted Successfully!");
+          toast.error("Vacancy is Deleted Successfully!");
           window.setTimeout(function () {
             window.location.reload();
           }, 2500);
@@ -105,8 +105,6 @@ class AdminViewVacancy extends Component {
                               </span>
                             </div>
                           </li>
-
-
                         </ul>
                       </div>
                     </div>

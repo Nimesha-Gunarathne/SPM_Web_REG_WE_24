@@ -131,10 +131,6 @@ const ApplicantAppliedJobsControllers = {
 
         } = req.body;
 
-        // await Jobs.findByIdAndDelete(req.params.id, {
-        //   isOpen
-        // });
-
         const Job = await applicantAppliedJobsModel.findByIdAndDelete(req.params.id);
 
         return res.status(200).json({
@@ -211,7 +207,6 @@ const ApplicantAppliedJobsControllers = {
   getApproedAllApplications: async (req, res) => {
     await applicantAppliedJobsModel.find({ IsApprove: 1 })
       .then((data) => {
-        // console.log("Len: ", data.length)
         const count = data.length;
         res.status(200).json({
           code: 200,
@@ -229,7 +224,6 @@ const ApplicantAppliedJobsControllers = {
   getRejectedAllApplications: async (req, res) => {
     await applicantAppliedJobsModel.find({ IsApprove: 2 })
       .then((data) => {
-        // console.log("Len: ", data.length)
         const count = data.length;
         res.status(200).json({
           code: 200,

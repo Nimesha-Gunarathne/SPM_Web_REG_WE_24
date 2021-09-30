@@ -18,7 +18,7 @@ import TopCompantEmp from "./components/pages/Top Companies Employer/applicantHo
 import TopCompantAdmin from "./components/pages/Top Companies Admin/applicantHome";
 import TopCompantApplicant from "./components/pages/Top Companies Applicant/applicantHome";
 import AdminViewVacancy from "./components/pages/23 Admin view Vacancy/adminViewVacancy";
-import AdminDashboard from "./components/pages/Admin Dashboard/AdminDashboard";
+import AdminDashboard from "./components/pages/Admin Dashboard/adminDashboard";
 import AdminViewApplicant from "./components/pages/24 Admin View Applicant/adminViewApplicant";
 import AdminViewApplicantInfo from "./components/pages/24 Admin View Applicant info/adminViewApplicantInfo";
 import AdminViewEmployer from "./components/pages/25 Admin View Employer/adminViewEmployer";

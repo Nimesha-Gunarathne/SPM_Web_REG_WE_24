@@ -1,15 +1,11 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
 import { APIURL } from "../../API/environment";
 import { toast } from "react-toastify";
 import Navbar from '../Applicantnavibar';
 import Daybar from '../DayBar';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 
 const UserID = localStorage.getItem("LocalUserID");
-// const UserID = "60f9393bf9010e001577b6ea";
 
 class StudentJobList extends Component {
 
@@ -19,14 +15,11 @@ class StudentJobList extends Component {
     this.navigateWithID = this.navigateWithID.bind(this);
     this.RollBack = this.RollBack.bind(this);
 
-
     this.state = {
       Jobs: [],
 
     }
   }
-
-
 
   RollBack(e, jobID) {
     console.log(jobID)
@@ -38,7 +31,7 @@ class StudentJobList extends Component {
         if (res.data.code === 200) {
           console.log("res.data.code", res.data.code);
 
-          toast.success("Applied Job is Deleted!");
+          toast.error("Applied Job is Deleted!");
 
 
           window.setTimeout(function () {
@@ -61,8 +54,6 @@ class StudentJobList extends Component {
   applyJob(e, CID, CName, DDate, JTitle, JID, JDec, SDate) {
 
     e.preventDefault();
-
-
     let JobData = {
 
       UserID: localStorage.getItem("LocalUserID"),
@@ -117,13 +108,9 @@ class StudentJobList extends Component {
                           <li className="breadcrumb-item active">Apply Jobs</li>
                         </ol>
                       </div>
-
                       <Daybar />
-
                     </div>
                   </div>
-
-
                 </div>
 
               </div>
@@ -156,8 +143,6 @@ class StudentJobList extends Component {
                             <tbody>
                               {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
 
-
-
                                 <tr>
                                   <td>{item.job_title}</td>
                                   <td>{item.JobemployerName}</td>
@@ -168,29 +153,23 @@ class StudentJobList extends Component {
 
                                       {item.IsApprove == 0 && (
                                         <>
-
                                           <button type="button" className="btn btn-warning waves-effect waves-light"
                                             onClick={e => this.navigateWithID(e, item._id)}>Edit</button>
                                           <button type="button" className="btn btn-danger waves-effect waves-light"
                                             onClick={e => this.RollBack(e, item._id)}>Roll Back</button>
                                           <span className=" badge badge-soft-warning">Pending</span>
-
                                         </>
                                       )}
 
                                       {item.IsApprove == 2 && (
                                         <>
-
                                           <span className=" badge badge-soft-danger">Reject</span>
-
                                         </>
                                       )}
 
                                       {item.IsApprove == 1 && (
                                         <>
-
                                           <span className=" badge badge-soft-success">Selected</span>
-
                                         </>
                                       )}
                                     </div>

@@ -55,7 +55,7 @@ class NavBar extends Component {
                                 </ul>
                             </li>
                             <li>
-                                <a href="/login" style={{ marginTop: "140px" }}><i data-feather="layers" class="align-self-center fas fa-sign-out-alt" style={{ color: "white" }}></i><span>Log out</span></a>
+                                <a href="/login" style={{ marginTop: "100px" }}><i data-feather="layers" class="align-self-center fas fa-sign-out-alt" style={{ color: "white" }}></i><span>Log out</span></a>
                             </li>
                         </ul>
                     </div>

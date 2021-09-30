@@ -75,9 +75,9 @@ File: Leftbar
 }
 
 .left-sidenav-menu {
+  padding: 24px;
   padding-left: 0;
   margin-bottom: 0;
-  padding: 24px;
 }
 
 .left-sidenav-menu .menu-label {

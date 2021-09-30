@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import Navbar from '../Employernavibar';
 import Daybar from '../DayBar';
 
-const UserID = localStorage.getItem("LocalUserID");
+const JobID = localStorage.getItem("employerApplicationJobID");
 
 class ShortListView extends Component {
 
@@ -13,12 +13,12 @@ class ShortListView extends Component {
     super(props);
     this.onReject = this.onReject.bind(this);
     this.RollBack = this.RollBack.bind(this);
+
     this.state = {
       Jobs: [],
 
     }
   }
-
   RollBack(e, jobID) {
     console.log(jobID)
 
@@ -29,14 +29,12 @@ class ShortListView extends Component {
         if (res.data.code === 200) {
           console.log("res.data.code", res.data.code);
 
-          toast.success("Applied Job is Deleted!");
-
+          toast.error("Applied Job is Deleted!");
           window.setTimeout(function () {
             window.location.reload();
           }, 1500);
         } else {
           toast.error(res.data.message);
-
         }
       });
   }
@@ -56,9 +54,7 @@ class ShortListView extends Component {
         console.log("res", res);
         if (res.data.code === 200) {
           console.log("res.data.code", res.data.code);
-
           toast.error("Reject the application");
-
           window.setTimeout(function () {
             window.location.reload();
           }, 1500);
@@ -69,10 +65,9 @@ class ShortListView extends Component {
       });
   }
 
-
   componentDidMount() {
 
-    axios.get(`${APIURL}/Applicant/approvedApplication`)
+    axios.get(`${APIURL}/Applicant/getJobAppliedDetailsBYJOBID/${JobID}`)
 
       .then(response => {
 
@@ -85,6 +80,7 @@ class ShortListView extends Component {
     return (
       <div>
         <Navbar />
+
         <div className="page-wrapper">
           {/* Page Content*/}
           <div className="page-content">
@@ -107,7 +103,6 @@ class ShortListView extends Component {
                     </div>
                     {/*end row*/}
                   </div>
-
                   {/*end page-title-box*/}
                 </div>
                 {/*end col*/}
@@ -127,6 +122,7 @@ class ShortListView extends Component {
                     {/*end card-header*/}
                     <div className="card-body">
                       <div className="table-responsive">
+
                         <div id="viewtable">
                           <h3 style={{ 'textAlign': 'center' }}>
                             Approved Applications
@@ -134,28 +130,35 @@ class ShortListView extends Component {
                           <table className="table  table-bordered" >
                             <thead>
                               <tr>
-                                <th>Job</th>
-                                <th>Company</th>
+                                <th>Vacancy</th>
+                                <th>Applicant Name</th>
                                 <th>Description</th>
-                                <th>Deadline</th>
+                                <th>Email</th>
                                 <th className="text-center">Status</th>
                               </tr>
                             </thead>
                             <tbody>
-                              {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
-                                <tr>
-                                  <td>{item.job_title}</td>
-                                  <td>{item.JobemployerName}</td>
-                                  <td>{item.job_description}</td>
-                                  <td>{item.Jobclosing_date}</td>
-                                  <td className="text-center">
-                                    <div className="button-items">
-                                      <button type="button" className="btn btn-danger waves-effect waves-light"
-                                        onClick={e => this.onReject(e, item._id)}>Reject</button>
-                                    </div>
-                                  </td>
-                                </tr>
 
+                              {this.state.Jobs.length > 0 && this.state.Jobs.map((item, index) => (
+
+                                <>
+                                  {item.IsApprove == 1 && (
+                                    <tr>
+                                      <td>{item.job_title}</td>
+                                      <td>{item.Applicant_Name}</td>
+                                      <td>{item.Description}</td>
+                                      <td>{item.Email}</td>
+                                      <td className="text-center">
+                                        <div className="button-items">
+
+                                          <button type="button" className="btn btn-danger waves-effect waves-light"
+                                            onClick={e => this.onReject(e, item._id)}>Reject</button>
+
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  )}
+                                </>
                               ))}
                             </tbody>
                           </table>
@@ -178,10 +181,6 @@ class ShortListView extends Component {
           </div>
           {/* end page content */}
         </div>
-        {/* end page-wrapper */}
-        {/* jQuery  */}
-        {/* App js */}
-
       </div>
     );
   }

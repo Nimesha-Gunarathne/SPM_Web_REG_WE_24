@@ -70,7 +70,6 @@ class RegistationStudent extends Component {
           window.setTimeout(function () {
             window.location.href = "/login";
           }, 100);
-          //   window.location.href = "/login";
         } else {
           toast.error(res.data.message);
           alert(res.data.message)
@@ -97,7 +96,6 @@ class RegistationStudent extends Component {
               <div className="container1">
                 <h1>Applicant Registation</h1>
                 <form method="POST" onSubmit={this.onSubmit}>
-                  {/* 2 column grid layout with text inputs for the first and last names */}
                   <div className="row">
                     <div className="col-lg-6">
                       <div className="form-group">
@@ -124,8 +122,6 @@ class RegistationStudent extends Component {
                         />
                       </div>
                       <div className="form-group">
-                        {/* <input type="text" class="form-control" id="exampleInputPassword1"
-                                            placeholder="Identification number of the student"> */}
                         <Select
                         placeholder="Select your interested Field"
                           options={InterestedFieldsoptions}
@@ -145,16 +141,6 @@ class RegistationStudent extends Component {
                           onChange={this.onChange}
                         />
                       </div>
-                      {/* <div className="form-group">
-                        <input
-                          className="form-control"
-                          type="date"
-                          name="birthday"
-                          name="date"
-                          value={this.state.date}
-                          onChange={this.onChange}
-                        />
-                      </div> */}
                       <div className="form-group">
                         <input
                           type="text"
@@ -180,7 +166,6 @@ class RegistationStudent extends Component {
                       value={this.state.email}
                       onChange={this.onChange}
                     />
-                    {/* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> */}
                   </div>
               
                   <div className="form-group">
@@ -215,12 +200,7 @@ class RegistationStudent extends Component {
                       placeholder="Confirm Password"
                       defaultValue={""}
                       name="additionaInfromation"
-                      // value={this.state.additionaInfromation}
-                      // onChange={this.onChange}
                     />
-                    {/* <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="Contact person"> */}
-                    {/* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> */}
                   </div>
                   {/* Submit button */}
                   <div className="col-md-6 btnSubmit">
