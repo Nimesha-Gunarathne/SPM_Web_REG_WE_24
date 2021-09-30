@@ -59,7 +59,7 @@ class EmployerCreateJob extends Component {
                 if (res.data.code === 200) {
                     console.log("res.data.code", res.data.code);
 
-                    toast.success("Your Vacancy is Deleted!");
+                    toast.error("Your Vacancy is Deleted!");
 
                     window.setTimeout(function () {
                         window.location = "/EmployerCreatedJobList"
@@ -87,7 +87,7 @@ class EmployerCreateJob extends Component {
                 if (res.data.code === 200) {
                     console.log("res.data.code", res.data.code);
 
-                    toast.success("Your Vacancy is Closed!");
+                    toast.error("Your Vacancy is Closed!");
 
                     window.setTimeout(function () {
                         window.location.reload();
@@ -271,8 +271,8 @@ class EmployerCreateJob extends Component {
                                                     <h4 className="page-title">Edit Job</h4>
                                                     <ol className="breadcrumb">
                                                         <li className="breadcrumb-item"><a href="javascript:void(0);">Job Bank</a></li>
-                                                        <li className="breadcrumb-item"><a href="javascript:void(0);">Jobs</a></li>
-                                                        <li className="breadcrumb-item active">Edit Jobs</li>
+                                                        <li className="breadcrumb-item"><a href="javascript:void(0);">Vacancies</a></li>
+                                                        <li className="breadcrumb-item active">Edit Vacancy</li>
                                                     </ol>
                                                 </div>
 

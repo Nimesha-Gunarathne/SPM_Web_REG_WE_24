@@ -127,7 +127,7 @@ class ApplicantEventView extends Component {
                             {/*end row*/}
                         </div>{/* container */}
                         <footer className="footer text-center text-sm-left">
-                            © 2021
+                            © 2021 JobBank
                         </footer>
                         {/*end footer*/}
                     </div>

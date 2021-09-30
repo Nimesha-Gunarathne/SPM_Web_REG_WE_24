@@ -1,16 +1,10 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
-import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Navbar from '../Applicantnavibar';
 import Daybar from '../DayBar';
 
-
-
 const UserID = localStorage.getItem("LocalUserID");
-
-
 
 class ApplicantEventView extends Component {
 
@@ -54,7 +48,7 @@ class ApplicantEventView extends Component {
                                                 <h4 className="page-title">Events</h4>
                                                 <ol className="breadcrumb">
                                                     <li className="breadcrumb-item"><a href="javascript:void(0);">Job Bank</a></li>
-                                                    <li className="breadcrumb-item active">events list</li>
+                                                    <li className="breadcrumb-item active">Events list</li>
                                                 </ol>
                                             </div>
                                             <Daybar />
@@ -114,7 +108,7 @@ class ApplicantEventView extends Component {
 
                         </div>
                         <footer className="footer text-center text-sm-left">
-                            © 2021
+                            © 2021 JobBank
                         </footer>
                     </div>
                 </div>

@@ -10,8 +10,5 @@ const ApplicantRoute = require('../../../controllers/ApplicantRegistation.contro
     router.delete("/DeleteAllApplicant/:id", ApplicantRoute.DeleteByID);
     router.get("/getAllApplicantByID/:id", ApplicantRoute.getApplicantDetailsById);
 
-
-  
-
     module.exports = router;
   

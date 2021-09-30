@@ -71,7 +71,7 @@ class adminViewApplicant extends Component {
                       {/*end col*/}
                       <Daybar />
                       {/*end col*/}
-                    </div>
+                    </div>  
                     {/*end row*/}
                   </div>
                   {/*end page-title-box*/}

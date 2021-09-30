@@ -25,5 +25,8 @@
     "mongoose": "^5.13.3",
     "node-fetch": "^2.6.1",
     "nodemailer": "^6.6.3"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.3"
   }
 }

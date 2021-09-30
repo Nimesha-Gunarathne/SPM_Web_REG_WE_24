@@ -32,8 +32,6 @@ class Login extends Component {
       password: this.state.password,
     };
 
-  
-
     if (login.email == "admin@gmail.com" && login.password == "1234") {
       this.props.history.push("/adminProfile");
       toast.success("admin@gmail.com is logged as Admin");
@@ -41,7 +39,7 @@ class Login extends Component {
     }
 
     if (login.email == "admin@gmail.com" && login.password != "1234") {
-      toast.error("Admin, Please check ypur PASSCODE!");
+      toast.error("Admin, Please check your PASSCODE!");
     }
 
     axios.post(`${APIURL}/employer/login-employer`, login).then((res) => {
@@ -76,9 +74,6 @@ class Login extends Component {
         }
       } else if(res.data.message == "This email doest not exist. Please create a your account first.")  {
         this.state.emp=2;
-        // toast.error(res.data.message);
-        // toast.error("Password does not mach this"+ login.email);
-        // alert(res.data.message)
       }
       else{
              toast.error(res.data.message);
@@ -105,7 +100,6 @@ class Login extends Component {
           localStorage.setItem("LocalUserID", UId);
           console.log("tok", result);
           this.props.history.push("/applicantHome");
-          // alert(res.data.message)
 
           toast.success(
             res.data.data.firstName +
@@ -114,8 +108,6 @@ class Login extends Component {
         }
       } else if(this.state.emp == 2) {
         toast.error(res.data.message);
-        // toast.error("Password does not mach this"+ login.email);
-        // alert(res.data.message);
       }
     });
   }
@@ -124,7 +116,6 @@ class Login extends Component {
     return (
       <>
         <div className="logmain">
-          {/* <section className="sec"> */}
           <div className="logForm">
             <form method="POST" onSubmit={this.onSubmit}>
               <div className="imglogForm">
@@ -171,7 +162,6 @@ class Login extends Component {
                   <span style={{marginTop: "0px", color: "black", marginLeft: "-100px" }}>
                     Remember
                   </span>
-                  {/* <span className="lable-data">Remember</span> */}
                 </div>
                 <div className="con" style={{marginTop:"20px"}}>
                   <input
@@ -192,14 +182,9 @@ class Login extends Component {
                   </span>
                   <a href="/"> Register Now </a>
                 </div>
-                {/* <div class="link">
-                <label for="lable-data">Dont have an account?<a href="*">Register here.</a></label>
-                
-            </div> */}
               </div>
             </form>
           </div>
-          {/* </section> */}
         </div>
       </>
     );

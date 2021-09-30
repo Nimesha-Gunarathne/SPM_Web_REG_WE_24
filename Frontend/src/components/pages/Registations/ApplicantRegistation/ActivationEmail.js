@@ -26,7 +26,6 @@ function ActivationEmail() {
             console.log(err);
           });
       } catch (err) {
-        //toast.error(err.response, data.message);
       }
     }
   });

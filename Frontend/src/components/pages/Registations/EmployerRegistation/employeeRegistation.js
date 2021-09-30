@@ -45,7 +45,6 @@ class RegistationEmployer extends Component {
     console.log("Employer Details : ", EmployerDetails);
 
     axios
-      // .post(`${APIURL}/employer/register-employer/`, EmployerDetails)
       .post(`${APIURL}/Employer/register-employer/`, EmployerDetails)
 
       .then((res) => {
@@ -80,7 +79,6 @@ class RegistationEmployer extends Component {
               <div className="container1">
                 <h1>Employer Registation</h1>
                 <form method="POST" onSubmit={this.onSubmit}>
-                  {/* 2 column grid layout with text inputs for the first and last names */}
                   <div className="row">
                     <div className="col-lg-6">
                       <div className="form-group">
@@ -94,76 +92,10 @@ class RegistationEmployer extends Component {
                           onChange={this.onChange}
                         />
                       </div>
-                      {/* <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="exampleInputPassword1"
-                          placeholder="Identification number of the subject"
-                          name="number_of_subjects"
-                          value={this.state.number_of_subjects}
-                          onChange={this.onChange}
-                        />
-                      </div> */}
-                      {/* <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="exampleInputPassword1"
-                          placeholder="Seat address (street and number)"
-                          name="headquarters_streat_no"
-                          value={this.state.headquarters_streat_no}
-                          onChange={this.onChange}
-                        />
-                      </div> */}
                     </div>
                     <div className="col-lg-6">
-                      {/* <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="exampleInputPassword1"
-                          placeholder="VAT code"
-                          name="OIB"
-                          value={this.state.OIB}
-                          onChange={this.onChange}
-                        />
-                      </div> */}
-                      {/* <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="exampleInputPassword1"
-                          placeholder="Registration number of the citizens who own the craft"
-                          name="reg_no_of_citizen_owners"
-                          value={this.state.reg_no_of_citizen_owners}
-                          onChange={this.onChange}
-                        />
-                      </div> */}
-                      {/* <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="exampleInputPassword1"
-                          placeholder="Postal code and place"
-                          name="postalCode_place"
-                          value={this.state.postalCode_place}
-                          onChange={this.onChange}
-                        />
-                      </div> */}
                     </div>
                   </div>
-                  {/* <div className="form-group">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="exampleInputPassword1"
-                      placeholder="IBAN"
-                      name="IBAN"
-                      value={this.state.IBAN}
-                      onChange={this.onChange}
-                    />
-                  </div> */}
                   <div className="form-group">
                     <input
                       type="text"
@@ -229,16 +161,6 @@ class RegistationEmployer extends Component {
                     />
                   </div>
                   <div className="form-group">
-                    {/* <input
-                      type="text"
-                      className="form-control"
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
-                      placeholder="Contact person"
-                      name="contact_person"
-                      value={this.state.contact_person}
-                      onChange={this.onChange}
-                    /> */}
 
                     <div className="col-md-6 btnSubmit">
                       <button

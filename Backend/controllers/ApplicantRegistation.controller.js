@@ -1,5 +1,4 @@
 const registationStudent = require("../models/ApplicantRegistation.model");
-// const bcrypt = require("bcrypt");
 const messages = require("../messages/messages");
 const jwt = require("jsonwebtoken");
 const sendMail = require("./Mails/sendMail");
@@ -7,8 +6,6 @@ const sendMail = require("./Mails/sendMail");
 const { google } = require("googleapis");
 const { OAuth2 } = google.auth;
 const fetch = require("node-fetch");
-
-// const client = new OAuth2(process.env.MAILING_SERVICE_CLIENT_ID);
 
 const { CLIENT_URL } = process.env;
 
@@ -89,7 +86,6 @@ const STUDENTControllers = {
         const activation_token = createActivationToken(newStudent);
   
         const url = `${CLIENT_URL}/applicant/activate/${activation_token}`;
-        // const url = `${CLIENT_URL}/login`;
         console.log(url);
   
         sendMail(email, url, "Verify your email address", firstName);
@@ -153,9 +149,6 @@ const STUDENTControllers = {
         });
   
         await newStudent.save();
-        // const url = `${CLIENT_URL}/student/activate/${activation_token}`;
-        // const url = `${CLIENT_URL}/login`;
-        // sendMail("sltechmart99@gmail.com", url, "Aprove the Employer", "Clerk");
   
         return res.status(200).json({
           code: messages.SuccessCode,
@@ -198,10 +191,6 @@ const STUDENTControllers = {
             message: messages.EmailDoesNotExist,
           });
         } else {
-          // const isMatchUserPassword = await bcrypt.compare(
-          // password,
-          // students.password
-          // );
           if (password != students.password) {
             return res.status(200).json({
               code: messages.BadCode,
@@ -240,7 +229,6 @@ const STUDENTControllers = {
     getAllApplicant: async (req, res) => {
       await registationStudent.find()
         .then((data) => {
-          // console.log("Len: ", data.length)
           const count = data.length;
           res.status(200).json({
             code: 200,
@@ -263,10 +251,6 @@ const STUDENTControllers = {
             isOpen
   
           } = req.body;
-  
-          // await Jobs.findByIdAndDelete(req.params.id, {
-          //   isOpen
-          // });
   
           const Job = await registationStudent.findByIdAndDelete(req.params.id);
   

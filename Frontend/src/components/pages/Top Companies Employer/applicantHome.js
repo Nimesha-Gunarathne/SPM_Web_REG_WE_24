@@ -100,10 +100,10 @@ class StudentJobList extends Component {
                                     <div className="page-title-box">
                                         <div className="row">
                                             <div className="col">
-                                                <h4 className="page-title">Job Market</h4>
+                                                <h4 className="page-title">Job Bank</h4>
                                                 <ol className="breadcrumb">
                                                     <li className="breadcrumb-item"><a href="javascript:void(0);">Job Bank</a></li>
-                                                    <li className="breadcrumb-item active">Job Market</li>
+                                                    <li className="breadcrumb-item active">Top Companies</li>
                                                 </ol>
                                             </div>
                                             {/*end col*/}
@@ -122,7 +122,7 @@ class StudentJobList extends Component {
                                 <div className="col-lg-6">
                                     <ul className="list-inline">
                                         <li className="list-inline-item">
-                                            <h5 className="mt-0">Here the list of all Avalable Jobs for you. <span className="badge badge-pink"></span></h5>
+                                            <h5 className="mt-0">Here the list of all Top Companies <span className="badge badge-pink"></span></h5>
                                         </li>
                                     </ul>
                                 </div>
@@ -228,7 +228,7 @@ class StudentJobList extends Component {
                             {/*end row*/}
                         </div>{/* container */}
                         <footer className="footer text-center text-sm-left">
-                            © 2021
+                            © 2021 JobBank
                         </footer>
                         {/*end footer*/}
                     </div>

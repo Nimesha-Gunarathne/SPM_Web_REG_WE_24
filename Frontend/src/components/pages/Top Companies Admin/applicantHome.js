@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import axios from "axios";
-import { toast } from "react-toastify";
 import { APIURL } from "../../../components/API/environment";
 import Navbar from '../Adminnavibar';
 import Daybar from '../DayBar';
@@ -92,9 +90,6 @@ class StudentJobList extends Component {
                 <Navbar />
 
                 <div className="page-wrapper">
-                    {/* Top Bar Start */}
-
-                    {/* Top Bar End */}
                     {/* Page Content*/}
                     <div className="page-content">
                         <div className="container-fluid">
@@ -126,7 +121,7 @@ class StudentJobList extends Component {
                                 <div className="col-lg-6">
                                     <ul className="list-inline">
                                         <li className="list-inline-item">
-                                            <h5 className="mt-0">Here the list of all Avalable Jobs for you. <span className="badge badge-pink"></span></h5>
+                                            <h5 className="mt-0">Here the list of all Top Companies. <span className="badge badge-pink"></span></h5>
                                         </li>
                                     </ul>
                                 </div>
