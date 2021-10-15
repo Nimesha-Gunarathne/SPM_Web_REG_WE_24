@@ -7,7 +7,7 @@
 | ------------- | ------------- | ------------- |
 | Gunarathne E.H.N.L.  | IT19111384  | Nimesha-Gunarathne  |
 | H.P.C.S. Wickramarathna  | IT19145280  | Charitha615  |
-| Galagoda R.R.N.P.A.B.W.M.S.R.  | IT19145280  | sanduni-g  |
+| Galagoda R.R.N.P.A.B.W.M.S.R.  | IT19146102  | sanduni-g  |
 
 ## Project Description:
 
